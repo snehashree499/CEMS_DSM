@@ -1,2 +1,2 @@
 # 1-bit-DSM
-This represents progress about 1-bit Delta-Sigma Modulator
+This represents progress about Single-bit Second order Delta-Sigma Modulator
