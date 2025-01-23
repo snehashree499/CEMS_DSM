@@ -1,0 +1,24 @@
+v {xschem version=3.4.6 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 240 -220 340 -200 {}
+L 4 240 -180 340 -200 {}
+L 4 240 -220 240 -180 {}
+L 4 220 -190 240 -190 {}
+L 4 340 -200 360 -200 {}
+L 4 220 -210 240 -210 {}
+B 5 217.5 -192.5 222.5 -187.5 {name=Plus dir=in}
+B 5 357.5 -202.5 362.5 -197.5 {name=Vout dir=out}
+B 5 217.5 -212.5 222.5 -207.5 {name=Minus dir=in}
+T {@5T-OTA} 272.5 -236 0 0 0.2 0.2 {}
+T {@name} 355 -222 0 0 0.2 0.2 {}
+T {Plus} 245 -194 0 0 0.2 0.2 {}
+T {Vout} 385 -194 0 1 0.2 0.2 {}
+T {Minus} 245 -214 0 0 0.2 0.2 {}
+C {devices/title.sym} 180 60 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
