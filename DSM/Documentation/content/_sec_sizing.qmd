@@ -11,13 +11,13 @@ A brief is available [here](https://github.com/iic-jku/analog-circuit-design/blo
 
 ##Testbench for MOSFETSWEEP{#sec-techsweep-testbench}
 
-In order to get all the operating points for lv nmos shown in @fig-techsweep-nmos, and lv pmos shown in @fig-techsweep-pmos
+In order to get all the operating points for lv nmos shown in @fig-techsweep-nmos-tb, and lv pmos shown in @fig-techsweep-pmos-tb
 
 
 
 
 
 
-![Testbench for LV NMOS $\gmid$ characterization.](./DSM/Documentationfigures/tb_sg13_lv_nmos.svg){#fig-techsweep-nmos-tb}
+![Testbench for LV NMOS $\gmid$ characterization.](/figures/tb_sg13_lv_nmos.svg){#fig-techsweep-nmos-tb}
 
-![Testbench for LV PMOS $\gmid$ characterization.](./DSM/Documentationfigures/tb_sg13_lv_pmos.svg){#fig-techsweep-pmos-tb}
+![Testbench for LV PMOS $\gmid$ characterization.](/){#fig-techsweep-pmos-tb}
