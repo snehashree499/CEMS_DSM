@@ -8,3 +8,16 @@ Often, transistor sizing in entry-level courses is based on the square-law model
 The gm over Id methodology has the huge advantage that it catches MOSFET behavior quite accurately over a wide range of operating conditions, and the curves look very similar for pretty much all CMOS technologies, from micrometer bulk CMOS down to nanometer FinFET devices. Of course the absolute values change, but the method applies universally.
 
 A brief is available [here](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/Ref_Murmann_gmID.pdf)
+
+##Testbench for MOSFETSWEEP{#sec-techsweep-testbench}
+
+In order to get all the operating points for lv nmos shown in @fig-techsweep-nmos, and lv pmos shown in @fig-techsweep-pmos
+
+
+
+
+
+
+![Testbench for LV NMOS $\gmid$ characterization.](./DSM/Documentationfigures/tb_sg13_lv_nmos.svg){#fig-techsweep-nmos-tb}
+
+![Testbench for LV PMOS $\gmid$ characterization.](./DSM/Documentationfigures/tb_sg13_lv_pmos.svg){#fig-techsweep-pmos-tb}
