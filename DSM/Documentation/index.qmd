@@ -1,26 +1,24 @@
 ---
-title: La Palma Earthquakes
+title: Discrete Time Delta Sigma Modulator
 author:
-  - name: Steve Purves
-    orcid: 0000-0002-0760-5497
-    corresponding: true
-    email: steve@curvenote.com
-    roles:
-      - Investigation
-      - Project administration
-      - Software
-      - Visualization
+  - name: Hrishikesh Pangavhane
+    Matriculation number: 5363452
+    #corresponding: true
+    email: hrishipangavhane@gmail.com
     affiliations:
-      - Curvenote
-  - name: Rowan Cockett
-    orcid: 0000-0002-7859-8394
-    corresponding: false
-    roles: []
+      - Hochschule Bremen
+  - name: Sneha Shree Katepalli
+    Matriculation number: 5364673
+    #corresponding: true
+    email: snehashree499@gmail.com
     affiliations:
-      - Curvenote
-keywords:
-  - La Palma
-  - Earthquakes
+      - Hochschule Bremen
+  - name: Hanieh Alteidar
+    Matriculation number: 5364673
+    #corresponding: true
+    email: hanieh@gmail.com
+    affiliations:
+      - Hochschule Bremen
 abstract: |
   In September 2021, a significant jump in seismic activity on the island of La Palma (Canary Islands, Spain) signaled the start of a volcanic crisis that still continues at the time of writing. Earthquake data is continually collected and published by the Instituto Geográphico Nacional (IGN). ...
 plain-language-summary: |
