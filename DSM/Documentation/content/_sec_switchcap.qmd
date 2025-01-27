@@ -1,1 +1,1 @@
-#Realisation of discrete time second order switch capacitor circuit{#}
+# Realisation of discrete time second order switch capacitor circuit {#sec-SwitchCap}

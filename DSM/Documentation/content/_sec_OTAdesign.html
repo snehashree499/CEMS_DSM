@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sec_sizing</title>
+<title>sec_otadesign</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,16 +23,16 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="_sec_sizing_files/libs/clipboard/clipboard.min.js"></script>
-<script src="_sec_sizing_files/libs/quarto-html/quarto.js"></script>
-<script src="_sec_sizing_files/libs/quarto-html/popper.min.js"></script>
-<script src="_sec_sizing_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="_sec_sizing_files/libs/quarto-html/anchor.min.js"></script>
-<link href="_sec_sizing_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="_sec_sizing_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="_sec_sizing_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="_sec_sizing_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="_sec_sizing_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="_sec_OTAdesign_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_sec_OTAdesign_files/libs/quarto-html/quarto.js"></script>
+<script src="_sec_OTAdesign_files/libs/quarto-html/popper.min.js"></script>
+<script src="_sec_OTAdesign_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_sec_OTAdesign_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_sec_OTAdesign_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_sec_OTAdesign_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_sec_OTAdesign_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_sec_OTAdesign_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_sec_OTAdesign_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -75,35 +75,121 @@ window.Quarto = {
 
 
 
-<section id="sec-gmid-method" class="level1">
-<h1>Sizing using gm over Id method</h1>
-<p>Now that we have designed the topology of our OTA(refer to foldedCascode) and we already know the value of <span class="math inline">\(g_\mathrm{m}\)</span>, and <span class="math inline">\(I_\mathrm{D}\)</span>, we need to derive the widths <span class="math inline">\(W\)</span> <span class="math inline">\(L\)</span> and lengths of our design.</p>
-<p>Often, transistor sizing in entry-level courses is based on the square-law model, where a simple analytical equation for the drain current can be derived. However, in nanometer CMOS, the MOSFET behavior is much more complex than these simple models. Also, this highly simplified derivations introduce concepts like the threshold voltage or the overdrive voltage, which are interesting from a theoretical viewpoint, but bear little practical use. Also this model is only valid in strong inversion. As soon as the gate-source voltage gets smaller, the square-law model breaks, as the drain current component based on diffusion currents gets dominant. Modern compact MOSFET models (like the PSP model used in SG13G2) use hundreds of parameters and fairly complex equations to somewhat properly describe MOSFET behavior over a wide range of parameters like width, length and temperature. A modern approach to MOSFET sizing is thus based on the thought to use exactly these MOSFET models, characterize them, put the resulting data into tables and charts, and thus learn about the complex MOSFET behavior and use it for MOSFET sizing.</p>
-<p>The gm over Id methodology has the huge advantage that it catches MOSFET behavior quite accurately over a wide range of operating conditions, and the curves look very similar for pretty much all CMOS technologies, from micrometer bulk CMOS down to nanometer FinFET devices. Of course the absolute values change, but the method applies universally.</p>
-<p>A brief is available <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/Ref_Murmann_gmID.pdf">here</a></p>
-<p>##Testbench for MOSFETSWEEP{#sec-techsweep-testbench}</p>
-<p>In order to get all the operating points for lv nmos shown in <a href="#fig-techsweep-nmos-tb" class="quarto-xref">Figure&nbsp;1</a>, and lv pmos shown in <a href="#fig-techsweep-pmos-tb" class="quarto-xref">Figure&nbsp;2</a>, we run a techsweep and obtain curves related to parameters such as <span class="math inline">\({g_\mathrm{m}}\)</span>, <span class="math inline">\({g_\mathrm{ds}}\)</span>, <span class="math inline">\({C_\mathrm{gs}}\)</span>, <span class="math inline">\({I_\mathrm{d}}\)</span>, <span class="math inline">\({V_\mathrm{GS}}\)</span>, <span class="math inline">\({V_\mathrm{DS}}\)</span>, <span class="math inline">\(L\)</span>, <span class="math inline">\(W\)</span>. We create a testbench in Xschem which sweeps the terminal voltages, and records various large- and small-signal parameters, which are then stored in large tables.</p>
-<div id="fig-techsweep-nmos-tb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="sec-OTA" class="level1">
+<h1>OTA design for Switch Capacitor integrators</h1>
+<p>As we now enter on IC design level, we need to implement the discrete time integrator using CMOS elements. We will use <a href="https://xschem.sourceforge.io">Xschem</a> for schematic entry and <a href="https://ngspice.sourceforge.io">ngspice</a> for simulation. The 130nm CMOS technology <strong>IHP-SG13G2</strong> from <a href="https://www.ihp-microelectronics.com">IHP Microelectronics</a>. Tools and PDK are integrated in the <a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS</a> Docker image. This PDK is open-source, and the complete process specification can be found at <a href="https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.doc/doc/SG13G2_os_process_spec.pdf">SG13G2 process specification</a></p>
+<section id="deriving-required-parameters-for-design" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-required-parameters-for-design">Deriving required parameters for design</h2>
+<p>As mention in <strong>?@sec-SwitchCap</strong> the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, <strong>Folded Cascode</strong> topology (see <a href="#fig-OTA" class="quarto-xref">Figure&nbsp;1</a>) is what best suited in our case, where we have PMOS input pair.</p>
+<div id="fig-OTA" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-techsweep-nmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/tb_sg13_lv_nmos.svg%22" class="img-fluid figure-img">
+<div aria-describedby="fig-OTA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_OTA.qmd%22" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-techsweep-nmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Testbench for LV NMOS <span class="math inline">\(\gmid\)</span> characterization.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Candidate OTA
 </figcaption>
 </figure>
 </div>
-<div id="fig-techsweep-pmos-tb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>Detailed analysis of <strong>Folded Cascode</strong> topology can be accessed <a href="https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf">here</a>. You can find the <strong>quantitative</strong> as well as <strong>qualitative</strong> analysis , <strong>noise analysis</strong>, <strong>offset / mismatch analysis</strong>.</p>
+<div id="fig-OTA-SlewCurrents" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-techsweep-pmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/tb_sg13_lv_pmos.svg%22" class="img-fluid figure-img">
+<div aria-describedby="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_OTA_SlewCurrents.qmd%22" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-techsweep-pmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Testbench for LV NMOS <span class="math inline">\(\gmid\)</span> characterization.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: OTA Slew Currents
 </figcaption>
 </figure>
 </div>
-<p>After obtaining the parameters we plot them using Matlab, and obtain some important curves or graphs in order to understand the MOSFET’s behaviour.</p>
+<section id="deriving-i" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-i">Deriving <span class="math inline">\(I\)</span></h3>
+<p>As shown in <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;2</a> the magnitude of the output current under these conditions is <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> is the bias current in each half of the differential pair. (<span class="math inline">\(I\)</span> is also assumed to be the standing current in the output cascodes.) Clearly, <span class="math inline">\(I\)</span> must be large enough to transfer the charge from the input capacitor(s) to the integrating capacitor in the allotted time.<span class="citation" data-cites="Understanding_Delta-Sigma_Data_Converters">[@Understanding_Delta-Sigma_Data_Converters]</span></p>
+<p>Let’s allocate half of a clock phase (i.e., one quarter of a clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as <span class="math inline">\({{V_\mathrm{DD}}} = 1.5 V\)</span> , we therefore need <span class="math display">\[
+I &gt; \frac{C_1 VDD}{T/4} = \frac{0.4 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{0.25 \, \mu\mathrm{s}} = 3 \, \mu\mathrm{A}.
+\]</span></p>
+</section>
+<section id="deriving-g_mathrmm-from-time-constant-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-g_mathrmm-from-time-constant-calculation">Deriving <span class="math inline">\({g_\mathrm{m}}\)</span> from Time-constant calculation</h3>
+<div id="fig-RC-Calculations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_RC_Calculation.qmd%22" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Time Constant Calculation
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-RC-Calculations" class="quarto-xref">Figure&nbsp;3</a> shows the small-signal model of an integrator in the charge-transfer phase and an equivalent circuit from which we see that the time-constant is <span class="math display">\[
+\tau = RC = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{g_\mathrm{m}}
+\]</span></p>
+<p>Now let’s say we take the linera settling to provide attenuation of 100dB</p>
+<p><span class="math display">\[
+\frac{T}{4} = \tau \ln(10^5) \approx 12\tau
+\]</span></p>
+<p>This gives us <span class="math display">\[
+{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 21.9 \, \mu\frac{A}{V}
+\]</span></p>
+</section>
+<section id="deciding-l-and-w-for-mosfets" class="level3">
+<h3 class="anchored" data-anchor-id="deciding-l-and-w-for-mosfets">Deciding <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> for MOSFETS</h3>
+<p>Now that we have the exact values for <span class="math inline">\({g_\mathrm{m}}\)</span> and <span class="math inline">\({I_\mathrm{D}}\)</span>, we can derive the values of <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> by making use of <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve. Refer to <strong>?@sec-gmid-method</strong> for detailed discussion regarding sizing.</p>
+<p>We already know the current flowing throught each MOSFET (See <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;2</a>). As shown in <a href="#fig-gm_IdvsId_W-nmos" class="quarto-xref">Figure&nbsp;4</a> and <a href="#fig-gm_IdvsId_W-pmos" class="quarto-xref">Figure&nbsp;5</a>, by appropriately choosing the <span class="math inline">\(L\)</span>, we can obtain <span class="math inline">\(W\)</span> for</p>
+<p>$$ = 7.9</p>
+<p>$$</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The minimum length consideration while designing in low voltage CMOS technology should be atleast <strong>3 to 4 times</strong> the <span class="math inline">\(L_\min\)</span>. In our case <span class="math inline">\(L_\min = 0.13 \, \mu\)</span>.</p>
+</div>
+</div>
+<div id="fig-gm_IdvsId_W-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_gmid_vs_idw_nmos.qmd%22" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for nmos
+</figcaption>
+</figure>
+</div>
+<div id="fig-gm_IdvsId_W-pmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_gmid_vs_idw_pmos.qmd%22" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for pmos
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="ota-biasing-using-current-mirror" class="level3">
+<h3 class="anchored" data-anchor-id="ota-biasing-using-current-mirror">OTA biasing using <strong>current mirror</strong></h3>
+<div id="fig-OTA-Biasing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_OTA_Biasing.qmd%22" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: OTA Biasing
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-OTA-Biasing" class="quarto-xref">Figure&nbsp;6</a> explains the biasing of the OTA using <strong>Wilson’s current mirror</strong> topology.</p>
+</section>
+<section id="sec-behaviour-OTA" class="level3">
+<h3 class="anchored" data-anchor-id="sec-behaviour-OTA">Behaviour of designed OTA</h3>
+</section>
+</section>
 </section>
 
 </main>

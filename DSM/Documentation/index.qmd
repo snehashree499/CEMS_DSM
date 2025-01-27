@@ -31,37 +31,14 @@ bibliography: references.bib
 citation:
   container-title: Earth and Space Science
 number-sections: true
-jupyter: python3
+
 ---
 
-## Introduction
 
-```{python}
-import matplotlib.pyplot as plt
-import numpy as np
-eruptions = [1492, 1585, 1646, 1677, 1712, 1949, 1971, 2021]
-```
-
-```{python}
-#| label: fig-timeline
-#| fig-cap: Timeline of recent earthquakes on La Palma
-#| fig-alt: An event plot of the years of the last 8 eruptions on La Palma.
-
-plt.figure(figsize=(6, 1))
-plt.eventplot(eruptions, lineoffsets=0, linelengths=0.1, color='black')
-plt.gca().axes.get_yaxis().set_visible(False)
-plt.ylabel('')
-plt.show()
-```
-
-```{python}
-#| output: false
-
-avg_years_between_eruptions = np.mean(np.diff(eruptions[:-1]))
-avg_years_between_eruptions
-```
 
 Based on data up to and including 1971, eruptions on La Palma happen every `{python} f"{avg_years_between_eruptions:.1f}"` years on average.
+
+{{< include ./figures/_fig_FoldedCascode.qmd >}}
 
 Studies of the magma systems feeding the volcano, such as @marrero2019, have proposed that there are two main magma reservoirs feeding the Cumbre Vieja volcano; one in the mantle (30-40km depth) which charges and in turn feeds a shallower crustal reservoir (10-20km depth).
 
@@ -92,7 +69,7 @@ where $\lambda$ is the rate of eruptions per year. Using @eq-poisson, the probab
 
 @tbl-history summarises the eruptions recorded since the colonization of the islands by Europeans in the late 1400s.
 
-![Map of La Palma](images/la-palma-map.png){#fig-map}
+
 
 La Palma is one of the west most islands in the Volcanic Archipelago of the Canary Islands (@fig-map).
 
