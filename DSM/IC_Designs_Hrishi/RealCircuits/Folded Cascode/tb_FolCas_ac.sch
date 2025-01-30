@@ -4,67 +4,67 @@ K {}
 V {}
 S {}
 E {}
-N 710 -320 710 -300 {
+N 550 -80 550 -60 {
 lab=GND}
-N 790 -320 790 -300 {
+N 630 -80 630 -60 {
 lab=GND}
-N 790 -400 790 -380 {
+N 630 -160 630 -140 {
 lab=v_ss}
-N 1660 -550 1660 -400 {
+N 1500 -310 1500 -160 {
 lab=v_ss}
-N 1460 -650 1460 -530 {
+N 1300 -410 1300 -290 {
 lab=v_out}
-N 1090 -530 1460 -530 {
+N 930 -290 1300 -290 {
 lab=v_out}
-N 1090 -620 1090 -530 {
+N 930 -380 930 -290 {
 lab=v_out}
-N 1090 -620 1160 -620 {
+N 930 -380 1000 -380 {
 lab=v_out}
-N 890 -530 890 -400 {
+N 730 -290 730 -160 {
 lab=v_ss}
-N 790 -400 890 -400 {
+N 630 -160 730 -160 {
 lab=v_ss}
-N 890 -680 890 -590 {
+N 730 -440 730 -350 {
 lab=v_in}
-N 890 -680 1160 -680 {
+N 730 -440 1000 -440 {
 lab=v_in}
-N 1280 -400 1660 -400 {
+N 1120 -160 1500 -160 {
 lab=v_ss}
-N 1090 -650 1160 -650 {lab=#net1}
-N 1090 -730 1090 -650 {lab=#net1}
-N 1460 -650 1660 -650 {lab=v_out}
-N 1660 -650 1660 -610 {lab=v_out}
-N 710 -790 710 -380 {lab=v_dd}
-N 710 -790 1280 -790 {lab=v_dd}
-N 1280 -790 1280 -700 {lab=v_dd}
-N 1280 -600 1280 -400 {lab=v_ss}
-N 890 -400 1280 -400 {
+N 930 -410 1000 -410 {lab=#net1}
+N 930 -490 930 -410 {lab=#net1}
+N 1300 -410 1500 -410 {lab=v_out}
+N 1500 -410 1500 -370 {lab=v_out}
+N 550 -550 550 -140 {lab=v_dd}
+N 550 -550 1120 -550 {lab=v_dd}
+N 1120 -550 1120 -460 {lab=v_dd}
+N 1120 -360 1120 -160 {lab=v_ss}
+N 730 -160 1120 -160 {
 lab=v_ss}
-C {devices/vsource.sym} 710 -350 0 0 {name=Vdd value=1.8
+C {devices/vsource.sym} 550 -110 0 0 {name=Vdd value=1.8
 }
-C {devices/gnd.sym} 710 -300 0 0 {name=l3 lab=GND}
-C {lab_pin.sym} 710 -400 0 0 {name=p2 sig_type=std_logic lab=v_dd}
-C {devices/vsource.sym} 790 -350 0 0 {name=Vss value=0}
-C {devices/gnd.sym} 790 -300 0 0 {name=l1 lab=GND}
-C {lab_pin.sym} 790 -400 0 0 {name=p1 sig_type=std_logic lab=v_ss}
-C {capa.sym} 1660 -580 0 0 {name=C1
+C {devices/gnd.sym} 550 -60 0 0 {name=l3 lab=GND}
+C {lab_pin.sym} 550 -160 0 0 {name=p2 sig_type=std_logic lab=v_dd}
+C {devices/vsource.sym} 630 -110 0 0 {name=Vss value=0}
+C {devices/gnd.sym} 630 -60 0 0 {name=l1 lab=GND}
+C {lab_pin.sym} 630 -160 0 0 {name=p1 sig_type=std_logic lab=v_ss}
+C {capa.sym} 1500 -340 0 0 {name=C1
 value=17.98f}
-C {lab_wire.sym} 1660 -650 0 0 {name=p3 sig_type=std_logic lab=v_out}
-C {devices/vsource.sym} 890 -560 0 0 {name=Vin value="dc 0.8 ac 1"}
-C {lab_wire.sym} 950 -680 0 0 {name=p4 sig_type=std_logic lab=v_in}
-C {isource.sym} 1090 -760 0 0 {name=I0 value= 3u}
-C {spice_probe.sym} 1010 -680 0 0 {name=p5 attrs=""}
-C {spice_probe.sym} 1510 -650 0 0 {name=p6 attrs=""}
-C {devices/code_shown.sym} 190 -130 0 0 {name=MODEL1 only_toplevel=true
+C {lab_wire.sym} 1500 -410 0 0 {name=p3 sig_type=std_logic lab=v_out}
+C {devices/vsource.sym} 730 -320 0 0 {name=Vin value="dc 0.8 ac 1"}
+C {lab_wire.sym} 790 -440 0 0 {name=p4 sig_type=std_logic lab=v_in}
+C {isource.sym} 930 -520 0 0 {name=I0 value= 3u}
+C {spice_probe.sym} 850 -440 0 0 {name=p5 attrs=""}
+C {spice_probe.sym} 1350 -410 0 0 {name=p6 attrs=""}
+C {devices/code_shown.sym} -140 -70 0 0 {name=MODEL1 only_toplevel=true
 format="tcleval( @value )"
 value=".lib cornerMOSlv.lib mos_tt
 "}
-C {devices/code_shown.sym} 190 -210 0 0 {name=MODEL2 only_toplevel=true
+C {devices/code_shown.sym} -140 -160 0 0 {name=MODEL2 only_toplevel=true
 format="tcleval( @value )"
 value=".lib cornerRES.lib res_typ
 "}
 C {devices/title.sym} 240 90 0 0 {name=l5 author="(c) 2024 Hrishikesh, @HSB"}
-C {devices/code_shown.sym} 50 -970 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/code_shown.sym} -140 -730 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .temp 27
 .control
@@ -95,4 +95,4 @@ print onoise_total
 
 .endc
 "}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/Designs_Hrishi/Folded Cascode/FoldedCascodeOTA.sym} 1310 -650 0 0 {name=x1}
+C {FoldedCascodeOTA.sym} 1150 -410 0 0 {name=x1}

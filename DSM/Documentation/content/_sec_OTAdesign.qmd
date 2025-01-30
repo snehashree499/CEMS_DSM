@@ -12,7 +12,8 @@ As mention in @sec-SwitchCap the load driven by our circuit is purely capacitive
 
 Detailed analysis of **Folded Cascode** topology can be accessed [here](https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf). You can find the **quantitative** as well as **qualitative** analysis , **noise analysis**, **offset / mismatch analysis**.
 
-![OTA Slew Currents](figures/_fig_OTA_SlewCurrents.qmd){#fig-OTA-SlewCurrents}
+![OTA Slew Currents](./figures/_fig_OTA_SlewCurrents.png){#fig-OTA-SlewCurrents}
+
 
 ### Deriving $I$
 As shown in @fig-OTA-SlewCurrents the magnitude of the output
@@ -28,7 +29,7 @@ $$
 
 ### Deriving ${g_\mathrm{m}}$ from Time-constant calculation
 
-![Time Constant Calculation](figures/_fig_RC_Calculation.qmd){#fig-RC-Calculations}
+![Time Constant Calculation](figures/_fig_RC_Calculation.png){#fig-RC-Calculations}
 
 @fig-RC-Calculations shows the small-signal model of an integrator in the charge-transfer
 phase and an equivalent circuit from which we see that the time-constant is $$
@@ -66,9 +67,9 @@ The minimum length consideration while designing in low voltage CMOS technology 
 :::
 
 
-![${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve for nmos](figures/_fig_gmid_vs_idw_nmos.qmd){#fig-gm_IdvsId_W-nmos}
+![${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve for nmos](figures/_fig_gmid_vs_idw_nmos.svg){#fig-gm_IdvsId_W-nmos}
 
-![${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve for pmos](figures/_fig_gmid_vs_idw_pmos.qmd){#fig-gm_IdvsId_W-pmos}
+![${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve for pmos](figures/_fig_gmid_vs_idw_pmos.svg){#fig-gm_IdvsId_W-pmos}
 
 ### OTA biasing using **current mirror**
 
