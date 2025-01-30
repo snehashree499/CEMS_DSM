@@ -15,7 +15,7 @@ In order to get all the operating points for lv nmos shown in @fig-techsweep-nmo
 
 ![Testbench for LV NMOS $\gmid$ characterization.](figures/tb_sg13_lv_nmos.svg){#fig-techsweep-nmos-tb}
 
-![Testbench for LV NMOS $\gmid$ characterization.](figures/tb_sg13_lv_pmos.svg){#fig-techsweep-pmos-tb}
+![Testbench for LV PMOS $\gmid$ characterization.](figures/tb_sg13_lv_pmos.svg){#fig-techsweep-pmos-tb}
 
 
 After obtaining the parameters we plot them using Matlab, and obtain some important curves or graphs in order to understand the MOSFET's behaviour.
