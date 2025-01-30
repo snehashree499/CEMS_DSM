@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sec_otadesign</title>
+<title>sec_system_level</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,16 +23,16 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="_sec_OTAdesign_files/libs/clipboard/clipboard.min.js"></script>
-<script src="_sec_OTAdesign_files/libs/quarto-html/quarto.js"></script>
-<script src="_sec_OTAdesign_files/libs/quarto-html/popper.min.js"></script>
-<script src="_sec_OTAdesign_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="_sec_OTAdesign_files/libs/quarto-html/anchor.min.js"></script>
-<link href="_sec_OTAdesign_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="_sec_OTAdesign_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="_sec_OTAdesign_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="_sec_OTAdesign_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="_sec_OTAdesign_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="_sec_system_level_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_sec_system_level_files/libs/quarto-html/quarto.js"></script>
+<script src="_sec_system_level_files/libs/quarto-html/popper.min.js"></script>
+<script src="_sec_system_level_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_sec_system_level_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_sec_system_level_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_sec_system_level_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_sec_system_level_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_sec_system_level_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_sec_system_level_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -70,156 +70,74 @@ window.Quarto = {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
 
 
-<section id="sec-OTA" class="level1">
-<h1>OTA design for Switch Capacitor integrators</h1>
-<p>As we now enter on IC design level, we need to implement the discrete time integrator using CMOS elements. We will use <a href="https://xschem.sourceforge.io">Xschem</a> for schematic entry and <a href="https://ngspice.sourceforge.io">ngspice</a> for simulation. The 130nm CMOS technology <strong>IHP-SG13G2</strong> from <a href="https://www.ihp-microelectronics.com">IHP Microelectronics</a>. Tools and PDK are integrated in the <a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS</a> Docker image. This PDK is open-source, and the complete process specification can be found at <a href="https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.doc/doc/SG13G2_os_process_spec.pdf">SG13G2 process specification</a></p>
-<section id="deriving-required-parameters-for-design" class="level2">
-<h2 class="anchored" data-anchor-id="deriving-required-parameters-for-design">Deriving required parameters for design</h2>
-<p>As mention in <strong>?@sec-SwitchCap</strong> the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, <strong>Folded Cascode</strong> topology (see <a href="#fig-OTA" class="quarto-xref">Figure&nbsp;1</a>) is what best suited in our case, where we have PMOS input pair.</p>
-<div id="fig-OTA" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="Block-Level" class="level1">
+<h1>Block Level Representation</h1>
+<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA.qmd" class="img-fluid figure-img">
+<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Block_Diagram.qmd" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Candidate OTA
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Block Diagram
 </figcaption>
 </figure>
 </div>
-<p>Detailed analysis of <strong>Folded Cascode</strong> topology can be accessed <a href="https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf">here</a>. You can find the <strong>quantitative</strong> as well as <strong>qualitative</strong> analysis , <strong>noise analysis</strong>, <strong>offset / mismatch analysis</strong>.</p>
-<div id="fig-OTA-SlewCurrents" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p><a href="#fig-Block-Diagram" class="quarto-xref">Figure&nbsp;1</a> shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let’s look at our target specifications.</p>
+<table class="caption-top table">
+<caption><strong>Table 1: Specifications.</strong> {#tb-specifications}</caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Symbol</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bandwidth</td>
+<td><span class="math inline">\(f_B\)</span></td>
+<td>1</td>
+<td>kHz</td>
+</tr>
+<tr class="even">
+<td>Sampling frequency</td>
+<td><span class="math inline">\(f_{s}\)</span></td>
+<td>1</td>
+<td>MHz</td>
+</tr>
+<tr class="odd">
+<td>Signal-to-Noise Ratio</td>
+<td><span class="math inline">\(SNR\)</span></td>
+<td>100</td>
+<td>dB</td>
+</tr>
+<tr class="even">
+<td>Supply voltage</td>
+<td><span class="math inline">\(V_{dd}\)</span></td>
+<td>1.5</td>
+<td>V</td>
+</tr>
+</tbody>
+</table>
+<section id="sec-NTF" class="level2">
+<h2 class="anchored" data-anchor-id="sec-NTF">NTF Selection</h2>
+<div id="fig-NTF" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_SlewCurrents.qmd" class="img-fluid figure-img">
+<div aria-describedby="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_NTF.qmd" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: OTA Slew Currents
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Block Diagram
 </figcaption>
 </figure>
 </div>
-<section id="deriving-i" class="level3">
-<h3 class="anchored" data-anchor-id="deriving-i">Deriving <span class="math inline">\(I\)</span></h3>
-<p>As shown in <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;2</a> the magnitude of the output current under these conditions is <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> is the bias current in each half of the differential pair. (<span class="math inline">\(I\)</span> is also assumed to be the standing current in the output cascodes.) Clearly, <span class="math inline">\(I\)</span> must be large enough to transfer the charge from the input capacitor(s) to the integrating capacitor in the allotted time.<span class="citation" data-cites="Understanding_Delta-Sigma_Data_Converters">[@Understanding_Delta-Sigma_Data_Converters]</span></p>
-<p>Let’s allocate half of a clock phase (i.e., one quarter of a clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as <span class="math inline">\({{V_\mathrm{DD}}} = 1.5 V\)</span> , we therefore need <span class="math display">\[
-I &gt; \frac{C_1 VDD}{T/4} = \frac{0.4 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{0.25 \, \mu\mathrm{s}} = 3 \, \mu\mathrm{A}.
-\]</span></p>
-</section>
-<section id="deriving-g_mathrmm-from-time-constant-calculation" class="level3">
-<h3 class="anchored" data-anchor-id="deriving-g_mathrmm-from-time-constant-calculation">Deriving <span class="math inline">\({g_\mathrm{m}}\)</span> from Time-constant calculation</h3>
-<div id="fig-RC-Calculations" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_RC_Calculation.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Time Constant Calculation
-</figcaption>
-</figure>
-</div>
-<p><a href="#fig-RC-Calculations" class="quarto-xref">Figure&nbsp;3</a> shows the small-signal model of an integrator in the charge-transfer phase and an equivalent circuit from which we see that the time-constant is <span class="math display">\[
-\tau = RC = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{g_\mathrm{m}}
-\]</span></p>
-<p>Now let’s say we take the linera settling to provide attenuation of 100dB</p>
-<p><span class="math display">\[
-\frac{T}{4} = \tau \ln(10^5) \approx 12\tau
-\]</span></p>
-<p>This gives us <span class="math display">\[
-{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 21.9 \, \mu\frac{A}{V}
-\]</span></p>
-</section>
-<section id="deciding-l-and-w-for-mosfets" class="level3">
-<h3 class="anchored" data-anchor-id="deciding-l-and-w-for-mosfets">Deciding <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> for MOSFETS</h3>
-<p>Now that we have the exact values for <span class="math inline">\({g_\mathrm{m}}\)</span> and <span class="math inline">\({I_\mathrm{D}}\)</span>, we can derive the values of <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> by making use of <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve. Refer to <strong>?@sec-gmid-method</strong> for detailed discussion regarding sizing.</p>
-<p>We already know the current flowing throught each MOSFET (See <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;2</a>). As shown in <a href="#fig-gm_IdvsId_W-nmos" class="quarto-xref">Figure&nbsp;4</a> and <a href="#fig-gm_IdvsId_W-pmos" class="quarto-xref">Figure&nbsp;5</a>, by appropriately choosing the <span class="math inline">\(L\)</span>, we can obtain <span class="math inline">\(W\)</span> for</p>
-<p>$$ = 7.9</p>
-<p>$$</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Important">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The minimum length consideration while designing in low voltage CMOS technology should be atleast <strong>3 to 4 times</strong> the <span class="math inline">\(L_\min\)</span>. In our case <span class="math inline">\(L_\min = 0.13 \, \mu\)</span>.</p>
-</div>
-</div>
-<div id="fig-gm_IdvsId_W-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_gmid_vs_idw_nmos.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for nmos
-</figcaption>
-</figure>
-</div>
-<div id="fig-gm_IdvsId_W-pmos" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_gmid_vs_idw_pmos.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for pmos
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="ota-biasing-using-current-mirror" class="level3">
-<h3 class="anchored" data-anchor-id="ota-biasing-using-current-mirror">OTA biasing using <strong>current mirror</strong></h3>
-<div id="fig-OTA-Biasing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_Biasing.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: OTA Biasing
-</figcaption>
-</figure>
-</div>
-<p><a href="#fig-OTA-Biasing" class="quarto-xref">Figure&nbsp;6</a> explains the biasing of the OTA using <strong>Wilson’s current mirror</strong> topology.</p>
-</section>
-<section id="sec-Performance-OTA" class="level3">
-<h3 class="anchored" data-anchor-id="sec-Performance-OTA">Performance of designed OTA</h3>
-<p>For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. <a href="#fig-OTA-tran" class="quarto-xref">Figure&nbsp;7</a> shows the transient plot and gives us the time constant in which it reaches the steady state. <a href="#fig-OTA-ac-mag" class="quarto-xref">Figure&nbsp;9</a> and <a href="#fig-OTA-ac-phase" class="quarto-xref">Figure&nbsp;8</a> shows us the magnitude and phase over a range of frequency.</p>
-<div id="fig-OTA-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_tran.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Transient Analysis
-</figcaption>
-</figure>
-</div>
-<div id="fig-OTA-ac-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-ac-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_ac_phase.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-ac-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: AC Analysis
-</figcaption>
-</figure>
-</div>
-<div id="fig-OTA-ac-mag" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-ac-mag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_ac_mag.qmd" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-ac-mag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: AC Analysis
-</figcaption>
-</figure>
-</div>
-</section>
+<p>The matlab <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">code fragment</a> creates an NTF and evaluates its performance using an SQNR versus amplitude curve (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>)). Since the ideal peak SQNR is 120 dB, quantization noise is 20 dB below our target noise level. This margin is at the generous end of the 10–20 dB range that typically separates the ideal SQNR from the target SNR.</p>
 </section>
 </section>
 

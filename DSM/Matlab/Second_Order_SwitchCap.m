@@ -157,6 +157,27 @@ noise = [sq_hlf(1:sigbin-1), sq_hlf(sigbin+1:end)];
 snr = 10*log10(sq_hlf(sigbin)^2/sum(noise.^2))
 
 
+%% Spectral Anlysis, Lec. 4 - ADC Metrics
+sq = abs(fft(v));
+
+% Remove redundant half of spectrum and normalize to FS
+f = [0:N/2-1]/N;  % frequency vector
+FSR = 1;  % Full-scale range
+
+sq_hlf = sq(1:end/2)*2/N/FSR;
+sqdBFS = 20*log10(sq_hlf);
+
+% log10(0) -> -inf/inf correction
+sqdBFS(isinf(sqdBFS)) = -150;
+
+%% Generate the magnitude plot with annotation
+fig4 = figure(4);
+set(gca, 'fontsize', 14);
+plot(f, sqdBFS, 'linewidth', 2);
+xlabel('Frequency f/fs')
+ylabel('DFT Magnitude in dBFS')
+grid;
+
 
 
 
