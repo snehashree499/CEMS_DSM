@@ -1,0 +1,106 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+  width="100%" height="100%" viewBox="0 0 1024 768"
+  style="fill: none; font-family: Helvetica;
+ font: Helvetica;
+">
+
+<!-- Creator: NGspice -->
+
+<rect x="0" y="0" width="1024" height="768" fill="black" stroke="none"/>
+<text stroke="none" fill="white" font-size="16" x="358" y="752">
+time
+</text>
+<text stroke="none" fill="white" font-size="16" x="10" y="16">
+tran1: ** sch_path: /foss/designs/cems_dsm/dsm/ic_designs_hrishi/realcircuits/folded cascode/tb_folcas_tran.sch
+</text>
+<path stroke="white" d="M70 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="55" y="728">
+0.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M180 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="165" y="728">
+2.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M290 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="275" y="728">
+4.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M400 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="385" y="728">
+6.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M510 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="495" y="728">
+8.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M620 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="600" y="728">
+10.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M730 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="710" y="728">
+12.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M840 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="820" y="728">
+14.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M950 720l0 -666"/>
+<text stroke="none" fill="white" font-size="16" x="930" y="728">
+16.0
+</text>
+<text stroke="none" fill="white" font-size="16" x="614" y="752">
+us
+</text>
+<path stroke="white" d="M70 720l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="38" y="728">
+0.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 646l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="654">
+100.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 572l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="580">
+200.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 498l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="506">
+300.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 424l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="432">
+400.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 350l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="358">
+500.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 276l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="284">
+600.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 202l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="210">
+700.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 128l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="136">
+800.0
+</text>
+<path stroke="white" stroke-dasharray="1,2" d="M70 54l880 0"/>
+<text stroke="none" fill="white" font-size="16" x="18" y="62">
+900.0
+</text>
+<text stroke="none" fill="white" font-size="16" x="10" y="32">
+mV
+</text>
+<path stroke="red" d="M440 23l44 0"/>
+<text stroke="none" fill="white" font-size="16" x="494" y="32">
+v_out
+</text>
+<path stroke="red" d="M70 663l0 -532 1 -29 0 -23M71 81l1 -1M72 81l0 -1M72 81l1 -1M73 81l0 -1M73 81l1 -1M74 81l0 -1 821 0"/>
+</svg>
