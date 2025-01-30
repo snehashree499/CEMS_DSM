@@ -9,3 +9,18 @@ Below is the prepared comparator design which will be discused in detail next.
 
 
 ![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-techsweep-nmos-tb}
+
+## Comparator
+
+It is a block which takes two inputs V1 and V2 and finds weatehr ${V_\mathrm{1}}$ < ${V_\mathrm{2}}$ or ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$. If ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$ then output is ${V_\mathrm{DD}}$ or the output will be 0.
+
+The ideal input-output chracteristics should look like a signum function.
+
+// Add the ip-op graph
+
+## Designing a comparator
+
+Consider a amplier with a sufficiently large gain. For simplicity consider one input ${V_\mathrm{in}}$, the output is going to be amplified by factor A. Amplifier operates between ${V_\mathrm{DD}}$ and GND. If the gain is large emough the output will saturate to ${V_\mathrm{DD}}$ or GND. 
+
+
+The minimum input for which the output will be ${V_\mathrm{DD}}$ here is ${V_\mathrm{DD}}$/$A$

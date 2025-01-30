@@ -60,4 +60,4 @@ value=".lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerCAP.lib cap_typ
 .inc $::PDK_ROOT/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
-C {Comp_Test-2.sym} -180 -100 0 0 {name=x1}
+C {Comparator.sym} -180 -100 0 0 {name=x1}

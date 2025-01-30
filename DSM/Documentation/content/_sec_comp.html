@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -29,11 +29,40 @@ ul.task-list li input[type="checkbox"] {
 <script src="_sec_comp_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="_sec_comp_files/libs/quarto-html/anchor.min.js"></script>
 <link href="_sec_comp_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="_sec_comp_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="_sec_comp_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="_sec_comp_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="_sec_comp_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="_sec_comp_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -41,12 +70,41 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-
+<section id="bit-quantiser" class="level1">
+<h1>1-Bit Quantiser</h1>
+<p>// Add info <span class="citation" data-cites="Hreeshi">@Hreeshi</span></p>
+<section id="designing-the-1-bit-quantiser" class="level2">
+<h2 class="anchored" data-anchor-id="designing-the-1-bit-quantiser">Designing the 1-Bit Quantiser</h2>
+<p>Based on the collected experience in this lecture we are desiging a 1-bit Quantiser (Comparator) in Xschem. Below is the prepared comparator design which will be discused in detail next.</p>
+<p>//Add the circuit diagram</p>
+<div id="fig-techsweep-nmos-tb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-techsweep-nmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src=".\figures/Comparator.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-techsweep-nmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Schematic for Strong arm latch.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="comparator" class="level2">
+<h2 class="anchored" data-anchor-id="comparator">Comparator</h2>
+<p>It is a block which takes two inputs V1 and V2 and finds weatehr <span class="math inline">\({V_\mathrm{1}}\)</span> &lt; <span class="math inline">\({V_\mathrm{2}}\)</span> or <span class="math inline">\({V_\mathrm{1}}\)</span> &gt; <span class="math inline">\({V_\mathrm{2}}\)</span>. If <span class="math inline">\({V_\mathrm{1}}\)</span> &gt; <span class="math inline">\({V_\mathrm{2}}\)</span> then output is <span class="math inline">\({V_\mathrm{DD}}\)</span> or the output will be 0.</p>
+<p>The ideal input-output chracteristics should look like a signum function.</p>
+<p>// Add the ip-op graph</p>
+</section>
+<section id="designing-a-comparator" class="level2">
+<h2 class="anchored" data-anchor-id="designing-a-comparator">Designing a comparator</h2>
+<p>Consider a amplier with a sufficiently large gain. For simplicity consider one input <span class="math inline">\({V_\mathrm{in}}\)</span>, the output is going to be amplified by factor A. Amplifier operates between <span class="math inline">\({V_\mathrm{DD}}\)</span> and GND. If the gain is large emough the output will saturate to <span class="math inline">\({V_\mathrm{DD}}\)</span> or GND.</p>
+<p>The minimum input for which the output will be <span class="math inline">\({V_\mathrm{DD}}\)</span> here is <span class="math inline">\({V_\mathrm{DD}}\)</span>/<span class="math inline">\(A\)</span></p>
+</section>
+</section>
 
 </main>
 <!-- /main column -->
