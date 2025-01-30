@@ -23,4 +23,7 @@ The ideal input-output chracteristics should look like a signum function.
 Consider a amplier with a sufficiently large gain. For simplicity consider one input ${V_\mathrm{in}}$, the output is going to be amplified by factor A. Amplifier operates between ${V_\mathrm{DD}}$ and GND. If the gain is large emough the output will saturate to ${V_\mathrm{DD}}$ or GND. 
 
 
-The minimum input for which the output will be ${V_\mathrm{DD}}$ here is ${V_\mathrm{DD}}$/$A$
+The minimum input for which the output will be ${V_\mathrm{DD}}$ here is ${V_\mathrm{DD}}$/$A$, the comparator will give output ${V_\mathrm{DD}}$.
+
+The output will be fed to a digital block
+
