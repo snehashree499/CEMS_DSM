@@ -1,3 +1,5 @@
+```{=latex}
+
 \begin{figure}[!ht]
 \centering
 \resizebox{1\textwidth}{!}{%
@@ -70,3 +72,5 @@
 
 \label{fig:my_label}
 \end{figure}
+
+```
