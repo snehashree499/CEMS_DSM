@@ -25,5 +25,8 @@ Consider a amplier with a sufficiently large gain. For simplicity consider one i
 
 The minimum input for which the output will be ${V_\mathrm{DD}}$ here is ${V_\mathrm{DD}}$/$A$, the comparator will give output ${V_\mathrm{DD}}$.
 
-The output will be fed to a digital block
+The output will be fed to a digital block, usually a flip flop to resample the obtained output. The output of the amplifier should be greater than the input ${V_\mathrm{IH}}$ given to flip flop to get output digital 1. 
 
+@fig-comp-tran shows the transient analysis of our comparator.
+
+![Transient Analysis of Comparator](figures/_fig_comp_tran.svg){#fig-comp-tran}
