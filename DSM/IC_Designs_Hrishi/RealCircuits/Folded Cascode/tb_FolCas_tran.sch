@@ -81,5 +81,5 @@ C {lab_wire.sym} 1030 -530 0 0 {name=p4 sig_type=std_logic lab=v_in}
 C {isource.sym} 1170 -610 0 0 {name=I0 value= 3u}
 C {spice_probe.sym} 1090 -530 0 0 {name=p5 attrs=""}
 C {spice_probe.sym} 1590 -500 0 0 {name=p6 attrs=""}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/Designs_Hrishi/Folded Cascode/FoldedCascodeOTA.sym} 1390 -500 0 0 {name=x1}
 C {devices/title.sym} 340 90 0 0 {name=l5 author="(c) 2024 Hrishikesh, @HSB"}
+C {FoldedCascodeOTA.sym} 1390 -500 0 0 {name=x1}

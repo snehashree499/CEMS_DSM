@@ -1,2 +1,7 @@
 # Clock Generator 
     needs to be updated by Hanieh
+
+
+$$
+T_s = \frac{1}{f_s} = \frac{1}{1000} = 0.001 = 1 \, \mu s
+$$
