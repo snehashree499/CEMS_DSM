@@ -1,2 +1,5 @@
 # Clock Generator 
-    needs to be updated by Hanieh
+Mixed-signal systems must balance elements that are critical in the digital domain as well as the analog domain. One important area of digital interface design in mixed-signal systems is clocking, which must be used to enforce timing between components and to read data from ADCs. Many mixed-signal systems operating in the low-to-moderate frequency range will use a reference oscillator, and there may be a need to synchronize multiple clocks across a system to accurately sample and synchronize the entire system. In designing a sigma- delta ADC, we can say that the clock is the heartbeat of the ADC, synchronizing all operations. It means that the clock plays a crucial role in the overall system operation. The clock precisely controls the timing of various ADC components, and without it, neither sampling nor processing can occur.
+let's see clock's role precisely:
+1. Sampling Control
+The clock determines when the ADC should take a sample of the analog signal. In your system, the sampling frequency is 1 kHz, meaning a new sample is taken every 1000 microseconds. 
