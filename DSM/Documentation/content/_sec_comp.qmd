@@ -1,0 +1,11 @@
+# 1-Bit Quantiser
+// Add info @Hreeshi
+
+## Designing the 1-Bit Quantiser
+Based on the collected experience in this lecture we are desiging a 1-bit Quantiser (Comparator) in Xschem. 
+Below is the prepared comparator design which will be discused in detail next.
+
+//Add the circuit diagram
+
+
+![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-techsweep-nmos-tb}
