@@ -15,7 +15,7 @@
         "jupyter: python3\n",
         "---"
       ],
-      "id": "9b30059e"
+      "id": "1bd432a1"
     },
     {
       "cell_type": "code",
@@ -24,7 +24,7 @@
         "import pandas as pd\n",
         "import matplotlib.pyplot as plt"
       ],
-      "id": "b8b9504f",
+      "id": "f9598b9d",
       "execution_count": null,
       "outputs": []
     },
@@ -34,7 +34,7 @@
       "source": [
         "Import `la-palma.csv` - a clean subset of [`catalogoComunSV_1663233588717.csv`](https://github.com/Notebooks-Now/submission-quarto-full/blob/main/data/catalogoComunSV_1663233588717.csv):\n"
       ],
-      "id": "d0842b89"
+      "id": "1aaf700f"
     },
     {
       "cell_type": "code",
@@ -45,7 +45,7 @@
         "df = df.sort_values(by=['DateTime'], ascending=True)\n",
         "df.head()"
       ],
-      "id": "8cf2ada7",
+      "id": "c068610d",
       "execution_count": null,
       "outputs": []
     },
@@ -55,7 +55,7 @@
       "source": [
         "df.describe()"
       ],
-      "id": "21ef0b4b",
+      "id": "c0242c12",
       "execution_count": null,
       "outputs": []
     },
@@ -65,7 +65,7 @@
       "source": [
         "df.plot.scatter(x=\"Longitude\", y=\"Latitude\", figsize=(12,12), grid=\"on\");"
       ],
-      "id": "c7ceccad",
+      "id": "b7997898",
       "execution_count": null,
       "outputs": []
     },
@@ -77,7 +77,7 @@
         "\n",
         "Also some rows seem to be missing depth measurements, (see differences in the **count** for columns above) - take only rows with valid depths\n"
       ],
-      "id": "2a8a682f"
+      "id": "665de5e2"
     },
     {
       "cell_type": "code",
@@ -86,7 +86,7 @@
         "df = df[df['Depth(km)'].notna()]\n",
         "df.describe()"
       ],
-      "id": "038813e2",
+      "id": "24a6e96a",
       "execution_count": null,
       "outputs": []
     },
@@ -102,7 +102,7 @@
         "plt.subplot(1,3,3)\n",
         "df[\"Depth(km)\"].plot.hist(bins=50, density=True)"
       ],
-      "id": "d21310c0",
+      "id": "ed91cc6a",
       "execution_count": null,
       "outputs": []
     },
@@ -114,7 +114,7 @@
         "\n",
         "Scatter plot the spatial locations of events\n"
       ],
-      "id": "96c3d3bc"
+      "id": "71d529cd"
     },
     {
       "cell_type": "code",
@@ -149,7 +149,7 @@
         "ax = df.plot.scatter(x='DateTime', y='Depth(km)', figsize=(20,8))\n",
         "ax.set_ylim(50,0);"
       ],
-      "id": "c827b35c"
+      "id": "e147f933"
     }
   ],
   "metadata": {
