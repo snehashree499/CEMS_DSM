@@ -45,4 +45,4 @@ C {isource.sym} 680 -620 0 0 {name=I0 value= 3u}
 C {ipin.sym} 490 -440 0 0 {name=p7 lab=Minus}
 C {opin.sym} 910 -470 0 0 {name=p8 lab=Vout}
 C {ipin.sym} 560 -500 0 0 {name=p3 lab=Plus}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/Designs_Hrishi/Folded Cascode/FoldedCascodeOTA.sym} 710 -470 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 710 -470 0 0 {name=x1}

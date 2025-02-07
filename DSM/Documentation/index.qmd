@@ -31,6 +31,7 @@ citation:
 {{< include /content/_sec_block_level.qmd >}}
 {{< include /content/_sec_system_level.qmd >}}
 {{< include /content/_sec_switchcap.qmd >}}
+{{< include /content/_sec_capacitor_sizing.qmd >}}
 {{< include /content/_sec_OTAdesign.qmd >}}
 {{< include /content/_sec_sizing.qmd >}}
 {{< include /content/_sec_comp.qmd >}}

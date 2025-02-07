@@ -9,15 +9,17 @@
 # Block Level Representation{#Block-Level}
 
 
-![Block Diagram](figures/_fig_Block_Diagram.png){#fig-Block-Diagram}
+
+
+![Block Diagram](figures/_fig_System_Diagram.png){#fig-Block-Diagram}
 
 @fig-Block-Diagram shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let's look at our target specifications.
 
 | Parameter           | Symbol | Value | Units |
 |---------------------|--------|-------|-------|
-| Bandwidth           | $f_B$ | 1     | kHz   |
-| Sampling frequency  | $f_{s}$ | 1     | MHz   |
-| Signal-to-Noise Ratio | $SNR$    | 100   | dB    |
+| Signal Bandwidth           | $f_B$ | 512     | kHz   |
+| Sampling frequency  | $f_{s}$ | 220     | kHz   |
+| Signal-to-Noise Ratio | $SNR$    | 98    | dB    |
 | Supply voltage      | $V_{dd}$ | 1.5   | V     |
 
 : **Table 1: Specifications.** {#tb-specifications}

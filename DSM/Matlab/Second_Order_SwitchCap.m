@@ -98,13 +98,13 @@ disp('c coefficients:');
 disp(c);
 %% Capacitor Sizing
 % Compute capacitor sizes
-Vdd = 1.8;
+Vdd = 1.5;
 Vref = Vdd;
 FullScale = Vdd;
-DR = 100 +3; % Dynamic range in dB, plus 3-dB margin
+DR = 98 +3; % Dynamic range in dB, plus 3-dB margin
 k = 1.38e-23; T = 300; kT = k*T;
 % First stage values based on kT/C noise
-v_n2 = (FullScale/2)^2/2 / undbp(DR); % = kT/(osr*C1)
+v_n2 = ((FullScale/2)^2)/2 / undbp(DR); % = kT/(osr*C1)
 C1 = kT/(M*v_n2);
 C2 = C1/b(1)*FullScale/1;
 
