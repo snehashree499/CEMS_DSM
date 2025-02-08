@@ -102,7 +102,29 @@ Figure&nbsp;1: Schematic for Strong arm latch.
 <section id="designing-a-comparator" class="level2">
 <h2 class="anchored" data-anchor-id="designing-a-comparator">Designing a comparator</h2>
 <p>Consider a amplier with a sufficiently large gain. For simplicity consider one input <span class="math inline">\({V_\mathrm{in}}\)</span>, the output is going to be amplified by factor A. Amplifier operates between <span class="math inline">\({V_\mathrm{DD}}\)</span> and GND. If the gain is large emough the output will saturate to <span class="math inline">\({V_\mathrm{DD}}\)</span> or GND.</p>
-<p>The minimum input for which the output will be <span class="math inline">\({V_\mathrm{DD}}\)</span> here is <span class="math inline">\({V_\mathrm{DD}}\)</span>/<span class="math inline">\(A\)</span></p>
+<p>The minimum input for which the output will be <span class="math inline">\({V_\mathrm{DD}}\)</span> here is <span class="math inline">\({V_\mathrm{DD}}\)</span>/<span class="math inline">\(A\)</span>, the comparator will give output <span class="math inline">\({V_\mathrm{DD}}\)</span>.</p>
+<p>The output will be fed to a digital block, usually a flip flop to resample the obtained output. The output of the amplifier should be greater than the input <span class="math inline">\({V_\mathrm{IH}}\)</span> given to flip flop to get output digital 1.</p>
+<p><a href="#fig-comp-tran" class="quarto-xref">Figure&nbsp;2</a> shows the transient analysis of our comparator.</p>
+<div id="fig-comp-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_comp_tran.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Transient Analysis of Comparator
+</figcaption>
+</figure>
+</div>
+<p>As we know that the common implementation of first stage OTA is “Differential Pair” as shown in <strong>?@fig-diffpair</strong>.</p>
+<p>// Add the figure</p>
+<p>The gain of the circuit <strong>?@fig-diffpair</strong> is , <span class="math inline">\({V_\mathrm{out}}\)</span> = <span class="math inline">\({g_\mathrm{m}R}\)</span><span class="math inline">\(\Delta V\)</span> The output of the <strong>?@fig-diffpair</strong> is initially 0 and when input is applied the output will slowly raises due to parasitic capacitors. Then it will settle exponentially. The closed form expression for exponentially settling behaviour is given by, <span class="math inline">\({g_\mathrm{m}R}\)</span><span class="math inline">\(\Delta V\)</span>$ 1-e^{-t/<span class="math inline">\(\tow}\)</span> //Add equation</p>
+<p>To increase the speed of the output curve we have to choose tow as the magnitude of tow cannot be changed. So we can replace the resistor by negative resistor in order to get quicker settling.</p>
+<p><span class="math display">\[
+{g_\mathrm{m}R}\]</span>V$ {g_R}<span class="math display">\[\Delta V$ - ${g_\mathrm{m}R}\]</span>V$ $$</p>
+<p>Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on <span class="math inline">\({V_\mathrm{t}}\)</span> so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS’s as shown in <strong>?@fig-rbypmos</strong>.</p>
+<p>// Add figure</p>
+<p>Initially, output voltages <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> will drop since we are pulling out current from the top two PMOS’s. <span class="math inline">\({V_\mathrm{x}}\)</span> will drop faster than <span class="math inline">\({V_\mathrm{y}}\)</span>. If <span class="math inline">\({V_\mathrm{x}}\)</span> starts reducing, current in that transistor increases and that current will be much larger than the current we are pulling out and hence <span class="math inline">\({V_\mathrm{y}}\)</span> will start to increase. If <span class="math inline">\({V_\mathrm{y}}\)</span> increases, the gate voltage at <span class="math inline">\({V_\mathrm{x}}\)</span> will increase so the current decreases. So, we are pushing in lesser current than we are pulling out, hence <span class="math inline">\({V_\mathrm{x}}\)</span> will drop further. Therefore, <span class="math inline">\({V_\mathrm{y}}\)</span> will go to <span class="math inline">\({V_\mathrm{DD}}\)</span> <span class="math inline">\({V_\mathrm{x}}\)</span> will go to 0 This kind of exponential increase is called “Regeneration”.</p>
+<p>When <span class="math inline">\(\Delta V\)</span> &lt; 0, <span class="math inline">\({V_\mathrm{y}}\)</span> should go down and <span class="math inline">\({V_\mathrm{x}}\)</span> should go to <span class="math inline">\({V_\mathrm{DD}}\)</span>. But problem of this approcah is due to ppsitive feedback that is trying to set these voltages to <span class="math inline">\({V_\mathrm{DD}}\)</span> and 0. Once it is set to 0 and <span class="math inline">\({V_\mathrm{DD}}\)</span>, positive feedback will reinforce that voltage and try to keep it same.</p>
 </section>
 </section>
 
