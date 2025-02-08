@@ -12,14 +12,6 @@ N 630 -710 630 -690 {
 lab=GND}
 N 630 -810 630 -770 {p1
 lab=Vin}
-N 790 -710 790 -690 {
-lab=GND}
-N 790 -810 790 -770 {p1
-lab=p1}
-N 1150 -710 1150 -690 {
-lab=GND}
-N 1150 -810 1150 -770 {p1
-lab=p2}
 N 410 -220 410 -200 {
 lab=#net1}
 N 340 -280 370 -280 {
@@ -63,10 +55,6 @@ N 860 -450 940 -450 {lab=vo1}
 N 780 -450 800 -450 {lab=#net3}
 N 780 -450 780 -380 {lab=#net3}
 N 640 -380 780 -380 {lab=#net3}
-N 1540 -700 1540 -680 {
-lab=GND}
-N 1540 -800 1540 -760 {p1
-lab=resb}
 N 310 -710 310 -690 {
 lab=GND}
 N 310 -810 310 -770 {p1
@@ -126,16 +114,18 @@ N 1690 -450 1690 -360 {lab=vo2}
 N 1690 -360 1740 -360 {lab=vo2}
 N 940 -450 940 -360 {lab=vo1}
 N 940 -360 970 -360 {lab=vo1}
+N 790 -720 790 -700 {
+lab=GND}
+N 790 -820 790 -780 {p1
+lab=p1}
+N 1150 -720 1150 -700 {
+lab=GND}
+N 1150 -820 1150 -780 {p1
+lab=p2}
 C {devices/gnd.sym} 510 -690 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 510 -740 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 630 -690 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 630 -740 0 0 {name=Vin value="dc 0.75 ac 1 "}
-C {devices/gnd.sym} 790 -690 0 0 {name=l6 lab=GND}
-C {devices/vsource.sym} 790 -740 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 5n, 100p, 100p, \{per/2-5n\}, \{per\}) "}
-C {devices/lab_wire.sym} 790 -810 0 0 {name=p2 sig_type=std_logic lab=p1}
-C {devices/gnd.sym} 1150 -690 0 0 {name=l7 lab=GND}
-C {devices/vsource.sym} 1150 -740 0 0 {name=Vp2 value="dc \{vdd\} pulse(\{vdd\}, 0, 0, 100p, 100p, \{per/2+5n\}, \{per\})"}
-C {devices/lab_wire.sym} 1150 -810 0 0 {name=p1 sig_type=std_logic lab=p2}
+C {devices/vsource.sym} 630 -750 0 0 {name=Vin value="dc 0.75 ac 1 "}
 C {devices/switch_ngspice.sym} 410 -300 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 340 -250 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 340 -300 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -151,22 +141,19 @@ C {devices/lab_wire.sym} 570 -170 0 0 {name=p5 sig_type=std_logic lab=p1}
 C {devices/lab_wire.sym} 800 -340 0 0 {name=p6 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 500 -220 3 0 {name=C7
 m=1
-value=410f
+value=0.3p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 640 -120 0 0 {name=p8 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 830 -450 3 0 {name=C1
 m=1
-value=6.49p
+value=2.06p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 630 -810 0 0 {name=p15 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 410 -330 0 0 {name=p16 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 510 -810 0 0 {name=p17 sig_type=std_logic lab=Vcm}
 C {devices/lab_wire.sym} 970 -360 0 1 {name=p23 sig_type=std_logic lab=vo1}
-C {devices/gnd.sym} 1540 -680 0 0 {name=l15 lab=GND}
-C {devices/vsource.sym} 1540 -730 0 0 {name=Vresb value="dc 0 pwl(0, 0, \{per/2\}, 0, \{per/2+100p\} \{vdd\}"}
-C {devices/lab_wire.sym} 1540 -800 0 0 {name=p25 sig_type=std_logic lab=resb}
 C {devices/code_shown.sym} 1840 -270 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -176,14 +163,14 @@ value="
 "}
 C {devices/code_shown.sym} 1840 -640 0 0 {name=NGSPICE only_toplevel=true 
 value="
-.param temp=27 vdd = 1.8 per=1u
+.param temp=27 vdd = 1.5
 .model mysw SW vt=\{vdd/2\} ron=0.1
 .option method=gear reltol=1e-4
 
 .control
 save all 
 run
-tran 10n 30u
+tran 40u 40u uic
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames
@@ -213,17 +200,23 @@ C {devices/lab_wire.sym} 1330 -170 0 0 {name=p12 sig_type=std_logic lab=p1}
 C {devices/lab_wire.sym} 1560 -340 0 0 {name=p13 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1260 -220 3 0 {name=C2
 m=1
-value=54f
+value=0.2p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 1400 -120 0 0 {name=p14 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1590 -450 3 0 {name=C3
 m=1
-value=98f
+value=0.7p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 1170 -330 0 0 {name=p18 sig_type=std_logic lab=vo1}
 C {devices/lab_wire.sym} 1740 -360 0 1 {name=p19 sig_type=std_logic lab=vo2}
 C {devices/gnd.sym} 1170 -140 0 0 {name=l17 lab=GND}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1000 -360 0 0 {name=x1}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1750 -360 0 0 {name=x3}
+C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1000 -360 2 1 {name=x1}
+C {devices/gnd.sym} 790 -700 0 0 {name=l6 lab=GND}
+C {devices/vsource.sym} 790 -750 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
+C {devices/lab_wire.sym} 790 -820 0 0 {name=p2 sig_type=std_logic lab=p1}
+C {devices/gnd.sym} 1150 -700 0 0 {name=l7 lab=GND}
+C {devices/vsource.sym} 1150 -750 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
+C {devices/lab_wire.sym} 1150 -820 0 0 {name=p1 sig_type=std_logic lab=p2}
+C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1750 -360 2 1 {name=x2}

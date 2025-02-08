@@ -4,8 +4,7 @@ K {}
 V {}
 S {}
 E {}
-T {flipflop} 1680 -520 0 0 0.4 0.4 {}
-T {comparator} 1460 -520 0 0 0.4 0.4 {}
+T {comparator} 1680 -550 0 0 0.4 0.4 {}
 N 170 -680 170 -660 {
 lab=GND}
 N 170 -780 170 -740 {p1
@@ -109,8 +108,8 @@ lab=#net5}
 N 980 -280 1090 -280 {lab=#net6}
 N 1090 -330 1090 -280 {
 lab=#net6}
-N 1310 -510 1320 -510 {lab=vo2}
-N 1320 -460 1320 -440 {lab=vo2}
+N 1310 -510 1320 -510 {lab=#net8}
+N 1320 -460 1320 -440 {lab=#net8}
 N 1230 -510 1250 -510 {lab=#net7}
 N 1230 -510 1230 -440 {lab=#net7}
 N 1090 -440 1230 -440 {lab=#net7}
@@ -119,21 +118,10 @@ N 680 -510 680 -460 {lab=vo1}
 N 860 -460 860 -390 {lab=vo1}
 N 220 -50 860 -50 {lab=#net3}
 N 860 -50 1300 -50 {lab=#net3}
-N 1500 -440 1500 -420 {
-lab=vcmp}
-N 1500 -390 1500 -330 {
-lab=GND}
-N 1590 -460 1630 -460 {
-lab=p1}
-N 1590 -420 1630 -420 {
-lab=resb}
-N 1380 -470 1380 -460 {lab=vo2}
-N 1320 -460 1380 -460 {lab=vo2}
-N 1320 -510 1320 -460 {lab=vo2}
+N 1320 -460 1600 -460 {lab=#net8}
+N 1320 -510 1320 -460 {lab=#net8}
 N 920 -470 920 -460 {lab=vo1}
 N 860 -460 920 -460 {lab=vo1}
-N 1540 -440 1630 -440 {
-lab=vcmp}
 N 1200 -670 1200 -650 {
 lab=GND}
 N 1200 -770 1200 -730 {p1
@@ -146,10 +134,13 @@ N 60 -680 60 -660 {
 lab=GND}
 N 60 -780 60 -740 {p1
 lab=VSS}
-N 1540 -440 1540 -50 {lab=vcmp}
-N 1500 -440 1540 -440 {
-lab=vcmp}
-N 1380 -50 1540 -50 {lab=vcmp}
+N 1380 -50 2000 -50 {lab=vcmp}
+N 1900 -500 2000 -500 {lab=vcmp}
+N 1560 -500 1600 -500 {
+lab=p1}
+N 1500 -480 1500 -430 {lab=GND}
+N 1500 -480 1600 -480 {lab=GND}
+N 2000 -500 2000 -50 {lab=vcmp}
 C {devices/gnd.sym} 170 -660 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 170 -710 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 290 -660 0 0 {name=l4 lab=GND}
@@ -211,13 +202,6 @@ device="ceramic capacitor"}
 C {devices/lab_wire.sym} 290 -780 0 0 {name=p15 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 220 -390 0 0 {name=p16 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 170 -780 0 0 {name=p17 sig_type=std_logic lab=Vcm}
-C {devices/gnd.sym} 1500 -330 0 0 {name=l3 lab=GND}
-C {devices/vsource.sym} 1500 -390 0 0 {name=E3 value="TABLE \{V(vo2,0)\} = (-0.1mV, 0V) (0.1mV, \{vdd\})"}
-C {devices/lab_wire.sym} 1560 -440 0 0 {name=p19 sig_type=std_logic lab=vcmp}
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 1720 -440 0 0 {name=x1 VDD=VDD VSS=VSS prefix=sg13g2_ }
-C {devices/lab_wire.sym} 1590 -460 0 0 {name=p20 sig_type=std_logic lab=p1}
-C {devices/lab_wire.sym} 1590 -420 0 0 {name=p21 sig_type=std_logic lab=resb}
-C {devices/lab_wire.sym} 1380 -470 0 0 {name=p22 sig_type=std_logic lab=vo2}
 C {devices/lab_wire.sym} 920 -470 0 0 {name=p23 sig_type=std_logic lab=vo1}
 C {sg13g2_stdcells/sg13g2_inv_1.sym} 1340 -50 0 1 {name=x2 VDD=Vdd VSS=Vss prefix=sg13g2_ }
 C {devices/gnd.sym} 1200 -650 0 0 {name=l15 lab=GND}
@@ -240,7 +224,13 @@ C {devices/title.sym} 270 170 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
 C {devices/gnd.sym} 750 -400 0 0 {name=l22 lab=GND}
 C {devices/gnd.sym} 680 -390 0 0 {name=l1 lab=GND}
 C {devices/gnd.sym} 1320 -390 0 0 {name=l9 lab=GND}
-C {devices/code_shown.sym} 2140 -680 0 0 {name=NGSPICE1 only_toplevel=true 
+C {devices/vcvs.sym} 680 -420 0 0 {name=E1 value=-1000}
+C {devices/vcvs.sym} 1320 -420 0 0 {name=E2 value=-1000}
+C {devices/gnd.sym} 1500 -430 0 0 {name=l3 lab=GND}
+C {devices/lab_wire.sym} 1560 -500 0 0 {name=p18 sig_type=std_logic lab=p1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/Comp_Test-3.sym} 1750 -480 0 0 {name=x3}
+C {devices/lab_wire.sym} 2000 -500 0 0 {name=p20 sig_type=std_logic lab=vcmp}
+C {devices/code_shown.sym} 2120 -640 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .param temp=27 vdd = 1.5 per=1u
 .model mysw SW vt=\{vdd/2\} ron=0.1
@@ -249,12 +239,10 @@ value="
 .control
 save all 
 run
-tran 10u 45m uic
-plot vo1 v02
+tran 45m 45m uic
+plot vcmp 
 set wr_singlescale
 set wr_vecnames
 wrdata IDEAL_SwitchCap.txt vo1 vo2 p1 p2
 .endc
 "}
-C {devices/vcvs.sym} 680 -420 0 0 {name=E1 value=-1000}
-C {devices/vcvs.sym} 1320 -420 0 0 {name=E2 value=-1000}

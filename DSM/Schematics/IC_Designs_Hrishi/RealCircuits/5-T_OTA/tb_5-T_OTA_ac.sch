@@ -40,7 +40,7 @@ N 1670 -800 1670 -760 {lab=v_out}
 N 720 -940 720 -530 {lab=v_dd}
 N 720 -940 1300 -940 {lab=v_dd}
 N 1300 -940 1300 -850 {lab=v_dd}
-C {devices/vsource.sym} 720 -500 0 0 {name=Vdd value=1.8
+C {devices/vsource.sym} 720 -500 0 0 {name=Vdd value=1.5
 }
 C {devices/gnd.sym} 720 -450 0 0 {name=l3 lab=GND}
 C {lab_pin.sym} 720 -550 0 0 {name=p2 sig_type=std_logic lab=v_dd}
@@ -48,11 +48,11 @@ C {devices/vsource.sym} 800 -500 0 0 {name=Vss value=0}
 C {devices/gnd.sym} 800 -450 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} 800 -550 0 0 {name=p1 sig_type=std_logic lab=v_ss}
 C {capa.sym} 1670 -730 0 0 {name=C1
-value=17.98f}
+value=0.47pf}
 C {lab_wire.sym} 1670 -800 0 0 {name=p3 sig_type=std_logic lab=v_out}
 C {devices/vsource.sym} 900 -710 0 0 {name=Vin value="dc 0.8 ac 1"}
 C {lab_wire.sym} 960 -830 0 0 {name=p4 sig_type=std_logic lab=v_in}
-C {isource.sym} 1100 -910 0 0 {name=I0 value= 3u}
+C {isource.sym} 1100 -910 0 0 {name=I0 value= 0.8u}
 C {spice_probe.sym} 1020 -830 0 0 {name=p5 attrs=""}
 C {spice_probe.sym} 1520 -800 0 0 {name=p6 attrs=""}
 C {devices/code_shown.sym} 200 -280 0 0 {name=MODEL1 only_toplevel=true
@@ -95,4 +95,4 @@ print onoise_total
 
 .endc
 "}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/Designs_Hrishi/5-T_OTA/5-T_OTA.sym} 1320 -800 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym} 1320 -800 0 0 {name=x1}

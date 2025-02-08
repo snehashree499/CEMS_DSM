@@ -67,7 +67,7 @@ print tsettle
 
 .endc
 "}
-C {devices/vsource.sym} 620 -570 0 0 {name=Vdd value=1.8
+C {devices/vsource.sym} 620 -570 0 0 {name=Vdd value=1.5
 }
 C {devices/gnd.sym} 620 -520 0 0 {name=l3 lab=GND}
 C {lab_pin.sym} 620 -620 0 0 {name=p2 sig_type=std_logic lab=v_dd}
@@ -75,11 +75,11 @@ C {devices/vsource.sym} 700 -570 0 0 {name=Vss value=0}
 C {devices/gnd.sym} 700 -520 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} 700 -620 0 0 {name=p1 sig_type=std_logic lab=v_ss}
 C {capa.sym} 1570 -800 0 0 {name=C1
-value=17.98f}
+value=0.47p}
 C {lab_wire.sym} 1570 -870 0 0 {name=p3 sig_type=std_logic lab=v_out}
 C {devices/vsource.sym} 800 -780 0 0 {name=Vin value="dc 0.8 ac 1"}
 C {lab_wire.sym} 860 -900 0 0 {name=p4 sig_type=std_logic lab=v_in}
-C {isource.sym} 1000 -980 0 0 {name=I0 value= 3u}
+C {isource.sym} 1000 -980 0 0 {name=I0 value= 0.8u}
 C {spice_probe.sym} 920 -900 0 0 {name=p5 attrs=""}
 C {spice_probe.sym} 1420 -870 0 0 {name=p6 attrs=""}
 C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym} 1220 -870 0 0 {name=x1}

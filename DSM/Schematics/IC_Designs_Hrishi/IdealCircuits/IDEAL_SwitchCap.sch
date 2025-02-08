@@ -14,14 +14,6 @@ N 290 -680 290 -660 {
 lab=GND}
 N 290 -780 290 -740 {p1
 lab=Vin}
-N 450 -680 450 -660 {
-lab=GND}
-N 450 -780 450 -740 {p1
-lab=p1}
-N 810 -680 810 -660 {
-lab=GND}
-N 810 -780 810 -740 {p1
-lab=p2}
 N 220 -280 220 -260 {
 lab=#net1}
 N 150 -340 180 -340 {
@@ -150,16 +142,18 @@ N 1540 -440 1540 -50 {lab=vcmp}
 N 1500 -440 1540 -440 {
 lab=vcmp}
 N 1380 -50 1540 -50 {lab=vcmp}
+N 460 -680 460 -660 {
+lab=GND}
+N 460 -780 460 -740 {p1
+lab=p1}
+N 820 -680 820 -660 {
+lab=GND}
+N 820 -780 820 -740 {p1
+lab=p2}
 C {devices/gnd.sym} 170 -660 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 170 -710 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 290 -660 0 0 {name=l4 lab=GND}
 C {devices/vsource.sym} 290 -710 0 0 {name=Vin value="dc 0.75 "}
-C {devices/gnd.sym} 450 -660 0 0 {name=l6 lab=GND}
-C {devices/vsource.sym} 450 -710 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 5n, 100p, 100p, \{per/2-5n\}, \{per\}) "}
-C {devices/lab_wire.sym} 450 -780 0 0 {name=p2 sig_type=std_logic lab=p1}
-C {devices/gnd.sym} 810 -660 0 0 {name=l7 lab=GND}
-C {devices/vsource.sym} 810 -710 0 0 {name=Vp2 value="dc \{vdd\} pulse(\{vdd\}, 0, 0, 100p, 100p, \{per/2+5n\}, \{per\})"}
-C {devices/lab_wire.sym} 810 -780 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 220 -360 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 150 -310 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 150 -360 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -257,3 +251,9 @@ set wr_vecnames
 wrdata tb_ideal_idsm2.txt vo1 vo2 p1 p2
 .endc
 "}
+C {devices/gnd.sym} 460 -660 0 0 {name=l6 lab=GND}
+C {devices/vsource.sym} 460 -710 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
+C {devices/lab_wire.sym} 460 -780 0 0 {name=p2 sig_type=std_logic lab=p1}
+C {devices/gnd.sym} 820 -660 0 0 {name=l7 lab=GND}
+C {devices/vsource.sym} 820 -710 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
+C {devices/lab_wire.sym} 820 -780 0 0 {name=p1 sig_type=std_logic lab=p2}
