@@ -59,6 +59,7 @@ xlabel('Frequency f/fs');
 ylabel('Magnitude (dB)');
 title('Bode Plot of NTF');
 grid on;
+saveas(gcf, '_fig_NTF.svg')
 %% Simulink
 mdl = 'dsm_l2_sim';
 %load_system(mdl);
@@ -105,6 +106,7 @@ axis([0 0.06 -150 0]);
 xlabel('Frequency f/fs')
 ylabel('DFT Magnitude in dBFS')
 grid;
+saveas(gcf, '_fig_spectral_analysis1.svg')
 
 %% Spectral analysis, delsig toolbox
 
@@ -117,7 +119,7 @@ axis([0 0.06 -150 0]);
 grid on;
 ylabel('dBFS');
 xlabel('f/fs')
-
+saveas(gcf, '_fig_spectral_analysis2.svg')
 
 %% Windowed plot
 specHW = fft(v.*ds_hann(N))/(N/4);
@@ -128,7 +130,7 @@ axis([0 0.06 -150 0]);
 grid on;
 ylabel('dBFS');
 xlabel('f/fs');
-
+saveas(gcf, '_fig_windowedplot.svg')
 
 
 

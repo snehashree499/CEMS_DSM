@@ -60,3 +60,50 @@ Therefore, ${V_\mathrm{y}}$ will go to ${V_\mathrm{DD}}$
 This kind of exponential increase is called "Regeneration".
 
 When $\Delta V$ < 0, ${V_\mathrm{y}}$ should go down and ${V_\mathrm{x}}$ should go to ${V_\mathrm{DD}}$. But problem of this approcah is due to ppsitive feedback that is trying to set these voltages to ${V_\mathrm{DD}}$ and 0. Once it is set to 0 and ${V_\mathrm{DD}}$, positive feedback will reinforce that voltage and try to keep it same.
+So, by using positive feedback, PMOS's are in the same state and we are trying to change states using below two NMOS's. Unless the current that is drawn from node Vy is much stronger, we cannot pull that dpwn to 0V.
+The reason behind this is that even after finishing the comparission for the previous input we are retaining the same output state and starting a fresh comparision with the same state. So, we have to reset it both to some value.
+We have total time of 0 to ${T_\mathrm{s}}$ in which half the time we are dedicating it for sampling and remaining half is dedicated for regeneration.
+Comparator is active in regeneration state, say it $\phi c$ and at sampling $\overline{\phi c}$. We can reset the outputs at sampling phase. For this we use switches and will reset to ${V_\mathrm{DD}}$.
+
+//Add figure
+
+The two NMOS's need not be active when resetting the two PMOS's. So we can turn them off by turning the bottom NMOS off. So, we can clock it at $\phi c$. **PMOS** can be used for switches.
+
+//Add figure
+
+The output of above @figure,
+When $\phi c$ is 0, voltage at points X and Y is at 0V.
+When $\phi c$ is 1 (swtches are off), initially ${V_\mathrm{x}}$ drops faster and when ${V_\mathrm{DD}}$-${V_\mathrm{TH}}$ is greater, PMOS turns on. First ${V_\mathrm{y}}$ will start increasing and goes to ${V_\mathrm{DD}}$, ${V_\mathrm{x}}$ starts to drop.
+
+
+The major issue in this approach is that the comparision is stopped at certain point and ${V_\mathrm{y}}$=${V_\mathrm{DD}}$ , ${V_\mathrm{x}}$=0.
+The NMOS towards right side is ON and allow the above corresponding PMOS. So, even after the comparission is completed the power consumption even though there is no change in inputs and outputs.
+If differential voltage is more that is, $\frac{\Delta V}{2}$ then the ${V_\mathrm{2}} will be very small and it will be off.
+But for small ${\Delta V}$, there is a direct path from ${V_\mathrm{DD}}$ to ground and we will have static power consumption.
+
+To solve this issue there is a direct connection between PMOS and NMOS which is having direct path from ${V_\mathrm{DD}}$ to ground . So, we should add some element in between A and B as shown in below @fig
+
+// Add figure
+
+We want node B to be OFF when ${V_\mathrm{x}}$=0 and node A must be ON when ${V_\mathrm{y}}$=${V_\mathrm{DD}}$, NMOS transistor with gate connected to ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ will do this as shown in @fig 
+
+// Add figure
+
+In this @fig the drains and gates of PMOS and NMOS are connected with each other and this is basically a **CMOS inverter**.
+
+Drawing it neatly as in @fig 
+
+// Add figure
+
+In practice there is one more modification made, along with ressetting X and Y we will also reset P and Q.
+
+${V_\mathrm{1}}$-${V_\mathrm{2}}$ = ${\Delta V}$ > 0
+
+When, $\phi c$ = 0, ${V_\mathrm{X,Y,P,Q}}$ = ${V_\mathrm{DD}}$
+When, $\phi c$ = ON, switches are OFF.
+
+## Latch
+
+Latches are heart of all comparators, the goal of all these are to emulate the negative resistance to get the regeration in exponential fashion.
+
+
