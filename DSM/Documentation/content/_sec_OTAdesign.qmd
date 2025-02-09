@@ -7,12 +7,11 @@ As we now enter on IC design level, we need to implement the discrete time integ
 As mention in @sec-SwitchCap the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, **Folded Cascode** topology (see @fig-OTA) is what best suited in our case, where we have PMOS input pair.
 
 
-![Candidate OTA](figures/_fig_OTA.qmd){#fig-OTA}
+![Candidate OTA](./figures/_fig_OTA_SlewCurrents.svg){#fig-OTA-SlewCurrents}
 
 
 Detailed analysis of **Folded Cascode** topology can be accessed [here](https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf). You can find the **quantitative** as well as **qualitative** analysis , **noise analysis**, **offset / mismatch analysis**.
 
-![OTA Slew Currents](./figures/_fig_OTA_SlewCurrents.png){#fig-OTA-SlewCurrents}
 
 
 ### Deriving $I$
@@ -77,7 +76,7 @@ The minimum length consideration while designing in low voltage CMOS technology 
 
 ### OTA biasing using **current mirror**
 
-![OTA Biasing](figures/_fig_OTA_Biasing.qmd){#fig-OTA-Biasing}
+![OTA Biasing](figures/_fig_biased_OTA.svg){#fig-OTA-Biasing}
 
 @fig-OTA-Biasing explains the biasing of the OTA using **Wilson's current mirror** topology. 
 

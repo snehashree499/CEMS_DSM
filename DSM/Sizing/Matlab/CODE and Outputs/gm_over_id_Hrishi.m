@@ -143,8 +143,8 @@ grid;
 legend('lv_nmos', 'location', 'northeast', 'interpreter','none')
 % Add a horizontal line at ID/W = 8
 hold on;
-xline(6.71, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'gm_ID=6.71')
-yline(23, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'idw_n=23')
+xline(7.6, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'gm_ID=7.6')
+yline(5.3, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'idw_n=5.3')
 hold off;
 saveas(gcf, 'ID_W-gm_ID_n.svg')
 
@@ -157,8 +157,8 @@ xlim([3 25]);
 ylim([1e-2 2e2]);
 grid;
 legend('lv_pmos', 'location', 'northeast', 'interpreter','none')
-xline(6.71, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'gm_ID=6.71')
-yline(8, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'idw_n=8')
+xline(7.05, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'gm_ID=7.05')
+yline(5.88, '--', 'LineWidth', 1.5, 'Color', 'r', 'DisplayName', 'idw_n=5.88')
 saveas(gcf, 'ID_W-gm_ID_p.svg')
 
 % Vt vs. L
