@@ -28,7 +28,7 @@
 
 ## NTF Selection{#sec-NTF}
 
-![Block Diagram](figures/_fig_NTF.qmd){#fig-NTF}
+![NTF](figures/_fig_NTF.qmd){#fig-NTF}
 
 The matlab [code fragment](https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m)  creates an NTF and evaluates
 its performance using an SQNR versus amplitude curve (see @fig-NTF)). Since the ideal peak
