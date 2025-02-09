@@ -50,4 +50,4 @@ value=".lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerCAP.lib cap_typ
 .inc $::PDK_ROOT/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
-C {A_comp-2.sym} 160 -40 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym} 160 -40 0 0 {name=x1}

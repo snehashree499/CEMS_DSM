@@ -144,7 +144,7 @@ N 1310 -470 1510 -470 {lab=vo2}
 C {devices/gnd.sym} 80 -720 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 80 -770 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 200 -720 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="dc 0.75 "}
+C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="dc 0.75 ac 1 "}
 C {devices/switch_ngspice.sym} 130 -420 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 60 -370 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 60 -420 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -222,18 +222,18 @@ value="
 .control
 save all 
 run
-tran 45u 45u uic
-plot vcmp
+tran 0.45m 0.45m 
+plot vo1 vo2 vcmp
+
 set wr_singlescale
 set wr_vecnames
-wrdata IDEAL_SwitchCap.txt vo1 vo2 p1 p2
+wrdata IDEAL_SwitchCap.txt vo1 vo2 vcmp p1 p2
 .endc
 "}
 C {devices/gnd.sym} 1410 -440 0 0 {name=l3 lab=GND}
 C {devices/gnd.sym} 1910 -510 0 0 {name=l23 lab=GND}
 C {devices/lab_wire.sym} 1470 -510 0 0 {name=p18 sig_type=std_logic lab=p1}
 C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x5}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/Comp_Test-3.sym} 1660 -490 0 0 {name=x3}
 C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x4}
 C {devices/gnd.sym} 360 -720 0 0 {name=l6 lab=GND}
 C {devices/vsource.sym} 360 -770 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
@@ -242,3 +242,4 @@ C {devices/gnd.sym} 720 -720 0 0 {name=l7 lab=GND}
 C {devices/vsource.sym} 720 -770 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
 C {devices/lab_wire.sym} 720 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
