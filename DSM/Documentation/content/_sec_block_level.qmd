@@ -10,8 +10,11 @@
 
 
 
+<<<<<<< HEAD
+=======
 
 ![Block Diagram](figures/_fig_System_Diagram.svg){#fig-Block-Diagram}
+>>>>>>> 6c6922c32a6200fae984827f2b5631b8a6e89dfb
 
 @fig-Block-Diagram shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let's look at our target specifications.
 
