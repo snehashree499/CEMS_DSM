@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="_sec_switchcap_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="_sec_switchcap_files/libs/quarto-html/anchor.min.js"></script>
 <link href="_sec_switchcap_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="_sec_switchcap_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="_sec_switchcap_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="_sec_switchcap_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="_sec_switchcap_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="_sec_switchcap_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -70,7 +70,7 @@ window.Quarto = {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -109,7 +109,11 @@ V_{out}[n-1] = \sum_{m=0}^{n-2} V_{in}[m]
 <p>So essentially, the equation speaks that we are storing the output and adding the input to the existing output. Therefore, to store the output we need a capacitor <span class="math inline">\((C_1)\)</span>, and we want to process this voltage onto the next capacitor <span class="math inline">\((C_2)\)</span>, but we also need to make sure that no current is being derived from it. Thus, we need to use a voltage controlled voltage source (Op-amp) but while designing on IC level, mosfets are always current sources controlled by voltage and its better to use OTA instead of Op-amps in our design. So, we need an OTA.</p>
 <p><strong>?@fig-phis</strong> shows that in phase1, <span class="math inline">\(C_1\)</span> will store the charge from <span class="math inline">\(V_{in}\)</span> and in phase2, the charge will be transfered to <span class="math inline">\(C_2\)</span> and it will store charge from previous sample. To put this together (see <strong>?@fig-Club</strong>)</p>
 <p><img src="figures/_fig_phis.svg" id="fig-phis" class="img-fluid"> <img src="figures/_fig_Club.svg" id="fig-Club" class="img-fluid"></p>
+<<<<<<< HEAD
 <p>Now, we also need to take charge injection into consideration and implement bottom plate sampling. Our derived switch-capacitor integrator will be having a <strong>Transfer function: <span class="math inline">\(H(z) = \frac{C_1}{C_2}\frac{z^{-1}}{1-z^{-1}}\)</span></strong> (See <a href="#fig-switchcap-integrator" class="quarto-xref">Figure&nbsp;2</a>)</p>
+=======
+<p>Now, we also need to take charge injection into consideration and implement bottom plate sampling. Our derived switch-capacitor integrator will be like <a href="#fig-switchcap-integrator" class="quarto-xref">Figure&nbsp;2</a></p>
+>>>>>>> f732435eeee0a9cdcb440ec4bda905ff1ac95e72
 <div id="fig-switchcap-integrator" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-switchcap-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -117,6 +121,17 @@ V_{out}[n-1] = \sum_{m=0}^{n-2} V_{in}[m]
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-switchcap-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Delayed Switch capacitor Integrator
+</figcaption>
+</figure>
+</div>
+<p>The input is sampled in track phase <span class="math inline">\(\phi_1\)</span> and transferred to <span class="math inline">\(C_2\)</span> in hold phase <span class="math inline">\(\phi_2\)</span> again in next <span class="math inline">\(\phi_1\)</span>, new <span class="math inline">\(V_{in}\)</span> is sampled and hence, the sampled signal is available at output after one cycle proving the delay. (see <a href="#fig-delay" class="quarto-xref">Figure&nbsp;3</a>)</p>
+<div id="fig-delay" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-delay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_delay.svg" id="fig-delay" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-delay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
 </figcaption>
 </figure>
 </div>
