@@ -9,7 +9,7 @@
 # Block Level Representation{#Block-Level}
 
 
-![Block Diagram](figures/_fig_Block_Diagram.png){#fig-Block-Diagram}
+
 
 @fig-Block-Diagram shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let's look at our target specifications.
 

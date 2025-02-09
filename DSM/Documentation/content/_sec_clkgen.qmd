@@ -1,14 +1,17 @@
 # Clock Generator 
 
 Mixed-signal systems must balance elements that are critical in the digital domain as well as the analog domain. One important area of digital interface design in mixed-signal systems is clocking, which must be used to enforce timing between components and to read data from ADCs. Many mixed-signal systems operating in the low-to-moderate frequency range will use a reference oscillator, and there may be a need to synchronize multiple clocks across a system to accurately sample and synchronize the entire system. In designing a sigma- delta ADC, we can say that the clock is the heartbeat of the ADC, synchronizing all operations. It means that the clock plays a crucial role in the overall system operation. The clock precisely controls the timing of various ADC components, and without it, neither sampling nor processing can occur.
+
+
+
+
 let's see clock's role precisely:
 1. Sampling Control
-The clock determines when the ADC should take a sample of the analog signal. In your system, the sampling frequency is 1 kHz, meaning a new sample is taken every 1000 microseconds. 
-
+The clock determines when the ADC should take a sample of the analog signal. In your system, the sampling frequency is 1 MHZ, meaning a new sample is taken every 1000 microseconds. 
 
 
 $$
-T_s = \frac{1}{f_s} = \frac{1}{1000} = 0.001 = 1 \, \mu s
+T_s = \frac{1}{f_s} = \frac{1}{220} = 4.545 s \, 
 $$
 
 If the clock is too slow, insufficient data is captured, leading to signal degradation. If the clock is too fast, the circuit may not respond correctly, introducing noise and errors.
@@ -37,23 +40,31 @@ Without clock flip-flops store the data randomly and that is not the thing we wa
 After the modulator, a digital filter (Decimation Filter) processes the high-speed output data.
 This filter, operating with the system clock and its divided versions, reduces the data rate to generate the final 16-bit digital output.
 To design this clock, we must consider that in switch capacitor circuits, the maintenance you should ensure is that the clocks never overlap. This circuits operation is based on charge transfer by switching. As shown by the time-domain waveforms in figure, during integrating phase ∅2, the charge stored in a sampling capacitor Cs is transferred to an integrating capacitor C1 through the ON resistance (Ron) of the switch. The discharging of Cs takes place at an exponentially decaying rate.
+
+![Block Diagram](figures/Untitled Diagram-Page-2.drawio (1).svg){#fig-Block-Diagram}
+
 Reasons:
-1.Preventing short circuit current
+
+
+1. Preventing short circuit current
 In switched-capacitor circuits, two switches are controlled by complementary clock phases.
 	•	If both clock signals go high simultaneously, both switches turn on, creating a short circuit to ground or supply voltage.
 	•	A non-overlapping clock eliminates this issue by ensuring a small delay (Dead Time) between the two clock phases.
 
-2. Improving Sampling Accuracy
+1. Improving Sampling Accuracy
 	•	In delta-sigma ADCs, capacitors require sufficient time to charge or discharge before the clock phase changes.
 	•	If the clock phases overlap, the capacitor may not fully charge, leading to sampling errors.
 	•	A non-overlapping clock ensures accurate data transfer and minimizes noise.
 
-3. Reducing Charge Injection & Clock Feedthrough
+2. Reducing Charge Injection & Clock Feedthrough
 	•	Overlapping clock phases can cause charge injections and clock feedthrough, leading to signal distortion and increased noise.
 	•	A non-overlapping clock helps to reduce these effects significantly.
+![Block Diagram](figures/Untitled Diagram-Page-1.drawio (1).svg){#fig-Block-Diagram}
 
 How to Generate a Non-Overlapping Clock?
 To generate ϕ1 and ϕ2 clock phases that never overlap, delay elements (RC delay, buffers, inverters) and NAND/AND gates are commonly used.
+
+![Block Diagram](figures/Untitled Diagram-Page-3.drawio (1).svg){#fig-Block-Diagram}
 
 
 
