@@ -38,7 +38,7 @@ x1 p1 GND vcmp GND vo2 A_comp-2
 save all
 run
 tran 0.45m 0.45m
-plot vo1 vo2 vcmp
+plot vcmp
 
 set wr_singlescale
 set wr_vecnames

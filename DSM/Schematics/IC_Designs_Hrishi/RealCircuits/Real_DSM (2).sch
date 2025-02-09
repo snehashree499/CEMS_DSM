@@ -199,7 +199,7 @@ C {devices/lab_wire.sym} 80 -840 0 0 {name=p17 sig_type=std_logic lab=Vcm}
 C {devices/lab_wire.sym} 2150 -520 0 0 {name=p19 sig_type=std_logic lab=vcmp}
 C {devices/lab_wire.sym} 830 -480 0 0 {name=p23 sig_type=std_logic lab=vo1}
 C {sg13g2_stdcells/sg13g2_inv_1.sym} 1250 -110 0 1 {name=x2 VDD=Vdd VSS=Vss prefix=sg13g2_ }
-C {devices/code_shown.sym} 2290 130 0 0 {name=MODEL only_toplevel=true
+C {devices/code_shown.sym} 2380 -210 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
@@ -213,7 +213,7 @@ C {devices/gnd.sym} -30 -720 0 0 {name=l19 lab=GND}
 C {devices/vsource.sym} -30 -770 0 0 {name=Vss value="dc 0"}
 C {devices/vdd.sym} -30 -840 0 0 {name=l20 lab=VSS}
 C {devices/title.sym} 180 110 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
-C {devices/code_shown.sym} 2290 -290 0 0 {name=NGSPICE1 only_toplevel=true 
+C {devices/code_shown.sym} 2380 -630 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .param temp=27 vdd = 1.5 
 .model mysw SW vt=\{vdd/2\} ron=0.1
@@ -222,8 +222,8 @@ value="
 .control
 save all 
 run
-tran 0.45m 0.45m 
-plot vo1 vo2 vcmp
+tran 0.45m 0.45m
+plot vcmp
 
 set wr_singlescale
 set wr_vecnames
