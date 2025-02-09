@@ -34,14 +34,14 @@ N 640 -600 640 -520 {lab=v_dd}
 N 640 -520 680 -520 {lab=v_dd}
 N 680 -420 690 -420 {lab=v_ss}
 N 860 -470 910 -470 {lab=Vout}
-C {devices/vsource.sym} 110 -170 0 0 {name=Vdd value=1.8
+C {devices/vsource.sym} 110 -170 0 0 {name=Vdd value=1.5
 }
 C {devices/gnd.sym} 110 -120 0 0 {name=l3 lab=GND}
 C {lab_pin.sym} 110 -220 0 0 {name=p2 sig_type=std_logic lab=v_dd}
 C {devices/vsource.sym} 190 -170 0 0 {name=Vss value=0}
 C {devices/gnd.sym} 190 -120 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} 190 -220 0 0 {name=p1 sig_type=std_logic lab=v_ss}
-C {isource.sym} 680 -620 0 0 {name=I0 value= 3u}
+C {isource.sym} 680 -620 0 0 {name=I0 value= 0.8u}
 C {ipin.sym} 490 -440 0 0 {name=p7 lab=Minus}
 C {opin.sym} 910 -470 0 0 {name=p8 lab=Vout}
 C {ipin.sym} 560 -500 0 0 {name=p3 lab=Plus}

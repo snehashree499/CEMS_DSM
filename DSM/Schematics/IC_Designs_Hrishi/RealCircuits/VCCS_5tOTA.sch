@@ -33,7 +33,7 @@ N 290 -590 480 -590 {lab=#net1}
 N 440 -640 440 -560 {lab=v_dd}
 N 440 -560 490 -560 {lab=v_dd}
 N 660 -510 710 -510 {lab=Vout}
-C {devices/vsource.sym} -90 -210 0 0 {name=Vdd value=1.8
+C {devices/vsource.sym} -90 -210 0 0 {name=Vdd value=1.5
 }
 C {devices/gnd.sym} -90 -160 0 0 {name=l3 lab=GND}
 C {lab_pin.sym} -90 -260 0 0 {name=p2 sig_type=std_logic lab=v_dd}
@@ -44,4 +44,4 @@ C {isource.sym} 480 -660 0 0 {name=I0 value= 3u}
 C {ipin.sym} 290 -480 0 0 {name=p7 lab=Minus}
 C {opin.sym} 710 -510 0 0 {name=p8 lab=Vout}
 C {ipin.sym} 360 -540 0 0 {name=p3 lab=Plus}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/Designs_Hrishi/5-T_OTA/5-T_OTA.sym} 510 -510 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym} 510 -510 0 0 {name=x1}

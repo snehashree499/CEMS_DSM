@@ -12,14 +12,6 @@ N 440 -710 440 -690 {
 lab=GND}
 N 440 -810 440 -770 {p1
 lab=Vin}
-N 600 -710 600 -690 {
-lab=GND}
-N 600 -810 600 -770 {p1
-lab=p1}
-N 960 -710 960 -690 {
-lab=GND}
-N 960 -810 960 -770 {p1
-lab=p2}
 N 220 -290 220 -270 {
 lab=#net1}
 N 150 -350 180 -350 {
@@ -64,10 +56,6 @@ N 590 -520 610 -520 {lab=#net3}
 N 590 -520 590 -450 {lab=#net3}
 N 450 -450 590 -450 {lab=#net3}
 N 680 -470 680 -460 {lab=vo1}
-N 1350 -700 1350 -680 {
-lab=GND}
-N 1350 -800 1350 -760 {p1
-lab=resb}
 N 120 -710 120 -690 {
 lab=GND}
 N 120 -810 120 -770 {p1
@@ -124,16 +112,18 @@ N 1210 -450 1350 -450 {lab=#net6}
 N 1440 -470 1440 -460 {lab=vo2}
 N 1440 -470 1550 -470 {lab=vo2}
 N 1440 -520 1440 -470 {lab=vo2}
+N 580 -710 580 -690 {
+lab=GND}
+N 580 -810 580 -770 {p1
+lab=p1}
+N 940 -710 940 -690 {
+lab=GND}
+N 940 -810 940 -770 {p1
+lab=p2}
 C {devices/gnd.sym} 320 -690 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 320 -740 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 440 -690 0 0 {name=l4 lab=GND}
 C {devices/vsource.sym} 440 -740 0 0 {name=Vin value="dc 0.75 ac 1 "}
-C {devices/gnd.sym} 600 -690 0 0 {name=l6 lab=GND}
-C {devices/vsource.sym} 600 -740 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 5n, 100p, 100p, \{per/2-5n\}, \{per\}) "}
-C {devices/lab_wire.sym} 600 -810 0 0 {name=p2 sig_type=std_logic lab=p1}
-C {devices/gnd.sym} 960 -690 0 0 {name=l7 lab=GND}
-C {devices/vsource.sym} 960 -740 0 0 {name=Vp2 value="dc \{vdd\} pulse(\{vdd\}, 0, 0, 100p, 100p, \{per/2+5n\}, \{per\})"}
-C {devices/lab_wire.sym} 960 -810 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 220 -370 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 150 -320 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 150 -370 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -149,22 +139,19 @@ C {devices/lab_wire.sym} 380 -240 0 0 {name=p5 sig_type=std_logic lab=p1}
 C {devices/lab_wire.sym} 610 -410 0 0 {name=p6 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 310 -290 3 0 {name=C7
 m=1
-value=410f
+value=0.3p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 450 -190 0 0 {name=p8 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 640 -520 3 0 {name=C1
 m=1
-value=6.49p
+value=2.06p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 440 -810 0 0 {name=p15 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 220 -400 0 0 {name=p16 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 320 -810 0 0 {name=p17 sig_type=std_logic lab=Vcm}
 C {devices/lab_wire.sym} 790 -470 0 0 {name=p23 sig_type=std_logic lab=vo1}
-C {devices/gnd.sym} 1350 -680 0 0 {name=l15 lab=GND}
-C {devices/vsource.sym} 1350 -730 0 0 {name=Vresb value="dc 0 pwl(0, 0, \{per/2\}, 0, \{per/2+100p\} \{vdd\}"}
-C {devices/lab_wire.sym} 1350 -800 0 0 {name=p25 sig_type=std_logic lab=resb}
 C {devices/code_shown.sym} 1790 -290 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -172,16 +159,16 @@ value="
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
 .inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
-C {devices/code_shown.sym} 1790 -660 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/code_shown.sym} 1800 -670 0 0 {name=NGSPICE only_toplevel=true 
 value="
-.param temp=27 vdd = 1.8 per=1u
+.param temp=27 vdd = 1.5
 .model mysw SW vt=\{vdd/2\} ron=0.1
 .option method=gear reltol=1e-4
 
 .control
 save all 
 run
-tran 10n 30u
+tran 40u 40u uic
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames
@@ -211,13 +198,13 @@ C {devices/lab_wire.sym} 1140 -240 0 0 {name=p12 sig_type=std_logic lab=p1}
 C {devices/lab_wire.sym} 1370 -410 0 0 {name=p13 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1070 -290 3 0 {name=C2
 m=1
-value=54f
+value=0.2p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 1210 -190 0 0 {name=p14 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1400 -520 3 0 {name=C3
 m=1
-value=98f
+value=0.7p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_wire.sym} 980 -400 0 0 {name=p18 sig_type=std_logic lab=vo1}
@@ -227,3 +214,9 @@ C {devices/gnd.sym} 680 -400 0 0 {name=l22 lab=GND}
 C {devices/gnd.sym} 1440 -400 0 0 {name=l23 lab=GND}
 C {vccs.sym} 680 -430 2 1 {name=G1 value=10e-06}
 C {vccs.sym} 1440 -430 2 1 {name=G2 value=10e-06}
+C {devices/gnd.sym} 580 -690 0 0 {name=l6 lab=GND}
+C {devices/vsource.sym} 580 -740 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
+C {devices/lab_wire.sym} 580 -810 0 0 {name=p2 sig_type=std_logic lab=p1}
+C {devices/gnd.sym} 940 -690 0 0 {name=l7 lab=GND}
+C {devices/vsource.sym} 940 -740 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
+C {devices/lab_wire.sym} 940 -810 0 0 {name=p1 sig_type=std_logic lab=p2}
