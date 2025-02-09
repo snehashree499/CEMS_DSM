@@ -80,7 +80,7 @@ window.Quarto = {
 <div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures_fig_Block_Diagram.png" class="img-fluid figure-img">
+<img src="figures/_fig_System_Diagram.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Block Diagram
@@ -130,14 +130,45 @@ Figure&nbsp;1: Block Diagram
 <div id="fig-NTF" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_NTF.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_NTF.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Block Diagram
+Figure&nbsp;2: NTF
 </figcaption>
 </figure>
 </div>
-<p>The matlab <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">code fragment</a> creates an NTF and evaluates its performance using an SQNR versus amplitude curve (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>)). Since the ideal peak SQNR is 120 dB, quantization noise is 20 dB below our target noise level. This margin is at the generous end of the 10–20 dB range that typically separates the ideal SQNR from the target SNR.</p>
+<p>The matlab <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">matlab code</a> creates an NTF (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>) with CIFB topology and performs dynamic scaling using the functions of toolbox (see <span class="citation" data-cites="tb-CIFB-params">@tb-CIFB-params</span>)).</p>
+<table class="caption-top table">
+<caption><strong>Table 2: Specifications.</strong> {#tb-CIFB-params}</caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a(1)</td>
+<td>0.2636</td>
+</tr>
+<tr class="even">
+<td>a(2)</td>
+<td>2.137</td>
+</tr>
+<tr class="odd">
+<td>b(1)</td>
+<td>0.2636</td>
+</tr>
+<tr class="even">
+<td>c(1)</td>
+<td>0.3097</td>
+</tr>
+<tr class="odd">
+<td>c(2)</td>
+<td>5.7837</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 

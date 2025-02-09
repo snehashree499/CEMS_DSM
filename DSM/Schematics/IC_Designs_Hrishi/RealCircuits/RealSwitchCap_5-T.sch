@@ -172,7 +172,7 @@ value="
 .control
 save all 
 run
-tran 40m 40m uic
+tran 10n 30u uic
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames

@@ -137,7 +137,6 @@ N 60 -680 60 -660 {
 lab=GND}
 N 60 -780 60 -740 {p1
 lab=VSS}
-N 1810 -460 1880 -460 {lab=#net8}
 N 1540 -440 1540 -50 {lab=vcmp}
 N 1500 -440 1540 -440 {
 lab=vcmp}
@@ -251,7 +250,7 @@ value="
 .control
 save all 
 run
-tran 40m 40m uic
+tran 0.40m 0.40m uic
 plot vcmp
 set wr_singlescale
 set wr_vecnames

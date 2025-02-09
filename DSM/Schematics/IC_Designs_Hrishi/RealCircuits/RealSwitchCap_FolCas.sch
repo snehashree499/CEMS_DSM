@@ -170,11 +170,11 @@ value="
 .control
 save all 
 run
-tran 40u 40u uic
+tran 10n 30u
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames
-wrdata IDEAL_SwitchCap.txt vo1 p1 p2
+wrdata IDEAL_SwitchCap.txt vo1 vo2 p1 p2
 .endc
 "}
 C {devices/gnd.sym} 310 -690 0 0 {name=l2 lab=GND}

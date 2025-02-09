@@ -13,7 +13,7 @@ author:
     email: snehashree499@gmail.com
     affiliations:
       - Hochschule Bremen
-  - name: Hanieh Alteidar
+  - name: Hanieh Alaeiatar
     Matriculation number: 5363618
     #corresponding: true
     email: hanieh.alaei7596@gmail.com
@@ -28,8 +28,8 @@ citation:
 
 {{< include /content/_macros.qmd >}}
 {{< include /content/_sec_system_overview.qmd >}}
-{{< include /content/_sec_block_level.qmd >}}
 {{< include /content/_sec_system_level.qmd >}}
+{{< include /content/_sec_block_level.qmd >}}
 {{< include /content/_sec_switchcap.qmd >}}
 {{< include /content/_sec_capacitor_sizing.qmd >}}
 {{< include /content/_sec_OTAdesign.qmd >}}

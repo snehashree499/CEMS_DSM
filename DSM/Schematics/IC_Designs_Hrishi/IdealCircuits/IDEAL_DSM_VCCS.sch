@@ -4,7 +4,8 @@ K {}
 V {}
 S {}
 E {}
-T {comparator} 1680 -550 0 0 0.4 0.4 {}
+T {flipflop} 1860 -510 0 0 0.4 0.4 {}
+T {comparator} 1640 -510 0 0 0.4 0.4 {}
 N 170 -680 170 -660 {
 lab=GND}
 N 170 -780 170 -740 {p1
@@ -108,8 +109,7 @@ lab=#net5}
 N 980 -280 1090 -280 {lab=#net6}
 N 1090 -330 1090 -280 {
 lab=#net6}
-N 1310 -510 1320 -510 {lab=#net8}
-N 1320 -460 1320 -440 {lab=#net8}
+N 1310 -510 1320 -510 {lab=vo2}
 N 1230 -510 1250 -510 {lab=#net7}
 N 1230 -510 1230 -440 {lab=#net7}
 N 1090 -440 1230 -440 {lab=#net7}
@@ -118,8 +118,7 @@ N 680 -510 680 -460 {lab=vo1}
 N 860 -460 860 -390 {lab=vo1}
 N 220 -50 860 -50 {lab=#net3}
 N 860 -50 1300 -50 {lab=#net3}
-N 1320 -460 1600 -460 {lab=#net8}
-N 1320 -510 1320 -460 {lab=#net8}
+N 1320 -460 1320 -440 {lab=vo2}
 N 920 -470 920 -460 {lab=vo1}
 N 860 -460 920 -460 {lab=vo1}
 N 1200 -670 1200 -650 {
@@ -134,13 +133,22 @@ N 60 -680 60 -660 {
 lab=GND}
 N 60 -780 60 -740 {p1
 lab=VSS}
-N 1380 -50 2000 -50 {lab=vcmp}
-N 1900 -500 2000 -500 {lab=vcmp}
-N 1560 -500 1600 -500 {
+N 1680 -430 1680 -410 {
+lab=vcmp}
+N 1680 -380 1680 -320 {
+lab=GND}
+N 1770 -450 1810 -450 {
 lab=p1}
-N 1500 -480 1500 -430 {lab=GND}
-N 1500 -480 1600 -480 {lab=GND}
-N 2000 -500 2000 -50 {lab=vcmp}
+N 1770 -410 1810 -410 {
+lab=resb}
+N 1720 -430 1810 -430 {
+lab=vcmp}
+N 1320 -460 1380 -460 {lab=vo2}
+N 1320 -510 1320 -460 {lab=vo2}
+N 1720 -430 1720 -50 {lab=vcmp}
+N 1680 -430 1720 -430 {
+lab=vcmp}
+N 1380 -50 1720 -50 {lab=vcmp}
 C {devices/gnd.sym} 170 -660 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 170 -710 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 290 -660 0 0 {name=l4 lab=GND}
@@ -226,10 +234,7 @@ C {devices/gnd.sym} 680 -390 0 0 {name=l1 lab=GND}
 C {devices/gnd.sym} 1320 -390 0 0 {name=l9 lab=GND}
 C {devices/vcvs.sym} 680 -420 0 0 {name=E1 value=-1000}
 C {devices/vcvs.sym} 1320 -420 0 0 {name=E2 value=-1000}
-C {devices/gnd.sym} 1500 -430 0 0 {name=l3 lab=GND}
-C {devices/lab_wire.sym} 1560 -500 0 0 {name=p18 sig_type=std_logic lab=p1}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/Comp_Test-3.sym} 1750 -480 0 0 {name=x3}
-C {devices/lab_wire.sym} 2000 -500 0 0 {name=p20 sig_type=std_logic lab=vcmp}
+C {devices/lab_wire.sym} 1890 -740 0 0 {name=p20 sig_type=std_logic lab=vcmp}
 C {devices/code_shown.sym} 2120 -640 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .param temp=27 vdd = 1.5 per=1u
@@ -239,10 +244,17 @@ value="
 .control
 save all 
 run
-tran 45m 45m uic
+tran 0.45m 0.45m 
 plot vcmp 
 set wr_singlescale
 set wr_vecnames
 wrdata IDEAL_SwitchCap.txt vo1 vo2 p1 p2
 .endc
 "}
+C {devices/gnd.sym} 1680 -320 0 0 {name=l3 lab=GND}
+C {devices/vsource.sym} 1680 -380 0 0 {name=E3 value="TABLE \{V(vo2)\} = (-0.1mV, 0V) (0,0) (0, 1.5) (0.1mV, 1.5)"}
+C {devices/lab_wire.sym} 1680 -430 0 0 {name=p19 sig_type=std_logic lab=vcmp}
+C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 1900 -430 0 0 {name=x1 VDD=VDD VSS=VSS prefix=sg13g2_ }
+C {devices/lab_wire.sym} 1770 -450 0 0 {name=p18 sig_type=std_logic lab=p1}
+C {devices/lab_wire.sym} 1770 -410 0 0 {name=p21 sig_type=std_logic lab=resb}
+C {devices/lab_wire.sym} 1380 -460 0 0 {name=p22 sig_type=std_logic lab=vo2}
