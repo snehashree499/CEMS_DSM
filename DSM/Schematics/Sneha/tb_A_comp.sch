@@ -31,7 +31,7 @@ C {lab_wire.sym} 380 -60 0 0 {name=p1 sig_type=std_logic lab=outm}
 C {lab_wire.sym} 380 -40 0 0 {name=p2 sig_type=std_logic lab=outp}
 C {devices/code_shown.sym} 470 -280 0 0 {name=NGSPICE only_toplevel=true
 value=" 
-.param temp=27 per=20n vdd=1.2 per=1u vdiff=1m
+.param temp=27 per=20n vdd=1.5 per=1u vdiff=1m
 .option method=gear reltol=1e-5
 
 .control
