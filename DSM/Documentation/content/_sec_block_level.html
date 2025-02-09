@@ -75,7 +75,71 @@ window.Quarto = {
 
 
 
-<p><span class="math inline">\(T_s\)</span></p>
+<section id="Block-Level" class="level1">
+<h1>Block Level Representation</h1>
+<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures_fig_Block_Diagram.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Block Diagram
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-Block-Diagram" class="quarto-xref">Figure&nbsp;1</a> shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let’s look at our target specifications.</p>
+<table class="caption-top table">
+<caption><strong>Table 1: Specifications.</strong> {#tb-specifications}</caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Symbol</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Signal Bandwidth</td>
+<td><span class="math inline">\(f_B\)</span></td>
+<td>512</td>
+<td>kHz</td>
+</tr>
+<tr class="even">
+<td>Sampling frequency</td>
+<td><span class="math inline">\(f_{s}\)</span></td>
+<td>220</td>
+<td>kHz</td>
+</tr>
+<tr class="odd">
+<td>Signal-to-Noise Ratio</td>
+<td><span class="math inline">\(SNR\)</span></td>
+<td>98</td>
+<td>dB</td>
+</tr>
+<tr class="even">
+<td>Supply voltage</td>
+<td><span class="math inline">\(V_{dd}\)</span></td>
+<td>1.5</td>
+<td>V</td>
+</tr>
+</tbody>
+</table>
+<section id="sec-NTF" class="level2">
+<h2 class="anchored" data-anchor-id="sec-NTF">NTF Selection</h2>
+<div id="fig-NTF" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_NTF.qmd" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Block Diagram
+</figcaption>
+</figure>
+</div>
+<p>The matlab <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">code fragment</a> creates an NTF and evaluates its performance using an SQNR versus amplitude curve (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>)). Since the ideal peak SQNR is 120 dB, quantization noise is 20 dB below our target noise level. This margin is at the generous end of the 10–20 dB range that typically separates the ideal SQNR from the target SNR.</p>
+</section>
+</section>
 
 </main>
 <!-- /main column -->

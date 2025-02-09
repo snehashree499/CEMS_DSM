@@ -9,3 +9,54 @@ Below is the prepared comparator design which will be discused in detail next.
 
 
 ![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-techsweep-nmos-tb}
+
+## Comparator
+
+It is a block which takes two inputs V1 and V2 and finds weatehr ${V_\mathrm{1}}$ < ${V_\mathrm{2}}$ or ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$. If ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$ then output is ${V_\mathrm{DD}}$ or the output will be 0.
+
+The ideal input-output chracteristics should look like a signum function.
+
+// Add the ip-op graph
+
+## Designing a comparator
+
+Consider a amplier with a sufficiently large gain. For simplicity consider one input ${V_\mathrm{in}}$, the output is going to be amplified by factor A. Amplifier operates between ${V_\mathrm{DD}}$ and GND. If the gain is large emough the output will saturate to ${V_\mathrm{DD}}$ or GND. 
+
+
+The minimum input for which the output will be ${V_\mathrm{DD}}$ here is ${V_\mathrm{DD}}$/$A$, the comparator will give output ${V_\mathrm{DD}}$.
+
+The output will be fed to a digital block, usually a flip flop to resample the obtained output. The output of the amplifier should be greater than the input ${V_\mathrm{IH}}$ given to flip flop to get output digital 1. 
+
+@fig-comp-tran shows the transient analysis of our comparator.
+
+![Transient Analysis of Comparator](figures/_fig_comp_tran.svg){#fig-comp-tran}
+
+As we know that the common implementation of first stage OTA is "Differential Pair" as shown in @fig-diffpair.
+
+// Add the figure
+
+The gain of the circuit @fig-diffpair is ,
+${V_\mathrm{out}}$ = ${g_\mathrm{m}R}$$\Delta V$
+The output of the @fig-diffpair is initially 0 and when input is applied the output will slowly raises due to parasitic capacitors. Then it will settle exponentially.
+The closed form expression for exponentially settling behaviour is given by,
+${g_\mathrm{m}R}$$\Delta V$$ 1-exp^{-t/$\tau}$
+//Add equation
+
+To increase the speed of the output curve we have to choose tow as the magnitude of tow cannot be changed. So we can replace the resistor by negative resistor in order to get quicker settling.
+
+$$
+{g_\mathrm{m}R}$$\Delta V$
+{g_\mathrm{m}R}$$\Delta V$ - ${g_\mathrm{m}R}$$\Delta V$
+$$
+
+Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on ${V_\mathrm{t}}$ so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS's as shown in @fig-rbypmos.
+
+// Add figure
+
+Initially, output voltages ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ will drop since we are pulling out current from the top two PMOS's. ${V_\mathrm{x}}$ will drop faster than ${V_\mathrm{y}}$. If ${V_\mathrm{x}}$ starts reducing, current in that transistor increases and that current will be much larger than the current we are pulling out and hence ${V_\mathrm{y}}$ will start to increase.
+If ${V_\mathrm{y}}$ increases, the gate voltage at ${V_\mathrm{x}}$ will increase so the current decreases. So, we are pushing in lesser current than we are pulling out, hence ${V_\mathrm{x}}$ will drop further.
+Therefore, ${V_\mathrm{y}}$ will go to ${V_\mathrm{DD}}$
+           ${V_\mathrm{x}}$ will go to 0
+This kind of exponential increase is called "Regeneration".
+
+When $\Delta V$ < 0, ${V_\mathrm{y}}$ should go down and ${V_\mathrm{x}}$ should go to ${V_\mathrm{DD}}$. But problem of this approcah is due to ppsitive feedback that is trying to set these voltages to ${V_\mathrm{DD}}$ and 0. Once it is set to 0 and ${V_\mathrm{DD}}$, positive feedback will reinforce that voltage and try to keep it same.

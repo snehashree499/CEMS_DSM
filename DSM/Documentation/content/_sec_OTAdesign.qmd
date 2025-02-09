@@ -7,12 +7,11 @@ As we now enter on IC design level, we need to implement the discrete time integ
 As mention in @sec-SwitchCap the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, **Folded Cascode** topology (see @fig-OTA) is what best suited in our case, where we have PMOS input pair.
 
 
-![Candidate OTA](figures/_fig_OTA.qmd){#fig-OTA}
+![Candidate OTA](./figures/_fig_OTA_SlewCurrents.svg){#fig-OTA-SlewCurrents}
 
 
 Detailed analysis of **Folded Cascode** topology can be accessed [here](https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf). You can find the **quantitative** as well as **qualitative** analysis , **noise analysis**, **offset / mismatch analysis**.
 
-![OTA Slew Currents](./figures/_fig_OTA_SlewCurrents.png){#fig-OTA-SlewCurrents}
 
 
 ### Deriving $I$
@@ -26,7 +25,7 @@ Let’s allocate half of a clock phase (i.e., one quarter of a
 clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as ${{V_\mathrm{DD}}} = 1.5 V$ , we therefore need 
 
 $$
-I > \frac{C_1 VDD}{T/4} = \frac{0.4 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{0.25 \, \mu\mathrm{s}} = 3 \, \mu\mathrm{A}.
+I > \frac{C_1 VDD}{T/4} = \frac{0.36 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{1.13 \, \mu\mathrm{s}} = 0.8 \, \mu\mathrm{A}.
 $$
 
 ### Deriving ${g_\mathrm{m}}$ from Time-constant calculation
@@ -34,7 +33,9 @@ $$
 ![Time Constant Calculation](figures/_fig_RC_Calculation.png){#fig-RC-Calculations}
 
 @fig-RC-Calculations shows the small-signal model of an integrator in the charge-transfer
-phase and an equivalent circuit from which we see that the time-constant is $$
+phase and an equivalent circuit from which we see that the time-constant is 
+
+$$
 \tau = RC = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{g_\mathrm{m}}
 $$
 
@@ -47,7 +48,7 @@ $$
 
 This gives us 
 $$
-{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 21.9 \, \mu\frac{A}{V}
+{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 5.7 \, \mu\frac{A}{V}
 $$
 
 ### Deciding $L$ and $W$ for MOSFETS 
@@ -60,7 +61,7 @@ We already know the current flowing throught each MOSFET (See @fig-OTA-SlewCurre
 
 
 $$
-\frac{g_m}{I_D} = 7.9
+\frac{g_m}{I_D} = 7.12
 
 $$
 
@@ -75,7 +76,7 @@ The minimum length consideration while designing in low voltage CMOS technology 
 
 ### OTA biasing using **current mirror**
 
-![OTA Biasing](figures/_fig_OTA_Biasing.qmd){#fig-OTA-Biasing}
+![OTA Biasing](figures/_fig_biased_OTA.svg){#fig-OTA-Biasing}
 
 @fig-OTA-Biasing explains the biasing of the OTA using **Wilson's current mirror** topology. 
 
