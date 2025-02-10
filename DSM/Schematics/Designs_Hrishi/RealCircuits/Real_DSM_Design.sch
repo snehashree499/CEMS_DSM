@@ -240,6 +240,6 @@ C {devices/gnd.sym} 720 -720 0 0 {name=l7 lab=GND}
 C {devices/vsource.sym} 720 -770 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
 C {devices/lab_wire.sym} 720 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x4}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x5}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}

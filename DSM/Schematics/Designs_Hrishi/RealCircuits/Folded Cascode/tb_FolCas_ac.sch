@@ -48,18 +48,33 @@ format="tcleval( @value )"
 value=".lib cornerRES.lib res_typ
 "}
 C {devices/title.sym} 240 90 0 0 {name=l5 author="(c) 2024 Hrishikesh, @HSB"}
-C {devices/code_shown.sym} -140 -730 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/vsource.sym} 590 -190 0 0 {name=Vss value=0}
+C {devices/gnd.sym} 590 -140 0 0 {name=l1 lab=GND}
+C {lab_pin.sym} 590 -240 0 0 {name=p1 sig_type=std_logic lab=v_ss}
+C {devices/vsource.sym} 440 -210 0 0 {name=Vdd value=1.5}
+C {devices/gnd.sym} 440 -160 0 0 {name=l3 lab=GND}
+C {lab_pin.sym} 440 -250 0 0 {name=p2 sig_type=std_logic lab=v_dd}
+C {devices/vsource.sym} 690 -350 0 0 {name=Vin value="dc 0.5 ac 1"}
+C {lab_wire.sym} 760 -470 0 0 {name=p4 sig_type=std_logic lab=v_in}
+C {spice_probe.sym} 810 -470 0 0 {name=p5 attrs=""}
+C {isource.sym} 960 -570 0 0 {name=I0 value=0.8u}
+C {capa.sym} 1460 -370 0 0 {name=C1
+value=0.47p}
+C {lab_wire.sym} 1460 -440 0 0 {name=p3 sig_type=std_logic lab=v_out}
+C {spice_probe.sym} 1340 -440 0 0 {name=p6 attrs=""}
+C {FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}
+C {devices/code_shown.sym} -200 -800 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .temp 27
 .control
 option sparse
 save all
 op
-write tb_FolCas_ac.raw
+write tb_FoldedCascode_OTA_ac.raw
 set appendwrite
 
-ac dec 101 1k 1G
-write tb_FolCas_ac.raw
+ac dec 101 1k 0.1G
+write tb_FoldedCascode_OTA_ac.raw
 plot 20*log10(v_out)
 
 meas ac dcgain MAX vmag(v_out) FROM=10 TO=10k
@@ -79,18 +94,3 @@ print onoise_total
 
 .endc
 "}
-C {devices/vsource.sym} 590 -190 0 0 {name=Vss value=0}
-C {devices/gnd.sym} 590 -140 0 0 {name=l1 lab=GND}
-C {lab_pin.sym} 590 -240 0 0 {name=p1 sig_type=std_logic lab=v_ss}
-C {devices/vsource.sym} 440 -210 0 0 {name=Vdd value=1.5}
-C {devices/gnd.sym} 440 -160 0 0 {name=l3 lab=GND}
-C {lab_pin.sym} 440 -250 0 0 {name=p2 sig_type=std_logic lab=v_dd}
-C {devices/vsource.sym} 690 -350 0 0 {name=Vin value="dc 0.5 ac 1"}
-C {lab_wire.sym} 760 -470 0 0 {name=p4 sig_type=std_logic lab=v_in}
-C {spice_probe.sym} 810 -470 0 0 {name=p5 attrs=""}
-C {isource.sym} 960 -570 0 0 {name=I0 value=0.8u}
-C {capa.sym} 1460 -370 0 0 {name=C1
-value=0.47p}
-C {lab_wire.sym} 1460 -440 0 0 {name=p3 sig_type=std_logic lab=v_out}
-C {spice_probe.sym} 1340 -440 0 0 {name=p6 attrs=""}
-C {FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}

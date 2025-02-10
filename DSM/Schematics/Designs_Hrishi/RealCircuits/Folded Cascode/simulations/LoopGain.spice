@@ -1,20 +1,19 @@
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/LoopGain.sch
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/LoopGain.sch
 **.subckt LoopGain
+C3 vr1 v_ss 0.47p m=1
+I3 v_dd Ib 0.8u
+Vtest2 vf1 vr1 dc 0 ac 1
+C4 net1 v_ss 0.47p m=1
+Itest2 v_ss net3 dc 0 ac 1
+Vir2 net1 net3 0
+.save i(vir2)
+Vif2 net3 net2 0
+.save i(vif2)
 Vdd v_dd GND 1.5
 Vss v_ss GND 0
-Vin v_in v_ss dc 0.75
-C2 vr1 v_ss 0.47p m=1
-I1 v_dd net1 0.8u
-Vtest1 vf1 vr1 dc 0 ac 1
-C1 net2 v_ss 0.47p m=1
-I2 v_dd net3 0.8u
-Vir1 net2 net5 0
-.save i(vir1)
-Vif1 net5 net4 0
-.save i(vif1)
-Itest1 v_ss net5 dc 0 ac 1
-x1 v_dd net1 v_in vf1 vr1 v_ss FoldedCascodeOTA
-x2 v_dd net3 v_in net4 net2 v_ss FoldedCascodeOTA
+Vin v_in v_ss dc 0.5
+x1 v_dd Ib v_in vf1 vr1 v_ss FoldedCascodeOTA
+x2 v_dd Ib v_in net2 net1 v_ss FoldedCascodeOTA
 **** begin user architecture code
  .lib cornerMOSlv.lib mos_tt
 
@@ -28,13 +27,13 @@ save all
 * Operating Point Analysis
 op
 remzerovec
-write ota-improved_tb-loopgain.raw
+write tb-loopgain.raw
 set appendwrite
 
 * AC Analysis
 ac dec 101 1 100G
 remzerovec
-write ota-improved_tb-loopgain.raw
+write tb-loopgain.raw
 set appendwrite
 
 * Middlebrook's Method
@@ -45,24 +44,8 @@ let tmb=(tv*ti - 1)/(tv + ti + 2)
 plot db(tmb) ylabel 'Magnitude - Middlebrook'
 plot 180/pi*cphase(tmb) ylabel 'Phase - Middlebrook'
 
-* Tian's Method
-* vtest=0, itest=1:
-let A=i(Vimeas2)
-let C=v(vmeas2)
 
-* vtest=1, itest=0:
-let B=i(Vimeas1)
-let D=v(vmeas1)
-let ttian=(A*D-B*C-A)/(2*(B*C-A*D)+A-D+1)
 
-plot db(ttian) ylabel 'Magnitude - Tian'
-plot 180/pi*cphase(ttian) ylabel 'Phase - Tian'
-
-* Middlebrook vs. Tian
-plot db(tmb) db(ttian) ylabel 'Magnitude'
-plot 180/pi*cphase(tmb) 180/pi*cphase(ttian) ylabel 'Phase'
-
-write CurrentMirrorLoad_tb-loopgain.raw
 
 *quit
 .endc
@@ -72,8 +55,8 @@ write CurrentMirrorLoad_tb-loopgain.raw
 **.ends
 
 * expanding   symbol:  FoldedCascodeOTA.sym # of pins=6
-** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
 .subckt FoldedCascodeOTA VDD I PLUS MINUS Vout VSS
 *.ipin PLUS
 *.ipin MINUS
@@ -82,23 +65,23 @@ write CurrentMirrorLoad_tb-loopgain.raw
 *.ipin VSS
 *.ipin I
 XM1 net2 net4 VDD VDD sg13_lv_pmos w=0.272u l=0.5u ng=1 m=1
-XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM14 VSS net9 net6 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM14 VSS net7 net6 VSS sg13_lv_nmos w=0.3u l=2u ng=1 m=1
 XM13 net6 I Vout VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM11 net1 I net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM12 VSS net9 net1 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
-XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM11 net1 I net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM12 VSS net7 net1 VSS sg13_lv_nmos w=0.3u l=2u ng=1 m=1
+XM9 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
 XM4 net5 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
 XM6 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
 XM8 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM9 net8 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM10 net7 net3 net8 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM16 net9 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM15 VSS net9 net9 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM7 VSS net9 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM18 net10 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM17 VSS net9 net10 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM10 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM7 VSS net7 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM18 net8 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM17 VSS net7 net8 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM16 net7 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM15 VSS net7 net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
 .ends
 
 .GLOBAL GND
