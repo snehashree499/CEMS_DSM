@@ -32,17 +32,21 @@ ${V_\mathrm{out}}$ = ${g_\mathrm{m}R}$$\Delta V$
 Initially, the output of @fig-diffpair is zero. When an input is applied, the output gradually increases due to the influence of parasitic capacitances. Over time, it settles exponentially to its final value.
 The closed form expression for exponentially settling behaviour is given by:
 $$
-$V_{\mathrm{out}} = g_m R \Delta V \left(1 - e^{-t/\tau}\right)$
+V_{\mathrm{out}} = g_m R \Delta V \left(1 - e^{-t/\tau}\right)
 $$
 
-To accelerate the response of the output curve, we need to adjust ${\tau}$ as its magnitude cannot be directly altered. One effective approach is to replace the resistor with a negative resistor, which helps achieve faster settling.
+To accelerate the response of the output curve, we need to adjust ${\tau}$ as its magnitude cannot be directly altered. One effective approach is to replace the resistor with a negative resistor, which helps achieve faster settling.    
 
 $$
-{-g_\mathrm{m}R}$$\Delta V$
-{g_\mathrm{m}R}$$\Delta V$ - ${g_\mathrm{m}R}$$\Delta V$
-$$
+-g_m R \Delta V \left(1 - e^{t/\tau}\right)
+g_m R \Delta V \left(1 - e^{t/\tau}\right) - {g_\mathrm{m}R}$$\Delta V
+$${#eq-closed-form-exponential}
+
+@eq-closed-form-exponential gives much quicker settling in the output.
 
 Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on ${V_\mathrm{t}}$ so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS's as shown in @fig-rbypmos.
+
+A negative resistor is characterized by the property that when a voltage is applied, it does not draw current but instead injects current into the node, effectively creating negative resistance. A constant current source cannot be used in this case, as the current must depend on ${V_\mathrm{t}}$. Therefore, a voltage-controlled current source is required. The simplest implementation of a voltage-controlled current source is a MOSFET. Consequently, resistors are replaced with PMOS transistors, as illustrated in @fig-rbypmos.
 
 // Add figure
 
