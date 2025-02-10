@@ -1,7 +1,7 @@
 ** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Real_DSM (2).sch
 **.subckt Real_DSM (2)
 Vcm Vcm GND dc {vdd/2}
-Vin Vin GND dc 0.75 ac 1
+Vin Vin GND dc 0.5 ac 1
 S1 Vin net1 p1 GND mysw
 S2 net4 net2 p2 GND mysw
 S3 net1 net3 p2 GND mysw
@@ -37,7 +37,7 @@ x1 p1 GND vcmp GND vo2 A_comp-2
 .control
 save all
 run
-tran 0.45m 0.45m
+tran 450u 450u
 plot vcmp
 
 set wr_singlescale

@@ -40,7 +40,7 @@ C {lab_pin.sym} -90 -260 0 0 {name=p2 sig_type=std_logic lab=v_dd}
 C {devices/vsource.sym} -10 -210 0 0 {name=Vss value=0}
 C {devices/gnd.sym} -10 -160 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} -10 -260 0 0 {name=p1 sig_type=std_logic lab=v_ss}
-C {isource.sym} 480 -660 0 0 {name=I0 value= 3u}
+C {isource.sym} 480 -660 0 0 {name=I0 value= 0.8u}
 C {ipin.sym} 290 -480 0 0 {name=p7 lab=Minus}
 C {opin.sym} 710 -510 0 0 {name=p8 lab=Vout}
 C {ipin.sym} 360 -540 0 0 {name=p3 lab=Plus}

@@ -144,7 +144,7 @@ N 1310 -470 1510 -470 {lab=vo2}
 C {devices/gnd.sym} 80 -720 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 80 -770 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 200 -720 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="dc 0.75 ac 1 "}
+C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="dc 0.5 ac 1 "}
 C {devices/switch_ngspice.sym} 130 -420 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 60 -370 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 60 -420 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -222,7 +222,7 @@ value="
 .control
 save all 
 run
-tran 0.45m 0.45m
+tran 450u 450u
 plot vcmp
 
 set wr_singlescale
