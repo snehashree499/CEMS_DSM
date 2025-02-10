@@ -1,0 +1,57 @@
+** sch_path: /foss/designs/CEMS_DSM/DSM/Sneha/tb_Comparator.sch
+**.subckt tb_Comparator
+VDD net1 GND {vdd}
+Vdiff PLUS MINUS {vdiff}
+Vmid MINUS GND {vdd/2}
+VDD3 p1 GND dc 0 pulse(0, {vdd}, 1n, 50p, 50p, {per/2-1n}, {per})
+x1 net1 p1 outm outp MINUS PLUS GND Comparator
+**** begin user architecture code
+
+
+.param temp=27 per=20n vdd=1.2 per=1u vdiff=1m
+.option method=gear reltol=1e-5
+
+.control
+save all
+tran 10p 4n
+alterparam vdiff=100m
+reset
+tran 10p 4n
+plot p1 tran1.outm tran1.outp
+plot p1 tran2.outm tran2.outp
+.endc
+
+
+ .lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+**.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  Comparator.sym # of pins=7
+** sym_path: /foss/designs/CEMS_DSM/DSM/Sneha/Comparator.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Sneha/Comparator.sch
+.subckt Comparator VDD p1 outm outp MINUS PLUS VSS
+*.ipin PLUS
+*.ipin MINUS
+*.ipin VDD
+*.ipin VSS
+*.ipin p1
+*.opin outp
+*.opin outm
+XMN3 net3 outp outm VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMP5 net3 p1 VDD VDD sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP3 outm p1 VDD VDD sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP1 outm outp VDD VDD sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP2 outp outm VDD VDD sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP4 outp p1 VDD VDD sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP6 net2 p1 VDD VDD sg13_lv_pmos w=0.5u l=0.15u ng=1 m=1
+XMN4 net2 outm outp VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMN1 net1 PLUS net3 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XMN2 net1 MINUS net2 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XM7 VSS p1 net1 VSS sg13_lv_nmos w=4u l=0.18u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

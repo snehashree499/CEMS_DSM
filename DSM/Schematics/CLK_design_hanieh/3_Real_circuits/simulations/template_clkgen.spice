@@ -1,0 +1,31 @@
+** sch_path: /foss/designs/EE628/5_Design/3_Real_circuits/template_clkgen.sch
+**.subckt template_clkgen p1e p1 clkin p2 p2e
+*.ipin clkin
+*.opin p1e
+*.opin p1
+*.opin p2
+*.opin p2e
+xn1 clkinbb b2 VDD VSS net11 sg13g2_nand2_2
+xi7 net6 VDD VSS net9 sg13g2_inv_4
+xi1 clkin VDD VSS clkinb sg13g2_inv_2
+xi2 clkinb VDD VSS clkinbb sg13g2_inv_2
+xn2 clkinb b1 VDD VSS net12 sg13g2_nand2_2
+xi13 p1e VDD VSS b1 sg13g2_inv_4
+xi8 net8 VDD VSS net10 sg13g2_inv_4
+xi14 p2e VDD VSS b2 sg13g2_inv_4
+xn3 a1 b1 VDD VSS net1 sg13g2_nand2_2
+xn4 a2 b2 VDD VSS net3 sg13g2_nand2_2
+xi11 a1 VDD VSS p1e sg13g2_inv_4
+xi9 net9 VDD VSS a1 sg13g2_inv_4
+x12 a2 VDD VSS p2e sg13g2_inv_4
+xi10 net10 VDD VSS a2 sg13g2_inv_4
+xi15 net1 VDD VSS net2 sg13g2_inv_4
+xi17 net2 VDD VSS p1 sg13g2_inv_8
+xi16 net3 VDD VSS net4 sg13g2_inv_4
+xi18 net4 VDD VSS p2 sg13g2_inv_8
+xi3 net11 VDD VSS net5 sg13g2_inv_4
+xi5 net5 VDD VSS net6 sg13g2_inv_4
+xi4 net12 VDD VSS net7 sg13g2_inv_4
+xi6 net7 VDD VSS net8 sg13g2_inv_4
+**.ends
+.end

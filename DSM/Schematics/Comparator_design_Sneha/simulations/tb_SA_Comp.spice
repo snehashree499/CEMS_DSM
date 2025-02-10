@@ -1,0 +1,80 @@
+** sch_path: /foss/designs/EE628/Sneha/tb_SA_Comp.sch
+**.subckt tb_SA_Comp
+VP1 p1 GND dc 0 pulse(0, {vdd}, 5n, 100p, 100p, {per/2-5n}, {per})
+VDD VDD GND dc {vdd}
+VSS VSS GND dc 0
+Vic net1 GND dc {vic}
+Vm net3 net1 dc {-vid/2}
+Vp net2 net1 dc {+vid/2}
+x1 net4 p1 OP GND net3 net2 net5 SRLatch_Comparator
+**** begin user architecture code
+ .lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+
+
+.param temp=27 per=20n vdd=1.2 vic=0.6 vid=100m
+.option method=gear reltol=1e-4
+
+* Power Supplies
+* VDD VDD 0 DC {vdd}
+* VSS VSS 0 0
+
+* Clock Signal
+Vclk p1 0 PULSE(0 {vdd} 5n 100p 100p {per/2-5n} {per})
+
+* Differential Inputs
+* Vp PLUS 0 DC {vic+vid/2}
+* Vm MINUS 0 Dc {vic-vid/2}
+
+* Output Load Capacitors
+C_OP OP 0 49f
+C_ON ON 0 49f
+
+*.tran 1p {5*per}
+.control
+tran 10n 60u uic
+
+alterparam vid=-100m
+reset
+*tran 100p 20m
+plot v(OP) v(ON) v(PLUS) v(MINUS)
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  SRLatch_Comparator.sym # of pins=7
+** sym_path: /foss/designs/EE628/Sneha/SRLatch_Comparator.sym
+** sch_path: /foss/designs/EE628/Sneha/SRLatch_Comparator.sch
+.subckt SRLatch_Comparator VDD p1 OP ON MINUS PLUS VSS
+*.ipin PLUS
+*.ipin MINUS
+*.ipin VDD
+*.ipin VSS
+*.opin OP
+*.opin ON
+*.ipin p1
+XMN3 net3 Rb Sb VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMP5 net3 p1 VDD VDD sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP3 Sb p1 VDD VDD sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP1 Sb Rb VDD VDD sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP2 Rb Sb VDD VDD sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP4 Rb p1 VDD VDD sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP6 net2 p1 VDD VDD sg13_lv_pmos w=0.5u l=0.15u ng=1 m=1
+XMN4 net2 Sb Rb VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMN1 net1 PLUS net3 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XMN2 net1 MINUS net2 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XM7 VSS p1 net1 VSS sg13_lv_nmos w=4u l=0.18u ng=1 m=1
+x3 net4 net5 VDD VSS net6 sg13g2_nor2_1
+x1 net7 net8 VDD VSS net9 sg13g2_nor2_1
+XC1 OP GND cap_cmim w=7.0e-6 l=7.0e-6 m=1
+XC2 ON GND cap_cmim w=7.0e-6 l=7.0e-6 m=1
+.ends
+
+.GLOBAL GND
+.GLOBAL VDD
+.GLOBAL VSS
+.end

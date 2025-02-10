@@ -1,0 +1,88 @@
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/LoopGain.sch
+**.subckt LoopGain
+C3 vr1 v_ss 0.47p m=1
+I3 v_dd Ib 0.8u
+Vtest2 vf1 vr1 dc 0 ac 1
+C4 net1 v_ss 0.47p m=1
+Itest2 v_ss net3 dc 0 ac 1
+Vir2 net1 net3 0
+.save i(vir2)
+Vif2 net3 net2 0
+.save i(vif2)
+Vdd v_dd GND 1.5
+Vss v_ss GND 0
+Vin v_in v_ss dc 0.75
+x1 v_dd Ib v_in vf1 vr1 v_ss FoldedCascodeOTA
+x2 v_dd Ib v_in net2 net1 v_ss FoldedCascodeOTA
+**** begin user architecture code
+ .lib cornerMOSlv.lib mos_tt
+
+
+
+.param temp=27
+.options savecurrents reltol=1e-3 abstol=1e-12 gmin=1e-15
+.control
+save all
+
+* Operating Point Analysis
+op
+remzerovec
+write tb-loopgain.raw
+set appendwrite
+
+* AC Analysis
+ac dec 101 1 100G
+remzerovec
+write tb-loopgain.raw
+set appendwrite
+
+* Middlebrook's Method
+let tv=-v(vr1)/v(vf1)
+let ti=-i(vir1)/i(vif1)
+let tmb=(tv*ti - 1)/(tv + ti + 2)
+
+plot db(tmb) ylabel 'Magnitude - Middlebrook'
+plot 180/pi*cphase(tmb) ylabel 'Phase - Middlebrook'
+
+
+
+
+*quit
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym # of pins=6
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
+.subckt FoldedCascodeOTA VDD I PLUS MINUS Vout VSS
+*.ipin PLUS
+*.ipin MINUS
+*.opin Vout
+*.ipin VDD
+*.ipin VSS
+*.ipin I
+XM1 net2 net4 VDD VDD sg13_lv_pmos w=0.272u l=0.5u ng=1 m=1
+XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM14 VSS net9 net6 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM13 net6 I Vout VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM11 net1 I net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM12 VSS net9 net1 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM4 net5 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM6 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM8 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM9 net8 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM10 net7 net3 net8 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM16 net9 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM15 VSS net9 net9 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM7 VSS net9 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM18 net10 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM17 VSS net9 net10 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end
