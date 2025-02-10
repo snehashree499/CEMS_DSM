@@ -1,0 +1,59 @@
+* C:\Users\Sneha Shree K\eda\designs\CEMS_DSM\DSM\LTSpice\DSM_using_VCCS.asc
+Vin Vin 0 SINE({Voff} {Vamp} {freq})
+Vphi1 phi1 0 PULSE(0V {VDD} 0 100n 100n 2u 4.5u)
+VDD Vdd 0 {VDD}
+Ci1 vx1 N001 {Ci1} ic=0V
+VCM Vcm 0 {VCM}
+Vphi2 phi2 0 PULSE(0V {VDD} 2.25u 100n 100n 2u 4.5u)
+Ci2 vx2 N002 {Ci2} ic=0V
+XX5 VDD 0 vq Vfb inv
+A§DFF vq 0 phi1 0 0 0 vd 0 DFLOP
+CS1 N004 N003 {Cs1}
+S1 N003 vin phi1 0 switch
+S2 Vfb N003 phi2 0 switch
+S3 N004 N001 phi2 0 switch
+S4 VCM N004 phi1 0 switch
+CS2 N006 N005 {Cs2}
+S5 N005 vx1 phi1 0 switch
+S6 Vfb N005 phi2 0 switch
+S7 N006 N002 phi2 0 switch
+S8 VCM N006 phi1 0 switch
+Etrip1 trip 0 Vdd 0 0.5
+G1 0 vx1 VCM N001 5.7e-06
+G2 0 vx2 VCM N002 5.7e-06
+XX1 vx2 VCM vq VDD phi1 ideal_clocked_comparator
+
+* block symbol definitions
+.subckt inv Vdd Vss IN OUT
+B1 Out 0 V=v(in)>v(vdd)/2?v(vss):v(vdd)
+.ends inv
+
+.subckt ideal_clocked_comparator Vinm Vinp Vout VDD Clock
+E1 diff 0 Vinp Vinm 1
+S3 sample diff tp Clock switch
+S4 hold N001 Clock tp switch
+C1 sample 0 100p
+C2 hold 0 100p
+Etp tp 0 Vdd 0 0.5
+E2 N001 0 sample 0 1
+B1 Vout 0 V=v(hold)>0?v(vdd):0
+.model switch SW
+.ic v(hold)=1 v(sample)=1
+.ends ideal_clocked_comparator
+
+.tran 450u 450u
+.options plotwinsize=0
+.param VDD=1.5
+.param Vref=1.5
+.param Vcm=VDD/2.0
+.param Voff=Vcm
+.param Vamp=1.4
+.param freq=80
+.param Cs1=0.3p Ci1=2.1p Cs2=0.2p Ci2=0.7p
+.save v(vx1) v(vx2) v(phi1) v(phi2) v(vq) v(vd) v(vfb) v(vin)
+* Save only node voltages of interest
+.model switch sw ron=.1
+* Switch control
+* 10 periods for a better FFT
+.backanno
+.end

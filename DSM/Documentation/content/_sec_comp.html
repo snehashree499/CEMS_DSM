@@ -77,83 +77,126 @@ window.Quarto = {
 
 <section id="sec-Quantizer" class="level1">
 <h1>Realisation of 1-Bit Quantizer</h1>
-<p>// Add content <span class="citation" data-cites="Hreeshi">@Hreeshi</span></p>
 <section id="designing-of-the-1-bit-quantiser" class="level2">
 <h2 class="anchored" data-anchor-id="designing-of-the-1-bit-quantiser">Designing of the 1-Bit Quantiser</h2>
-<p>Based on the collected experience in this lecture we are desiging a 1-bit Quantiser (Comparator) in Xschem. <a href="#fig-Comparator-sch" class="quarto-xref">Figure&nbsp;1</a> is the prepared comparator design which will be discused in detail next.</p>
-<div id="fig-Comparator-sch" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-Comparator-sch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src=".\figures/Comparator.svg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Comparator-sch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Schematic for Strong arm latch.
-</figcaption>
-</figure>
-</div>
+<p>Based on the collected experience in this lecture we are desiging a 1-bit Quantiser (Comparator) in Xschem. <!-- @fig-Comparator-sch is the prepared comparator design which will be discused in detail next.
+
+![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-Comparator-sch} --></p>
 </section>
 <section id="defining-a-comparator" class="level2">
 <h2 class="anchored" data-anchor-id="defining-a-comparator">Defining a Comparator</h2>
 <p>This block compares two input voltages, <span class="math inline">\({V_\mathrm{1}}\)</span> and <span class="math inline">\({V_\mathrm{2}}\)</span> and determines their relationship. If <span class="math inline">\({V_\mathrm{1}}\)</span> &gt; <span class="math inline">\({V_\mathrm{2}}\)</span> output is set to <span class="math inline">\({V_\mathrm{DD}}\)</span>. Otherwise,if {V_}$ &lt; <span class="math inline">\({V_\mathrm{2}}\)</span> the output is 0<span class="math inline">\({V_\mathrm{}}\)</span>.</p>
 <p>The ideal input-output characteristics should resemble a signum function, as illustrated in <strong>?@fig-Ip_Op</strong>(Comp).</p>
-<p><img src=".\figures/_fig_Ip_Op(Comp).svg" class="img-fluid" alt="Ideal Input-Output Charecteristics of a Comparator">{#fig-Ip_Op(Comp)}</p>
+<p><img src=".\figures/_fig_Ip_Op_Comp.svg" class="img-fluid" alt="Ideal Input-Output Charecteristics of a Comparator">{#fig-Ip_Op(Comp)}</p>
 </section>
 <section id="realising-a-comparator" class="level2">
 <h2 class="anchored" data-anchor-id="realising-a-comparator">Realising a Comparator</h2>
 <p>Consider an amplier with a sufficiently large gain. For simplicity consider one input <span class="math inline">\({V_\mathrm{in}}\)</span>, the output is going to be amplified by factor A. Amplifier operates between <span class="math inline">\({V_\mathrm{DD}}\)</span> and GND. If the gain is large emough the output will saturate to <span class="math inline">\({V_\mathrm{DD}}\)</span> or GND.</p>
 <p>The minimum input required for the output to reach <span class="math inline">\({V_\mathrm{DD}}\)</span> is <span class="math inline">\({V_\mathrm{DD}}\)</span>/<span class="math inline">\(A\)</span>, at which point the comparator produces an output of <span class="math inline">\({V_\mathrm{DD}}\)</span>.</p>
 <p>The output is then fed into a digital block, typically a flip-flop, to resample the obtained signal. For the flip-flop to register a digital 1, the amplifier’s output must exceed the input threshold voltage <span class="math inline">\({V_\mathrm{TH}}\)</span>.</p>
-<p>As we know that the common implementation of first stage OTA is “Differential Pair” as shown in <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<p>As we know that the common implementation of first stage OTA is <strong>Differential Pair</strong> as shown in <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <div id="fig-diffpair" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diffpair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src=".\figures/_fig_Diff_Pair.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffpair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Differential Pair
+Figure&nbsp;1: Differential Pair
 </figcaption>
 </figure>
 </div>
-<p>The gain of the circuit, as shown in <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;2</a> is given by: <span class="math inline">\({V_\mathrm{out}}\)</span> = <span class="math inline">\({g_\mathrm{m}R}\)</span><span class="math inline">\(\Delta V\)</span> Initially, the output of <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;2</a> is zero. When an input is applied, the output gradually increases due to the influence of parasitic capacitances. Over time, it settles exponentially to its final value. The closed form expression for exponentially settling behaviour is given by: <span class="math display">\[
-$V_{\mathrm{out}} = g_m R \Delta V \left(1 - e^{-t/\tau}\right)$
+<p>The gain of the circuit, as shown in <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;1</a> is given by: <span class="math inline">\({V_\mathrm{out}}\)</span> = <span class="math inline">\({g_\mathrm{m}R}\)</span><span class="math inline">\(\Delta V\)</span> Initially, the output of <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;1</a> is zero. When an input is applied, the output gradually increases due to the influence of parasitic capacitances. Over time, it settles exponentially to its final value. The closed form expression for exponentially settling behaviour is given by: <span class="math display">\[
+V_{\mathrm{out}} = g_m R \Delta V \left(1 - e^{-t/\tau}\right)
 \]</span></p>
 <p>To accelerate the response of the output curve, we need to adjust <span class="math inline">\({\tau}\)</span> as its magnitude cannot be directly altered. One effective approach is to replace the resistor with a negative resistor, which helps achieve faster settling.</p>
-<p><span class="math display">\[
-{-g_\mathrm{m}R}\]</span>V$ {g_R}<span class="math display">\[\Delta V$ - ${g_\mathrm{m}R}\]</span>V$ $$</p>
-<p>Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on <span class="math inline">\({V_\mathrm{t}}\)</span> so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS’s as shown in <strong>?@fig-rbypmos</strong>.</p>
-<p>// Add figure</p>
-<p>Initially, output voltages <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> will drop since we are pulling out current from the top two PMOS’s. <span class="math inline">\({V_\mathrm{x}}\)</span> will drop faster than <span class="math inline">\({V_\mathrm{y}}\)</span>. If <span class="math inline">\({V_\mathrm{x}}\)</span> starts reducing, current in that transistor increases and that current will be much larger than the current we are pulling out and hence <span class="math inline">\({V_\mathrm{y}}\)</span> will start to increase. If <span class="math inline">\({V_\mathrm{y}}\)</span> increases, the gate voltage at <span class="math inline">\({V_\mathrm{x}}\)</span> will increase so the current decreases. So, we are pushing in lesser current than we are pulling out, hence <span class="math inline">\({V_\mathrm{x}}\)</span> will drop further. Therefore, <span class="math inline">\({V_\mathrm{y}}\)</span> will go to <span class="math inline">\({V_\mathrm{DD}}\)</span> <span class="math inline">\({V_\mathrm{x}}\)</span> will go to 0 This kind of exponential increase is called “Regeneration”.</p>
-<p>When <span class="math inline">\(\Delta V\)</span> &lt; 0, <span class="math inline">\({V_\mathrm{y}}\)</span> should go down and <span class="math inline">\({V_\mathrm{x}}\)</span> should go to <span class="math inline">\({V_\mathrm{DD}}\)</span>. But problem of this approcah is due to ppsitive feedback that is trying to set these voltages to <span class="math inline">\({V_\mathrm{DD}}\)</span> and 0. Once it is set to 0 and <span class="math inline">\({V_\mathrm{DD}}\)</span>, positive feedback will reinforce that voltage and try to keep it same. So, by using positive feedback, PMOS’s are in the same state and we are trying to change states using below two NMOS’s. Unless the current that is drawn from node Vy is much stronger, we cannot pull that dpwn to 0V. The reason behind this is that even after finishing the comparission for the previous input we are retaining the same output state and starting a fresh comparision with the same state. So, we have to reset it both to some value. We have total time of 0 to <span class="math inline">\({T_\mathrm{s}}\)</span> in which half the time we are dedicating it for sampling and remaining half is dedicated for regeneration. Comparator is active in regeneration state, say it <span class="math inline">\(\phi c\)</span> and at sampling <span class="math inline">\(\overline{\phi c}\)</span>. We can reset the outputs at sampling phase. For this we use switches and will reset to <span class="math inline">\({V_\mathrm{DD}}\)</span>.</p>
-<p>//Add figure</p>
-<p>The two NMOS’s need not be active when resetting the two PMOS’s. So we can turn them off by turning the bottom NMOS off. So, we can clock it at <span class="math inline">\(\phi c\)</span>. <strong>PMOS</strong> can be used for switches.</p>
-<p>//Add figure</p>
-<p>The output of above <span class="citation" data-cites="figure">@figure</span>, When <span class="math inline">\(\phi c\)</span> is 0, voltage at points X and Y is at 0V. When <span class="math inline">\(\phi c\)</span> is 1 (swtches are off), initially <span class="math inline">\({V_\mathrm{x}}\)</span> drops faster and when <span class="math inline">\({V_\mathrm{DD}}\)</span>-<span class="math inline">\({V_\mathrm{TH}}\)</span> is greater, PMOS turns on. First <span class="math inline">\({V_\mathrm{y}}\)</span> will start increasing and goes to <span class="math inline">\({V_\mathrm{DD}}\)</span>, <span class="math inline">\({V_\mathrm{x}}\)</span> starts to drop.</p>
-<p>The major issue in this approach is that the comparision is stopped at certain point and <span class="math inline">\({V_\mathrm{y}}\)</span>=<span class="math inline">\({V_\mathrm{DD}}\)</span> , <span class="math inline">\({V_\mathrm{x}}\)</span>=0. The NMOS towards right side is ON and allow the above corresponding PMOS. So, even after the comparission is completed the power consumption even though there is no change in inputs and outputs. If differential voltage is more that is, <span class="math inline">\(\frac{\Delta V}{2}\)</span> then the ${V_} will be very small and it will be off. But for small <span class="math inline">\({\Delta V}\)</span>, there is a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground and we will have static power consumption.</p>
-<p>To solve this issue there is a direct connection between PMOS and NMOS which is having direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground . So, we should add some element in between A and B as shown in below <span class="citation" data-cites="fig">@fig</span></p>
-<p>// Add figure</p>
-<p>We want node B to be OFF when <span class="math inline">\({V_\mathrm{x}}\)</span>=0 and node A must be ON when <span class="math inline">\({V_\mathrm{y}}\)</span>=<span class="math inline">\({V_\mathrm{DD}}\)</span>, NMOS transistor with gate connected to <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> will do this as shown in <span class="citation" data-cites="fig">@fig</span></p>
-<p>// Add figure</p>
-<p>In this <span class="citation" data-cites="fig">@fig</span> the drains and gates of PMOS and NMOS are connected with each other and this is basically a <strong>CMOS inverter</strong>.</p>
-<p>Drawing it neatly as in <span class="citation" data-cites="fig">@fig</span></p>
-<p>// Add figure</p>
+<p><span id="eq-closed-form-exponential"><span class="math display">\[
+-g_m R \Delta V \left(1 - e^{t/\tau}\right)
+g_m R \Delta V \left(1 - e^{t/\tau}\right) - {g_\mathrm{m}R}\Delta V
+\tag{1}\]</span></span></p>
+<p><a href="#eq-closed-form-exponential" class="quarto-xref">Equation&nbsp;1</a> gives much quicker settling in the output.</p>
+<p>Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on <span class="math inline">\({V_\mathrm{t}}\)</span> so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS’s as shown in <a href="#fig-rbypmos" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<p>A negative resistor is characterized by the property that when a voltage is applied, it does not draw current but instead injects current into the node, effectively creating negative resistance. A constant current source cannot be used in this case, as the current must depend on <span class="math inline">\({V_\mathrm{t}}\)</span>. Therefore, a voltage-controlled current source is required. The simplest implementation of a voltage-controlled current source is a MOSFET. Consequently, resistors are replaced with PMOS transistors, as illustrated in <a href="#fig-rbypmos" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<div id="fig-rbypmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rbypmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src=".\figures/_fig_rbyp.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rbypmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Updated Differential Pair
+</figcaption>
+</figure>
+</div>
+<p>Initially, the output voltages <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> decrease as current is drawn from the top PMOS transistors. Among them, <span class="math inline">\({V_\mathrm{x}}\)</span> drops more rapidly than <span class="math inline">\({V_\mathrm{y}}\)</span>. As <span class="math inline">\({V_\mathrm{x}}\)</span> decreases, the current through its corresponding transistor increases, eventually surpassing the externally drawn current. As a result, <span class="math inline">\({V_\mathrm{y}}\)</span> begins to rise. As <span class="math inline">\({V_\mathrm{y}}\)</span> increases, the gate voltage at <span class="math inline">\({V_\mathrm{x}}\)</span> also increases, reducing the current through the transistor. Consequently, the amount of current being pushed into the node becomes less than the current being pulled out, causing <span class="math inline">\({V_\mathrm{x}}\)</span> to drop even further.</p>
+<p>Ultimately, this feedback process leads to: <span class="math inline">\({V_\mathrm{y}}\)</span> reaching to <span class="math inline">\({V_\mathrm{DD}}\)</span> <span class="math inline">\({V_\mathrm{x}}\)</span> reaching to 0<span class="math inline">\({V_\mathrm{}}\)</span></p>
+<p>This kind of exponential increase is called <strong>“Regeneration”</strong>.</p>
+<p>When <span class="math inline">\(\Delta V\)</span> &lt; 0, the voltage <span class="math inline">\({V_\mathrm{y}}\)</span> should decrease while <span class="math inline">\({V_\mathrm{x}}\)</span> should should rise to <span class="math inline">\({V_\mathrm{DD}}\)</span>. However, a challenge with this approach arises due to the <strong>positive feedback</strong>, which reinforces the voltages at <strong><span class="math inline">\({V_\mathrm{DD}}\)</span> and 0<span class="math inline">\({V_\mathrm{}}\)</span></strong>. Once these values are established, the positive feedback works to maintain them, preventing a smooth transition.</p>
+<p>In this configuration, the <strong>PMOS transistors remain in the same state</strong>, and the switching action relies on the <strong>two NMOS transistors</strong>. However, unless the current drawn from node <span class="math inline">\({V_\mathrm{y}}\)</span> is significantly stronger, it cannot be effectively pulled down to 0<span class="math inline">\({V_\mathrm{}}\)</span>.</p>
+<p>The key issue is that after completing a comparison for the previous input, the circuit retains the same output state while starting a new comparison. To ensure proper operation, both outputs must be <strong>reset</strong> before a new comparison begins.</p>
+<p>The total time available is from 0 to <span class="math inline">\({T_\mathrm{s}}\)</span> where: * The first half is dedicated to sampling. * The second half is allocated for regeneration.</p>
+<p>The comparator operates in the regeneration phase, denoted as <span class="math inline">\(\phi c\)</span> and in the sampling phase, represented a <span class="math inline">\(\overline{\phi c}\)</span>. During the sampling phase, the outputs can be reset. To achieve this, switches are used to reset the outputs to <span class="math inline">\({V_\mathrm{DD}}\)</span> as in <a href="#fig-Comp-Switch" class="quarto-xref">Figure&nbsp;3</a>.</p>
+<div id="fig-Comp-Switch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Comp-Switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src=".\figures/_fig_Comp_Switch.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Comp-Switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Addition of Switches
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-Comp-Switch" class="quarto-xref">Figure&nbsp;3</a>, the two NMOS transistors do not need to be active during the reset phase of the PMOS transistors. Therefore, they can be turned off by switching off the bottom NMOS transistor. This allows the circuit to be clocked at <span class="math inline">\(\phi c\)</span>. Additionally, PMOS transistors can be used as switches for this operation as in <a href="#fig-pmos-switch" class="quarto-xref">Figure&nbsp;4</a>.</p>
+<div id="fig-pmos-switch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pmos-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src=".\figures/_fig_pmos_switch.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: PMOS_NMOS Comparator Circuit
+</figcaption>
+</figure>
+</div>
+<p>To describe the output behavior of a PMOS switch with respect to the clock signal <span class="math inline">\(\phi c\)</span>, here’s how it works step-by-step: * When <span class="math inline">\(\phi c\)</span> = 0: The switches are off, so both The output of above <a href="#fig-pmos-switch" class="quarto-xref">Figure&nbsp;4</a>, <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> are at 0<span class="math inline">\({V_\mathrm{}}\)</span>. * When <span class="math inline">\(\phi c\)</span> = 1: The switches are now on. Initially, <span class="math inline">\({V_\mathrm{x}}\)</span> starts to drop faster because the PMOS transistor turns on when the voltage difference <span class="math inline">\({V_\mathrm{DD}}\)</span>-<span class="math inline">\({V_\mathrm{TH}}\)</span> is large enough. * As <span class="math inline">\({V_\mathrm{x}}\)</span> drops and approaches a certain threshold, the PMOS turns on completely. The voltage at <span class="math inline">\({V_\mathrm{y}}\)</span> then starts increasing and approaches <span class="math inline">\({V_\mathrm{DD}}\)</span>. Simultaneously, <span class="math inline">\({V_\mathrm{x}}\)</span> continues to drop due to the action of the PMOS switch.</p>
+<p>Issue with Static Power Consumption in Comparator Circuit</p>
+<p>In the described PMOS-NMOS comparator circuit, the comparison process halts at a certain point where: * <span class="math inline">\({V_\mathrm{y}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> and <span class="math inline">\({V_\mathrm{x}}\)</span> = 0 * At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state. <strong>Static Power Consumption:</strong> After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, as the NMOS remains on while the PMOS continues to conduct.</p>
+<p><strong>Influence of Differential Voltage(<span class="math inline">\({\Delta V}\)</span>)</strong> - When the differential voltage <span class="math inline">\({\Delta V}\)</span> is large, the term <span class="math inline">\(\frac{\Delta V}{2}\)</span> becomes significant. This results in ${V_} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption. - However, when the differential voltage <span class="math inline">\({\Delta V}\)</span> is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, and consequently leading to static power consumption.</p>
+<p>To address this issue, a direct connection exists between the PMOS and NMOS transistors, creating an unintended path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground. To resolve this, an additional element should be introduced between points A and B, as illustrated in the diagram below <a href="#fig-A-B" class="quarto-xref">Figure&nbsp;5</a></p>
+<div id="fig-A-B" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-A-B-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src=".\figures/_fig_A_B_point.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-A-B-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: PMOS_NMOS Comparator Circuit
+</figcaption>
+</figure>
+</div>
+<p>The goal is to ensure that node B is OFF when <span class="math inline">\({V_\mathrm{x}}\)</span> = 0 <span class="math inline">\({V_\mathrm{}}\)</span> and node A is ON when <span class="math inline">\({V_\mathrm{y}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span>. This can be achieved by using an NMOS transistor, with its gate connected to <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> as shown in #fig-comp-1</p>
+<div id="fig-comp-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src=".\figures/_fig_comp_1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Comparator
+</figcaption>
+</figure>
+</div>
+<p>In the diagram <a href="#fig-comp-1" class="quarto-xref">Figure&nbsp;6</a>, the drains and gates of the PMOS and NMOS transistors are connected to each other, forming a CMOS inverter.</p>
+<p>Thi circuit is known as Strong-Arm Latch. Drawing it neatly as in <strong>?@fig-comp-final</strong> <img src=".\figures/_fig_comp_final.svg" id="fig-comp-final" class="img-fluid" alt="Strong-Arm Latch"></p>
 <p>In practice there is one more modification made, along with ressetting X and Y we will also reset P and Q.</p>
 <p><span class="math inline">\({V_\mathrm{1}}\)</span>-<span class="math inline">\({V_\mathrm{2}}\)</span> = <span class="math inline">\({\Delta V}\)</span> &gt; 0</p>
 <p>When, <span class="math inline">\(\phi c\)</span> = 0, <span class="math inline">\({V_\mathrm{X,Y,P,Q}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> When, <span class="math inline">\(\phi c\)</span> = ON, switches are OFF.</p>
-<p><a href="#fig-comp-tran" class="quarto-xref">Figure&nbsp;3</a> shows the transient analysis of our comparator.</p>
+<p><a href="#fig-comp-tran" class="quarto-xref">Figure&nbsp;7</a> shows the transient analysis of our comparator.</p>
 <div id="fig-comp-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/_fig_comp_tran.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Transient Analysis of Comparator
+Figure&nbsp;7: Transient Analysis of Comparator
 </figcaption>
 </figure>
 </div>
-</section>
-<section id="latch" class="level2">
-<h2 class="anchored" data-anchor-id="latch">Latch</h2>
-<p>Latches are heart of all comparators, the goal of all these are to emulate the negative resistance to get the regeration in exponential fashion.</p>
 </section>
 </section>
 

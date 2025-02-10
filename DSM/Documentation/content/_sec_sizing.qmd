@@ -9,7 +9,7 @@ The gm over Id methodology has the huge advantage that it catches MOSFET behavio
 
 A brief is available [here](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/Ref_Murmann_gmID.pdf)
 
-##Testbench for MOSFETSWEEP{#sec-techsweep-testbench}
+##T estbench for MOSFETSWEEP{#sec-techsweep-testbench}
 
 In order to get all the operating points for lv nmos shown in @fig-techsweep-nmos-tb, and lv pmos shown in @fig-techsweep-pmos-tb, we run a techsweep and obtain curves related to parameters such as ${g_\mathrm{m}}$, ${g_\mathrm{ds}}$, ${C_\mathrm{gs}}$, ${I_\mathrm{d}}$, ${V_\mathrm{GS}}$, ${V_\mathrm{DS}}$, $L$, $W$. We create a testbench in Xschem which sweeps the terminal voltages, and records various large- and small-signal parameters, which are then stored in large tables.
 

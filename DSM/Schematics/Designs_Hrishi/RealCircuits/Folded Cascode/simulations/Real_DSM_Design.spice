@@ -24,9 +24,9 @@ x5 Vcm vo2 net7 VCCS_FolCas
 x1 p1 GND vcmp GND vo2 A_comp-2
 **** begin user architecture code
 
-.lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
-.lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
-.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 
 
 

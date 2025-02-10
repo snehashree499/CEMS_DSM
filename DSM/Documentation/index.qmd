@@ -27,7 +27,6 @@ citation:
 ---
 
 {{< include /content/_macros.qmd >}}
-{{< include /content/_sec_system_overview.qmd >}}
 {{< include /content/_sec_system_level.qmd >}}
 {{< include /content/_sec_block_level.qmd >}}
 {{< include /content/_sec_switchcap.qmd >}}
