@@ -8,7 +8,7 @@ Based on the collected experience in this lecture we are desiging a 1-bit Quanti
 
 ## Defining a Comparator 
 
-This block compares two input voltages, ${V_\mathrm{1}}$ and ${V_\mathrm{2}}$ and determines their relationship. If ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$ output is set to ${V_\mathrm{DD}}$. Otherwise,if {V_\mathrm{1}}$ < ${V_\mathrm{2}}$ the output is 0${V_\mathrm{}}$.
+This block compares two input voltages, ${V_\mathrm{1}}$ and ${V_\mathrm{2}}$ and determines their relationship. If ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$ output is set to ${V_\mathrm{DD}}$. Otherwise, if ${V_\mathrm{1}}$ < ${V_\mathrm{2}}$ the output is 0${V_\mathrm{}}$.
 
 The ideal input-output characteristics should resemble a signum function, as illustrated in @fig-Ip_Op(Comp).
 
@@ -63,9 +63,7 @@ In this configuration, the **PMOS transistors remain in the same state**, and th
 
 The key issue is that after completing a comparison for the previous input, the circuit retains the same output state while starting a new comparison. To ensure proper operation, both outputs must be **reset** before a new comparison begins.
 
-The total time available is from 0 to ${T_\mathrm{s}}$ where:
-* The first half is dedicated to sampling. 
-* The second half is allocated for regeneration.
+The total time available is from 0 to ${T_\mathrm{s}}$ where, the first half is dedicated to sampling and the second half is allocated for regeneration.
   
 The comparator operates in the regeneration phase, denoted as $\phi c$ and in the sampling phase, represented a $\overline{\phi c}$. During the sampling phase, the outputs can be reset. To achieve this, switches are used to reset the outputs to ${V_\mathrm{DD}}$ as in @fig-Comp-Switch.
 
@@ -76,22 +74,19 @@ In @fig-Comp-Switch, the two NMOS transistors do not need to be active during th
 ![PMOS_NMOS Comparator Circuit](/figures/_fig_pmos_switch.svg){#fig-pmos-switch}
 
 To describe the output behavior of a PMOS switch with respect to the clock signal $\phi c$, here’s how it works step-by-step:
-* When $\phi c$ = 0: The switches are off, so both
+  1.When $\phi c$ = 0: The switches are off, so both
 The output of above @fig-pmos-switch, ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ are at 0${V_\mathrm{}}$. 
-* When $\phi c$ = 1: The switches are now on. Initially, ${V_\mathrm{x}}$ starts to drop faster because the PMOS transistor turns on when the voltage difference ${V_\mathrm{DD}}$-${V_\mathrm{TH}}$ is large enough.
-* As ${V_\mathrm{x}}$ drops and approaches a certain threshold, the PMOS turns on completely. The voltage at ${V_\mathrm{y}}$ then starts increasing and approaches ${V_\mathrm{DD}}$. Simultaneously, ${V_\mathrm{x}}$ continues to drop due to the action of the PMOS switch.
+  2.When $\phi c$ = 1: The switches are now on. Initially, ${V_\mathrm{x}}$ starts to drop faster because the PMOS transistor turns on when the voltage difference ${V_\mathrm{DD}}$-${V_\mathrm{TH}}$ is large enough.
+  3.As ${V_\mathrm{x}}$ drops and approaches a certain threshold, the PMOS turns on completely. The voltage at ${V_\mathrm{y}}$ then starts increasing and approaches ${V_\mathrm{DD}}$. Simultaneously, ${V_\mathrm{x}}$ continues to drop due to the action of the PMOS switch.
 
-Issue with Static Power Consumption in Comparator Circuit
+**Issue with Static Power Consumption in Comparator Circuit**
 
 In the described PMOS-NMOS comparator circuit, the comparison process halts at a certain point where:
-* ${V_\mathrm{y}}$ = ${V_\mathrm{DD}}$ and ${V_\mathrm{x}}$ = 0
-* At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state.
-**Static Power Consumption:**
-After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from ${V_\mathrm{DD}}$ to ground, as the NMOS remains on while the PMOS continues to conduct.
+${V_\mathrm{y}}$ = ${V_\mathrm{DD}}$ and ${V_\mathrm{x}}$ = 0
+At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state.
+**Static Power Consumption:** After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from ${V_\mathrm{DD}}$ to ground, as the NMOS remains on while the PMOS continues to conduct.
 
-**Influence of Differential Voltage(${\Delta V}$)**
-- When the differential voltage ${\Delta V}$ is large, the term $\frac{\Delta V}{2}$ becomes significant. This results in ${V_\mathrm{2}} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption.
-- However, when the differential voltage ${\Delta V}$ is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from ${V_\mathrm{DD}}$ to ground, and consequently leading to static power consumption.
+**Influence of Differential Voltage(${\Delta V}$):** When the differential voltage ${\Delta V}$ is large, the term $\frac{\Delta V}{2}$ becomes significant. This results in ${V_\mathrm{2}} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption. However, when the differential voltage ${\Delta V}$ is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from ${V_\mathrm{DD}}$ to ground, and consequently leading to static power consumption.
 
 To address this issue, a direct connection exists between the PMOS and NMOS transistors, creating an unintended path from ${V_\mathrm{DD}}$ to ground. To resolve this, an additional element should be introduced between points A and B, as illustrated in the diagram below
 @fig-A-B
@@ -111,12 +106,24 @@ In practice there is one more modification made, along with ressetting X and Y w
 
 ${V_\mathrm{1}}$-${V_\mathrm{2}}$ = ${\Delta V}$ > 0
 
+The output analysis of @fig-comp-final is showin in @fig-OP-analysis.
+
 When, $\phi c$ = 0, ${V_\mathrm{X,Y,P,Q}}$ = ${V_\mathrm{DD}}$
 When, $\phi c$ = ON, switches are OFF.
+
+![Output Analysis of Strong Arm Latch](figures/_fig_Comp_Output_analysis.svg){#fig-OP-analysis}
 
 @fig-comp-tran shows the transient analysis of our comparator.
 
 ![Transient Analysis of Comparator](figures/_fig_comp_tran.svg){#fig-comp-tran}
 
+## Implementing a Strong Arm Latch for Delta-Sigma Modulator
 
+Based on the above theory, we need to design a comparator and a latch that stores the output data from the comparator and converts it into a strong digital output.
+
+@ig-comp2-sch- and @fig-comp-tran1 shows the implementation and transient analysis of **Strong Arm Latch Comparator** respectively.
+
+![Schematic representation of a Strong-Arm Latch Comparator](figures/_fig_A_comp-2.svg){#fig-comp2-sch}
+
+![Transient Analysis of a Strong-Arm Latch Comparator](figures/_fig_Comp_Tran1.svg){#fig-comp-tran1}
 

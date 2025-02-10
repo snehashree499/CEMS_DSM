@@ -132,7 +132,7 @@ Figure&nbsp;2: Updated Differential Pair
 <p>When <span class="math inline">\(\Delta V\)</span> &lt; 0, the voltage <span class="math inline">\({V_\mathrm{y}}\)</span> should decrease while <span class="math inline">\({V_\mathrm{x}}\)</span> should should rise to <span class="math inline">\({V_\mathrm{DD}}\)</span>. However, a challenge with this approach arises due to the <strong>positive feedback</strong>, which reinforces the voltages at <strong><span class="math inline">\({V_\mathrm{DD}}\)</span> and 0<span class="math inline">\({V_\mathrm{}}\)</span></strong>. Once these values are established, the positive feedback works to maintain them, preventing a smooth transition.</p>
 <p>In this configuration, the <strong>PMOS transistors remain in the same state</strong>, and the switching action relies on the <strong>two NMOS transistors</strong>. However, unless the current drawn from node <span class="math inline">\({V_\mathrm{y}}\)</span> is significantly stronger, it cannot be effectively pulled down to 0<span class="math inline">\({V_\mathrm{}}\)</span>.</p>
 <p>The key issue is that after completing a comparison for the previous input, the circuit retains the same output state while starting a new comparison. To ensure proper operation, both outputs must be <strong>reset</strong> before a new comparison begins.</p>
-<p>The total time available is from 0 to <span class="math inline">\({T_\mathrm{s}}\)</span> where: * The first half is dedicated to sampling. * The second half is allocated for regeneration.</p>
+<p>The total time available is from 0 to <span class="math inline">\({T_\mathrm{s}}\)</span> where, the first half is dedicated to sampling and the second half is allocated for regeneration.</p>
 <p>The comparator operates in the regeneration phase, denoted as <span class="math inline">\(\phi c\)</span> and in the sampling phase, represented a <span class="math inline">\(\overline{\phi c}\)</span>. During the sampling phase, the outputs can be reset. To achieve this, switches are used to reset the outputs to <span class="math inline">\({V_\mathrm{DD}}\)</span> as in <a href="#fig-Comp-Switch" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <div id="fig-Comp-Switch" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -155,10 +155,10 @@ Figure&nbsp;4: PMOS_NMOS Comparator Circuit
 </figcaption>
 </figure>
 </div>
-<p>To describe the output behavior of a PMOS switch with respect to the clock signal <span class="math inline">\(\phi c\)</span>, here’s how it works step-by-step: * When <span class="math inline">\(\phi c\)</span> = 0: The switches are off, so both The output of above <a href="#fig-pmos-switch" class="quarto-xref">Figure&nbsp;4</a>, <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> are at 0<span class="math inline">\({V_\mathrm{}}\)</span>. * When <span class="math inline">\(\phi c\)</span> = 1: The switches are now on. Initially, <span class="math inline">\({V_\mathrm{x}}\)</span> starts to drop faster because the PMOS transistor turns on when the voltage difference <span class="math inline">\({V_\mathrm{DD}}\)</span>-<span class="math inline">\({V_\mathrm{TH}}\)</span> is large enough. * As <span class="math inline">\({V_\mathrm{x}}\)</span> drops and approaches a certain threshold, the PMOS turns on completely. The voltage at <span class="math inline">\({V_\mathrm{y}}\)</span> then starts increasing and approaches <span class="math inline">\({V_\mathrm{DD}}\)</span>. Simultaneously, <span class="math inline">\({V_\mathrm{x}}\)</span> continues to drop due to the action of the PMOS switch.</p>
-<p>Issue with Static Power Consumption in Comparator Circuit</p>
-<p>In the described PMOS-NMOS comparator circuit, the comparison process halts at a certain point where: * <span class="math inline">\({V_\mathrm{y}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> and <span class="math inline">\({V_\mathrm{x}}\)</span> = 0 * At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state. <strong>Static Power Consumption:</strong> After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, as the NMOS remains on while the PMOS continues to conduct.</p>
-<p><strong>Influence of Differential Voltage(<span class="math inline">\({\Delta V}\)</span>)</strong> - When the differential voltage <span class="math inline">\({\Delta V}\)</span> is large, the term <span class="math inline">\(\frac{\Delta V}{2}\)</span> becomes significant. This results in ${V_} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption. - However, when the differential voltage <span class="math inline">\({\Delta V}\)</span> is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, and consequently leading to static power consumption.</p>
+<p>To describe the output behavior of a PMOS switch with respect to the clock signal <span class="math inline">\(\phi c\)</span>, here’s how it works step-by-step: 1.When <span class="math inline">\(\phi c\)</span> = 0: The switches are off, so both The output of above <a href="#fig-pmos-switch" class="quarto-xref">Figure&nbsp;4</a>, <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> are at 0<span class="math inline">\({V_\mathrm{}}\)</span>. 2.When <span class="math inline">\(\phi c\)</span> = 1: The switches are now on. Initially, <span class="math inline">\({V_\mathrm{x}}\)</span> starts to drop faster because the PMOS transistor turns on when the voltage difference <span class="math inline">\({V_\mathrm{DD}}\)</span>-<span class="math inline">\({V_\mathrm{TH}}\)</span> is large enough. 3.As <span class="math inline">\({V_\mathrm{x}}\)</span> drops and approaches a certain threshold, the PMOS turns on completely. The voltage at <span class="math inline">\({V_\mathrm{y}}\)</span> then starts increasing and approaches <span class="math inline">\({V_\mathrm{DD}}\)</span>. Simultaneously, <span class="math inline">\({V_\mathrm{x}}\)</span> continues to drop due to the action of the PMOS switch.</p>
+<p><strong>Issue with Static Power Consumption in Comparator Circuit</strong></p>
+<p>In the described PMOS-NMOS comparator circuit, the comparison process halts at a certain point where: <span class="math inline">\({V_\mathrm{y}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> and <span class="math inline">\({V_\mathrm{x}}\)</span> = 0 At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state. <strong>Static Power Consumption:</strong> After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, as the NMOS remains on while the PMOS continues to conduct.</p>
+<p><strong>Influence of Differential Voltage(<span class="math inline">\({\Delta V}\)</span>):</strong> When the differential voltage <span class="math inline">\({\Delta V}\)</span> is large, the term <span class="math inline">\(\frac{\Delta V}{2}\)</span> becomes significant. This results in ${V_} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption. However, when the differential voltage <span class="math inline">\({\Delta V}\)</span> is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, and consequently leading to static power consumption.</p>
 <p>To address this issue, a direct connection exists between the PMOS and NMOS transistors, creating an unintended path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground. To resolve this, an additional element should be introduced between points A and B, as illustrated in the diagram below <a href="#fig-A-B" class="quarto-xref">Figure&nbsp;5</a></p>
 <div id="fig-A-B" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -185,15 +185,51 @@ Figure&nbsp;6: Comparator
 <p>Thi circuit is known as Strong-Arm Latch. Drawing it neatly as in <strong>?@fig-comp-final</strong> <img src=".\figures/_fig_comp_final.svg" id="fig-comp-final" class="img-fluid" alt="Strong-Arm Latch"></p>
 <p>In practice there is one more modification made, along with ressetting X and Y we will also reset P and Q.</p>
 <p><span class="math inline">\({V_\mathrm{1}}\)</span>-<span class="math inline">\({V_\mathrm{2}}\)</span> = <span class="math inline">\({\Delta V}\)</span> &gt; 0</p>
+<p>The output analysis of <strong>?@fig-comp-final</strong> is showin in <a href="#fig-OP-analysis" class="quarto-xref">Figure&nbsp;7</a>.</p>
 <p>When, <span class="math inline">\(\phi c\)</span> = 0, <span class="math inline">\({V_\mathrm{X,Y,P,Q}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> When, <span class="math inline">\(\phi c\)</span> = ON, switches are OFF.</p>
-<p><a href="#fig-comp-tran" class="quarto-xref">Figure&nbsp;7</a> shows the transient analysis of our comparator.</p>
+<div id="fig-OP-analysis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OP-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Comp_Output_analysis.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OP-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Output Analysis of Strong Arm Latch
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-comp-tran" class="quarto-xref">Figure&nbsp;8</a> shows the transient analysis of our comparator.</p>
 <div id="fig-comp-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/_fig_comp_tran.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Transient Analysis of Comparator
+Figure&nbsp;8: Transient Analysis of Comparator
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="implementing-a-strong-arm-latch-for-delta-sigma-modulator" class="level2">
+<h2 class="anchored" data-anchor-id="implementing-a-strong-arm-latch-for-delta-sigma-modulator">Implementing a Strong Arm Latch for Delta-Sigma Modulator</h2>
+<p>Based on the above theory, we need to design a comparator and a latch that stores the output data from the comparator and converts it into a strong digital output.</p>
+<p><span class="citation" data-cites="ig-comp2-sch">@ig-comp2-sch</span>- and <a href="#fig-comp-tran1" class="quarto-xref">Figure&nbsp;10</a> shows the implementation and transient analysis of <strong>Strong Arm Latch Comparator</strong> respectively.</p>
+<div id="fig-comp2-sch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp2-sch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_A_comp-2.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp2-sch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Schematic representation of a Strong-Arm Latch Comparator
+</figcaption>
+</figure>
+</div>
+<div id="fig-comp-tran1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-tran1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Comp_Tran1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-tran1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Transient Analysis of a Strong-Arm Latch Comparator
 </figcaption>
 </figure>
 </div>

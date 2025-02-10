@@ -1,4 +1,4 @@
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Sneha/tb_A_comp.sch
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/tb_A_comp.sch
 **.subckt tb_A_comp
 Vdiff PLUS MINUS {vdiff}
 Vmid MINUS GND {vdd/2}
@@ -29,8 +29,8 @@ plot p1 tran2.outm tran2.outp
 **.ends
 
 * expanding   symbol:  A_comp-2.sym # of pins=5
-** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sch
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sch
 .subckt A_comp-2 p1 outm outp MINUS PLUS
 *.opin outp
 *.ipin PLUS
