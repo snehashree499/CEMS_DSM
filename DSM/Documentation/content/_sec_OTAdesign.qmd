@@ -91,10 +91,10 @@ Gain_error = -8.41453e-02
 
 
 
-![Transient Analysis](figures/_fig_OTA_tran.svg){#fig-OTA-tran}
+![Transient Analysis](figures/_fig_Tran_OTA.svg){#fig-OTA-tran}
 
 
-![AC Analysis](figures/_fig_OTA_ac_phase.svg){#fig-OTA-ac-phase}
+![AC Analysis](figures/_fig_Magnitude_OTA.svg){#fig-OTA-ac-phase}
 
 
-![AC Analysis](figures/_fig_OTA_ac_mag.svg){#fig-OTA-ac-mag}
+![AC Analysis](figures/_fig_Phase_OTA.svg){#fig-OTA-ac-mag}

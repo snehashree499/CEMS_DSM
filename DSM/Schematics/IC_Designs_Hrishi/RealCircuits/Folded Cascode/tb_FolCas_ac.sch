@@ -23,24 +23,22 @@ lab=v_dd}
 N 960 -540 960 -440 {
 lab=#net1}
 N 960 -440 1010 -440 {lab=#net1}
-N 1140 -620 1140 -490 {lab=v_dd}
-N 960 -620 1140 -620 {lab=v_dd}
 N 440 -620 960 -620 {lab=v_dd}
 N 1310 -440 1380 -440 {lab=v_out}
-N 1140 -240 1460 -240 {lab=v_ss}
 N 1460 -340 1460 -240 {
 lab=v_ss}
 N 1380 -440 1460 -440 {lab=v_out}
 N 1460 -440 1460 -400 {lab=v_out}
 N 1380 -440 1380 -330 {
 lab=v_out}
-N 1140 -390 1140 -240 {lab=v_ss}
-N 690 -240 1140 -240 {lab=v_ss}
+N 1130 -240 1460 -240 {lab=v_ss}
 N 930 -410 1010 -410 {lab=v_out}
 N 930 -410 930 -330 {lab=v_out}
 N 930 -330 1380 -330 {lab=v_out}
-N 1130 -490 1140 -490 {lab=v_dd}
-N 1130 -390 1140 -390 {lab=v_ss}
+N 1130 -620 1130 -490 {lab=v_dd}
+N 960 -620 1130 -620 {lab=v_dd}
+N 1130 -390 1130 -240 {lab=v_ss}
+N 690 -240 1130 -240 {lab=v_ss}
 C {devices/code_shown.sym} -140 -70 0 0 {name=MODEL1 only_toplevel=true
 format="tcleval( @value )"
 value=".lib cornerMOSlv.lib mos_tt
@@ -87,12 +85,12 @@ C {lab_pin.sym} 590 -240 0 0 {name=p1 sig_type=std_logic lab=v_ss}
 C {devices/vsource.sym} 440 -210 0 0 {name=Vdd value=1.5}
 C {devices/gnd.sym} 440 -160 0 0 {name=l3 lab=GND}
 C {lab_pin.sym} 440 -250 0 0 {name=p2 sig_type=std_logic lab=v_dd}
-C {devices/vsource.sym} 690 -350 0 0 {name=Vin value="dc 0.6 ac 1"}
-C {lab_wire.sym} 750 -470 0 0 {name=p4 sig_type=std_logic lab=v_in}
+C {devices/vsource.sym} 690 -350 0 0 {name=Vin value="dc 0.5 ac 1"}
+C {lab_wire.sym} 760 -470 0 0 {name=p4 sig_type=std_logic lab=v_in}
 C {spice_probe.sym} 810 -470 0 0 {name=p5 attrs=""}
 C {isource.sym} 960 -570 0 0 {name=I0 value=0.8u}
 C {capa.sym} 1460 -370 0 0 {name=C1
 value=0.47p}
 C {lab_wire.sym} 1460 -440 0 0 {name=p3 sig_type=std_logic lab=v_out}
 C {spice_probe.sym} 1340 -440 0 0 {name=p6 attrs=""}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}
+C {FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}

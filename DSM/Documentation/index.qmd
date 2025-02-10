@@ -36,5 +36,6 @@ citation:
 {{< include /content/_sec_sizing.qmd >}}
 {{< include /content/_sec_comp.qmd >}}
 {{< include /content/_sec_clkgen.qmd >}}
+{{< include /content/_sec_final_output.qmd >}}
 
 

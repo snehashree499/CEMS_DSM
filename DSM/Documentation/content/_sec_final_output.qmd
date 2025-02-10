@@ -1,0 +1,8 @@
+# Final Design
+
+![Schematic](figures/_fig_schematic_dsm.svg){#fig-schematic-dsm}
+
+![Xschem output](figures/_fig_DSM_output_xschem.svg){#fig-xschem-output}
+
+![LTSpice output](figures/_fig_ltspice_dsm.png){#fig-ltspice-output}
+
