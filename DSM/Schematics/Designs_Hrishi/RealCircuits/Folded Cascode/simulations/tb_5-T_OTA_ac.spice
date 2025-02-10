@@ -1,0 +1,73 @@
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/tb_5-T_OTA_ac.sch
+**.subckt tb_5-T_OTA_ac
+Vdd v_dd GND 1.5
+Vss v_ss GND 0
+C1 v_out v_ss 0.47pf m=1
+Vin v_in v_ss dc 1.8 ac 1
+I0 v_dd net1 0.8u
+.save v(v_in)
+.save v(v_out)
+x1 v_dd net1 v_out v_in v_out v_ss 5-T_OTA
+**** begin user architecture code
+ .lib cornerMOSlv.lib mos_tt
+
+ .lib cornerRES.lib res_typ
+
+
+
+.temp 27
+.control
+option sparse
+save all
+op
+write tb_5-T_OTA_ac.raw
+set appendwrite
+
+ac dec 101 1k 1G
+write tb_5-T_OTA_ac.raw
+plot 20*log10(v_out)
+
+meas ac dcgain MAX vmag(v_out) FROM=10 TO=10k
+let f3db = dcgain/sqrt(2)
+meas ac fbw WHEN vmag(v_out)=f3db FALL=1
+let gainerror=(dcgain-1)/1
+print dcgain
+print fbw
+print gainerror
+
+
+
+plot 180/pi*ph(v_out) vs frequency
+
+noise v(v_out) Vin dec 101 1k 100MEG
+print onoise_total
+
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym # of pins=6
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sch
+.subckt 5-T_OTA VDD Ibias Vout PLUS MINUS Vss
+*.ipin MINUS
+*.ipin PLUS
+*.ipin VDD
+*.ipin Ibias
+*.ipin Vss
+*.opin Vout
+XM10 Vout net1 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM11 net1 net1 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM12 net2 PLUS net1 Vss sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM13 net2 MINUS Vout Vss sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM14 Vss net4 net2 Vss sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM1 Vss net4 net3 Vss sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM2 net3 VDD VDD Vss sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM3 Vss net4 net4 Vss sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM4 net4 VDD Ibias Vss sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

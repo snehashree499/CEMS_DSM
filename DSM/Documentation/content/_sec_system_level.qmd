@@ -1,4 +1,5 @@
-# System Overview
+# System Overview 
+**Concept Engineering of Mixed Signals and Systems**
 
 ![Concept](figures/_fig_nature.svg){#fig-nature}
 
@@ -6,6 +7,6 @@ We all live in an analog world where all we percieve is analog in nature but at 
 
 ![Concept](figures/_fig_domains.svg){#fig-domains}
 
-@fig-domains tells us that we have **Continuous Domain** where a signal can be represented as continuous in time and continuous in amplitude and **Discrete Domain** where the signal can be represented as discrete in time and amplitude. By sampling we discretize the signal from continuous time to discrete time and then by quantizing it we discretize its amplitude.
+@fig-domains tells us that we have **Continuous Domain** where a signal can be represented as continuous in time and continuous in amplitude and **Discrete Domain** where the signal can be represented as discrete in time and amplitude. By sampling we discretise the signal from continuous time to discrete time and then by quantizing it we discretise its amplitude.
 
 Our main focus will be on the design of **Analog to Digital Converter**

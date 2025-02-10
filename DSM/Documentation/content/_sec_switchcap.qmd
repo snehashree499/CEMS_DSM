@@ -47,3 +47,8 @@ Now, we also need to take charge injection into consideration and implement bott
 The input is sampled in track phase $\phi_1$ and transferred to $C_2$ in hold phase $\phi_2$  again in next $\phi_1$, new $V_{in}$ is sampled and hence, the sampled signal is available at output after one cycle proving the delay. (see @fig-delay)
 
 ![](figures/_fig_delay.svg){#fig-delay}
+
+
+This boils down to a second order switch capacitor circuit follwed by a single bit quantizer as shown in @fig-switchcap-dsm.
+
+![Second order switch capacitor DSM](figures/_fig_switchcap_dsm.svg){#fig-switchcap-dsm}

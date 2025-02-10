@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -29,40 +29,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="_sec_system_level_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="_sec_system_level_files/libs/quarto-html/anchor.min.js"></script>
 <link href="_sec_system_level_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="_sec_system_level_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="_sec_system_level_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="_sec_system_level_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="_sec_system_level_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="_sec_system_level_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -70,75 +41,37 @@ window.Quarto = {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
 
 
-<section id="Block-Level" class="level1">
-<h1>Block Level Representation</h1>
-<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="system-overview" class="level1">
+<h1>System Overview</h1>
+<p><strong>Concept Engineering of Mixed Signals and Systems</strong></p>
+<div id="fig-nature" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_Block_Diagram.qmd" class="img-fluid figure-img">
+<div aria-describedby="fig-nature-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_nature.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Block Diagram
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nature-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Concept
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-Block-Diagram" class="quarto-xref">Figure&nbsp;1</a> shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let’s look at our target specifications.</p>
-<table class="caption-top table">
-<caption><strong>Table 1: Specifications.</strong> {#tb-specifications}</caption>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Symbol</th>
-<th>Value</th>
-<th>Units</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Bandwidth</td>
-<td><span class="math inline">\(f_B\)</span></td>
-<td>1</td>
-<td>kHz</td>
-</tr>
-<tr class="even">
-<td>Sampling frequency</td>
-<td><span class="math inline">\(f_{s}\)</span></td>
-<td>1</td>
-<td>MHz</td>
-</tr>
-<tr class="odd">
-<td>Signal-to-Noise Ratio</td>
-<td><span class="math inline">\(SNR\)</span></td>
-<td>100</td>
-<td>dB</td>
-</tr>
-<tr class="even">
-<td>Supply voltage</td>
-<td><span class="math inline">\(V_{dd}\)</span></td>
-<td>1.5</td>
-<td>V</td>
-</tr>
-</tbody>
-</table>
-<section id="sec-NTF" class="level2">
-<h2 class="anchored" data-anchor-id="sec-NTF">NTF Selection</h2>
-<div id="fig-NTF" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>We all live in an analog world where all we percieve is analog in nature but at the same time our technology process on digital data. We have <strong>sensors</strong> as input nodes. They can be voice signals, RF signals, pressure. temperatur, etc. Every system acquires the analog data and results in analog data which is called as <strong>actuators</strong> such as Speakers, etc. So the point is we need something which converts the data from analog domain to discrete or digital domain and again converts back to analog domain. Here comes the concept of <strong>Data Converters</strong>.</p>
+<div id="fig-domains" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_NTF.qmd" class="img-fluid figure-img">
+<div aria-describedby="fig-domains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_domains.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Block Diagram
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-domains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Concept
 </figcaption>
 </figure>
 </div>
-<p>The matlab <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">code fragment</a> creates an NTF and evaluates its performance using an SQNR versus amplitude curve (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>)). Since the ideal peak SQNR is 120 dB, quantization noise is 20 dB below our target noise level. This margin is at the generous end of the 10–20 dB range that typically separates the ideal SQNR from the target SNR.</p>
-</section>
+<p><a href="#fig-domains" class="quarto-xref">Figure&nbsp;2</a> tells us that we have <strong>Continuous Domain</strong> where a signal can be represented as continuous in time and continuous in amplitude and <strong>Discrete Domain</strong> where the signal can be represented as discrete in time and amplitude. By sampling we discretise the signal from continuous time to discrete time and then by quantizing it we discretise its amplitude.</p>
+<p>Our main focus will be on the design of <strong>Analog to Digital Converter</strong></p>
 </section>
 
 </main>

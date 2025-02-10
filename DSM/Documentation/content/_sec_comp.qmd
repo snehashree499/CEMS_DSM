@@ -1,109 +1,129 @@
-# 1-Bit Quantiser
-// Add info @Hreeshi
+# Realisation of 1-Bit Quantizer {#sec-Quantizer}
 
-## Designing the 1-Bit Quantiser
+## Designing of the 1-Bit Quantiser
 Based on the collected experience in this lecture we are desiging a 1-bit Quantiser (Comparator) in Xschem. 
-Below is the prepared comparator design which will be discused in detail next.
+<!-- @fig-Comparator-sch is the prepared comparator design which will be discused in detail next.
 
-//Add the circuit diagram
+![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-Comparator-sch} -->
 
+## Defining a Comparator 
 
-![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-techsweep-nmos-tb}
+This block compares two input voltages, ${V_\mathrm{1}}$ and ${V_\mathrm{2}}$ and determines their relationship. If ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$ output is set to ${V_\mathrm{DD}}$. Otherwise, if ${V_\mathrm{1}}$ < ${V_\mathrm{2}}$ the output is 0${V_\mathrm{}}$.
 
-## Comparator
+The ideal input-output characteristics should resemble a signum function, as illustrated in @fig-Ip_Op(Comp).
 
-It is a block which takes two inputs V1 and V2 and finds weatehr ${V_\mathrm{1}}$ < ${V_\mathrm{2}}$ or ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$. If ${V_\mathrm{1}}$ > ${V_\mathrm{2}}$ then output is ${V_\mathrm{DD}}$ or the output will be 0.
+![Ideal Input-Output Charecteristics of a Comparator](/figures/_fig_Ip_Op_Comp.svg){#fig-Ip_Op(Comp)}
 
-The ideal input-output chracteristics should look like a signum function.
+## Realising a Comparator
 
-// Add the ip-op graph
+Consider an amplier with a sufficiently large gain. For simplicity consider one input ${V_\mathrm{in}}$, the output is going to be amplified by factor A. Amplifier operates between ${V_\mathrm{DD}}$ and GND. If the gain is large emough the output will saturate to ${V_\mathrm{DD}}$ or GND. 
 
-## Designing a comparator
+The minimum input required for the output to reach ${V_\mathrm{DD}}$ is ${V_\mathrm{DD}}$/$A$, at which point the comparator produces an output of ${V_\mathrm{DD}}$.
 
-Consider a amplier with a sufficiently large gain. For simplicity consider one input ${V_\mathrm{in}}$, the output is going to be amplified by factor A. Amplifier operates between ${V_\mathrm{DD}}$ and GND. If the gain is large emough the output will saturate to ${V_\mathrm{DD}}$ or GND. 
+The output is then fed into a digital block, typically a flip-flop, to resample the obtained signal. For the flip-flop to register a digital 1, the amplifier’s output must exceed the input threshold voltage ${V_\mathrm{TH}}$. 
 
+As we know that the common implementation of first stage OTA is **Differential Pair** as shown in @fig-diffpair.
 
-The minimum input for which the output will be ${V_\mathrm{DD}}$ here is ${V_\mathrm{DD}}$/$A$, the comparator will give output ${V_\mathrm{DD}}$.
+![Differential Pair](/figures/_fig_Diff_Pair.svg){#fig-diffpair}
 
-The output will be fed to a digital block, usually a flip flop to resample the obtained output. The output of the amplifier should be greater than the input ${V_\mathrm{IH}}$ given to flip flop to get output digital 1. 
-
-@fig-comp-tran shows the transient analysis of our comparator.
-
-![Transient Analysis of Comparator](figures/_fig_comp_tran.svg){#fig-comp-tran}
-
-As we know that the common implementation of first stage OTA is "Differential Pair" as shown in @fig-diffpair.
-
-// Add the figure
-
-The gain of the circuit @fig-diffpair is ,
+The gain of the circuit, as shown in @fig-diffpair is given by:
 ${V_\mathrm{out}}$ = ${g_\mathrm{m}R}$$\Delta V$
-The output of the @fig-diffpair is initially 0 and when input is applied the output will slowly raises due to parasitic capacitors. Then it will settle exponentially.
-The closed form expression for exponentially settling behaviour is given by,
-${g_\mathrm{m}R}$$\Delta V$$ 1-exp^{-t/$\tau}$
-//Add equation
+Initially, the output of @fig-diffpair is zero. When an input is applied, the output gradually increases due to the influence of parasitic capacitances. Over time, it settles exponentially to its final value.
+The closed form expression for exponentially settling behaviour is given by:
+$$
+V_{\mathrm{out}} = g_m R \Delta V \left(1 - e^{-t/\tau}\right)
+$$
 
-To increase the speed of the output curve we have to choose tow as the magnitude of tow cannot be changed. So we can replace the resistor by negative resistor in order to get quicker settling.
+To accelerate the response of the output curve, we need to adjust ${\tau}$ as its magnitude cannot be directly altered. One effective approach is to replace the resistor with a negative resistor, which helps achieve faster settling.    
 
 $$
-{g_\mathrm{m}R}$$\Delta V$
-{g_\mathrm{m}R}$$\Delta V$ - ${g_\mathrm{m}R}$$\Delta V$
-$$
+-g_m R \Delta V \left(1 - e^{t/\tau}\right)
+g_m R \Delta V \left(1 - e^{t/\tau}\right) - {g_\mathrm{m}R}\Delta V
+$${#eq-closed-form-exponential}
+
+@eq-closed-form-exponential gives much quicker settling in the output.
 
 Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on ${V_\mathrm{t}}$ so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS's as shown in @fig-rbypmos.
 
-// Add figure
+A negative resistor is characterized by the property that when a voltage is applied, it does not draw current but instead injects current into the node, effectively creating negative resistance. A constant current source cannot be used in this case, as the current must depend on ${V_\mathrm{t}}$. Therefore, a voltage-controlled current source is required. The simplest implementation of a voltage-controlled current source is a MOSFET. Consequently, resistors are replaced with PMOS transistors, as illustrated in @fig-rbypmos.
 
-Initially, output voltages ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ will drop since we are pulling out current from the top two PMOS's. ${V_\mathrm{x}}$ will drop faster than ${V_\mathrm{y}}$. If ${V_\mathrm{x}}$ starts reducing, current in that transistor increases and that current will be much larger than the current we are pulling out and hence ${V_\mathrm{y}}$ will start to increase.
-If ${V_\mathrm{y}}$ increases, the gate voltage at ${V_\mathrm{x}}$ will increase so the current decreases. So, we are pushing in lesser current than we are pulling out, hence ${V_\mathrm{x}}$ will drop further.
-Therefore, ${V_\mathrm{y}}$ will go to ${V_\mathrm{DD}}$
-           ${V_\mathrm{x}}$ will go to 0
-This kind of exponential increase is called "Regeneration".
+![Updated Differential Pair](/figures/_fig_rbyp.svg){#fig-rbypmos}
 
-When $\Delta V$ < 0, ${V_\mathrm{y}}$ should go down and ${V_\mathrm{x}}$ should go to ${V_\mathrm{DD}}$. But problem of this approcah is due to ppsitive feedback that is trying to set these voltages to ${V_\mathrm{DD}}$ and 0. Once it is set to 0 and ${V_\mathrm{DD}}$, positive feedback will reinforce that voltage and try to keep it same.
-So, by using positive feedback, PMOS's are in the same state and we are trying to change states using below two NMOS's. Unless the current that is drawn from node Vy is much stronger, we cannot pull that dpwn to 0V.
-The reason behind this is that even after finishing the comparission for the previous input we are retaining the same output state and starting a fresh comparision with the same state. So, we have to reset it both to some value.
-We have total time of 0 to ${T_\mathrm{s}}$ in which half the time we are dedicating it for sampling and remaining half is dedicated for regeneration.
-Comparator is active in regeneration state, say it $\phi c$ and at sampling $\overline{\phi c}$. We can reset the outputs at sampling phase. For this we use switches and will reset to ${V_\mathrm{DD}}$.
+Initially, the output voltages ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ decrease as current is drawn from the top PMOS transistors. Among them, ${V_\mathrm{x}}$ drops more rapidly than ${V_\mathrm{y}}$. As ${V_\mathrm{x}}$ decreases, the current through its corresponding transistor increases, eventually surpassing the externally drawn current. As a result, ${V_\mathrm{y}}$ begins to rise. As ${V_\mathrm{y}}$ increases, the gate voltage at ${V_\mathrm{x}}$ also increases, reducing the current through the transistor. Consequently, the amount of current being pushed into the node becomes less than the current being pulled out, causing ${V_\mathrm{x}}$ to drop even further.
 
-//Add figure
+Ultimately, this feedback process leads to:
+           ${V_\mathrm{y}}$ reaching to ${V_\mathrm{DD}}$
+           ${V_\mathrm{x}}$ reaching to 0${V_\mathrm{}}$
 
-The two NMOS's need not be active when resetting the two PMOS's. So we can turn them off by turning the bottom NMOS off. So, we can clock it at $\phi c$. **PMOS** can be used for switches.
+This kind of exponential increase is called **"Regeneration"**.
 
-//Add figure
+When $\Delta V$ < 0, the voltage ${V_\mathrm{y}}$ should decrease while ${V_\mathrm{x}}$ should should rise to ${V_\mathrm{DD}}$. However, a challenge with this approach arises due to the **positive feedback**, which reinforces the voltages at **${V_\mathrm{DD}}$ and 0${V_\mathrm{}}$**. Once these values are established, the positive feedback works to maintain them, preventing a smooth transition.
 
-The output of above @figure,
-When $\phi c$ is 0, voltage at points X and Y is at 0V.
-When $\phi c$ is 1 (swtches are off), initially ${V_\mathrm{x}}$ drops faster and when ${V_\mathrm{DD}}$-${V_\mathrm{TH}}$ is greater, PMOS turns on. First ${V_\mathrm{y}}$ will start increasing and goes to ${V_\mathrm{DD}}$, ${V_\mathrm{x}}$ starts to drop.
+In this configuration, the **PMOS transistors remain in the same state**, and the switching action relies on the **two NMOS transistors**. However, unless the current drawn from node ${V_\mathrm{y}}$ is significantly stronger, it cannot be effectively pulled down to 0${V_\mathrm{}}$.
 
+The key issue is that after completing a comparison for the previous input, the circuit retains the same output state while starting a new comparison. To ensure proper operation, both outputs must be **reset** before a new comparison begins.
 
-The major issue in this approach is that the comparision is stopped at certain point and ${V_\mathrm{y}}$=${V_\mathrm{DD}}$ , ${V_\mathrm{x}}$=0.
-The NMOS towards right side is ON and allow the above corresponding PMOS. So, even after the comparission is completed the power consumption even though there is no change in inputs and outputs.
-If differential voltage is more that is, $\frac{\Delta V}{2}$ then the ${V_\mathrm{2}} will be very small and it will be off.
-But for small ${\Delta V}$, there is a direct path from ${V_\mathrm{DD}}$ to ground and we will have static power consumption.
+The total time available is from 0 to ${T_\mathrm{s}}$ where, the first half is dedicated to sampling and the second half is allocated for regeneration.
+  
+The comparator operates in the regeneration phase, denoted as $\phi c$ and in the sampling phase, represented a $\overline{\phi c}$. During the sampling phase, the outputs can be reset. To achieve this, switches are used to reset the outputs to ${V_\mathrm{DD}}$ as in @fig-Comp-Switch.
 
-To solve this issue there is a direct connection between PMOS and NMOS which is having direct path from ${V_\mathrm{DD}}$ to ground . So, we should add some element in between A and B as shown in below @fig
+![Addition of Switches](/figures/_fig_Comp_Switch.svg){#fig-Comp-Switch}
 
-// Add figure
+In @fig-Comp-Switch, the two NMOS transistors do not need to be active during the reset phase of the PMOS transistors. Therefore, they can be turned off by switching off the bottom NMOS transistor. This allows the circuit to be clocked at $\phi c$. Additionally, PMOS transistors can be used as switches for this operation as in @fig-pmos-switch.
 
-We want node B to be OFF when ${V_\mathrm{x}}$=0 and node A must be ON when ${V_\mathrm{y}}$=${V_\mathrm{DD}}$, NMOS transistor with gate connected to ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ will do this as shown in @fig 
+![PMOS_NMOS Comparator Circuit](/figures/_fig_pmos_switch.svg){#fig-pmos-switch}
 
-// Add figure
+To describe the output behavior of a PMOS switch with respect to the clock signal $\phi c$, here’s how it works step-by-step:
+  1.When $\phi c$ = 0: The switches are off, so both
+The output of above @fig-pmos-switch, ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ are at 0${V_\mathrm{}}$. 
+  2.When $\phi c$ = 1: The switches are now on. Initially, ${V_\mathrm{x}}$ starts to drop faster because the PMOS transistor turns on when the voltage difference ${V_\mathrm{DD}}$-${V_\mathrm{TH}}$ is large enough.
+  3.As ${V_\mathrm{x}}$ drops and approaches a certain threshold, the PMOS turns on completely. The voltage at ${V_\mathrm{y}}$ then starts increasing and approaches ${V_\mathrm{DD}}$. Simultaneously, ${V_\mathrm{x}}$ continues to drop due to the action of the PMOS switch.
 
-In this @fig the drains and gates of PMOS and NMOS are connected with each other and this is basically a **CMOS inverter**.
+**Issue with Static Power Consumption in Comparator Circuit**
 
-Drawing it neatly as in @fig 
+In the described PMOS-NMOS comparator circuit, the comparison process halts at a certain point where:
+${V_\mathrm{y}}$ = ${V_\mathrm{DD}}$ and ${V_\mathrm{x}}$ = 0
+At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state.
+**Static Power Consumption:** After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from ${V_\mathrm{DD}}$ to ground, as the NMOS remains on while the PMOS continues to conduct.
 
-// Add figure
+**Influence of Differential Voltage(${\Delta V}$):** When the differential voltage ${\Delta V}$ is large, the term $\frac{\Delta V}{2}$ becomes significant. This results in ${V_\mathrm{2}} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption. However, when the differential voltage ${\Delta V}$ is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from ${V_\mathrm{DD}}$ to ground, and consequently leading to static power consumption.
+
+To address this issue, a direct connection exists between the PMOS and NMOS transistors, creating an unintended path from ${V_\mathrm{DD}}$ to ground. To resolve this, an additional element should be introduced between points A and B, as illustrated in the diagram below
+@fig-A-B
+
+![PMOS_NMOS Comparator Circuit](/figures/_fig_A_B_point.svg){#fig-A-B}
+
+The goal is to ensure that node B is OFF when ${V_\mathrm{x}}$ = 0 ${V_\mathrm{}}$ and node A is ON when ${V_\mathrm{y}}$ = ${V_\mathrm{DD}}$. This can be achieved by using an NMOS transistor, with its gate connected to ${V_\mathrm{x}}$ and ${V_\mathrm{y}}$ as shown in #fig-comp-1
+
+![Comparator](/figures/_fig_comp_1.svg){#fig-comp-1}
+
+In the diagram @fig-comp-1, the drains and gates of the PMOS and NMOS transistors are connected to each other, forming a CMOS inverter.
+
+Thi circuit is known as Strong-Arm Latch. Drawing it neatly as in @fig-comp-final
+![Strong-Arm Latch](/figures/_fig_comp_final.svg){#fig-comp-final}
 
 In practice there is one more modification made, along with ressetting X and Y we will also reset P and Q.
 
 ${V_\mathrm{1}}$-${V_\mathrm{2}}$ = ${\Delta V}$ > 0
 
+The output analysis of @fig-comp-final is showin in @fig-OP-analysis.
+
 When, $\phi c$ = 0, ${V_\mathrm{X,Y,P,Q}}$ = ${V_\mathrm{DD}}$
 When, $\phi c$ = ON, switches are OFF.
 
-## Latch
+![Output Analysis of Strong Arm Latch](figures/_fig_Comp_Output_analysis.svg){#fig-OP-analysis}
 
-Latches are heart of all comparators, the goal of all these are to emulate the negative resistance to get the regeration in exponential fashion.
+@fig-comp-tran shows the transient analysis of our comparator.
 
+![Transient Analysis of Comparator](figures/_fig_comp_tran.svg){#fig-comp-tran}
+
+## Implementing a Strong Arm Latch for Delta-Sigma Modulator
+
+Based on the above theory, we need to design a comparator and a latch that stores the output data from the comparator and converts it into a strong digital output.
+
+@ig-comp2-sch- and @fig-comp-tran1 shows the implementation and transient analysis of **Strong Arm Latch Comparator** respectively.
+
+![Schematic representation of a Strong-Arm Latch Comparator](figures/_fig_A_comp-2.svg){#fig-comp2-sch}
+
+![Transient Analysis of a Strong-Arm Latch Comparator](figures/_fig_Comp_Tran1.svg){#fig-comp-tran1}
 

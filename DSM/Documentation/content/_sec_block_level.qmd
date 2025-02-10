@@ -14,7 +14,7 @@ Before diving deep into the circuit level, let's look at our target specificatio
 | Signal-to-Noise Ratio | $SNR$    | 98    | dB    |
 | Supply voltage      | $V_{dd}$ | 1.5   | V     |
 
-: **Table 1: Specifications.** {#tb-specifications}
+: **Specifications.** 
 
 
 
