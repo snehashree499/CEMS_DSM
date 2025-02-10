@@ -40,7 +40,7 @@ $$
 $$
 
  
-Now let's say we take the linera settling to provide attenuation of 100dB
+Now let's say we take the linera settling to provide attenuation of 100 $dB$
 
 $$
 \frac{T}{4} = \tau \ln(10^5) \approx 12\tau
@@ -57,13 +57,7 @@ Now that we have the exact values for ${g_\mathrm{m}}$ and ${I_\mathrm{D}}$, we 
  Refer to @sec-gmid-method for detailed discussion regarding sizing.
 
 
-We already know the current flowing throught each MOSFET (See @fig-OTA-SlewCurrents). As shown in @fig-gm_IdvsId_W-nmos and @fig-gm_IdvsId_W-pmos, by appropriately choosing the $L$, we can obtain $W$ for 
-
-
-$$
-\frac{g_m}{I_D} = 7.12
-
-$$
+We already know the current flowing throught each MOSFET (See @fig-OTA-SlewCurrents). As shown in @fig-gm_IdvsId_W-nmos and @fig-gm_IdvsId_W-pmos, by appropriately choosing the $L$, we can obtain $W$ for $\frac{g_m}{I_D} = 7.12 $
 
 ::: {.callout-note title="Important"}
 The minimum length consideration while designing in low voltage CMOS technology should be atleast **3 to 4 times** the $L_\min$. In our case $L_\min = 0.13 \, \mu$.

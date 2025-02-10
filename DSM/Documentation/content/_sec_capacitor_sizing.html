@@ -86,17 +86,17 @@ a_1 = \frac{C_1 V_{\text{ref}}}{C_2} = \frac{C_1 V_{\text{dd}}}{C_2}
 <p>The in-band input-referred mean-square noise voltage associated with the first integrator is approximately <span class="math display">\[
 v_n^2 = \frac{kT}{OSR \cdot C_1}
 \]</span></p>
-<p>The c1 coefficient specifies the weighting factor connecting the first integrator to the second</p>
+<p>The <span class="math inline">\(c1\)</span> coefficient specifies the weighting factor connecting the first integrator to the second</p>
 <p><span class="math display">\[
 c_1 = \frac{C_3}{C_5}
 \]</span></p>
-<p><span class="math inline">\(a_2\)</span> is related to the feedback capacitor <span class="math inline">\(C_4\)</span> and the 1-b DAC’s differential reference voltage via following equation and setting <span class="math inline">\(C_4 = 0.1\)</span> picofarrad arbitraryly</p>
+<p><span class="math inline">\(a_2\)</span> is related to the feedback capacitor <span class="math inline">\(C_4\)</span> and the 1-bit DAC’s differential reference voltage via following equation and setting <span class="math inline">\(C_4 = 0.1\)</span> picofarrad arbitraryly</p>
 <p><span class="math display">\[
 a_2 = \frac{C_4 V_{dd}}{C_5}
 \]</span></p>
 <p>This <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">matlab code</a> yeilds the capacitor values according to the desired equations as follows:</p>
 <table class="caption-top table">
-<caption><strong>Table 2: Capacitor Sizes.</strong> {#tb-capacitor-sizes}</caption>
+<caption><strong>Capacitor Sizes</strong> {#tb-capacitor-sizes}</caption>
 <thead>
 <tr class="header">
 <th>Parameter</th>

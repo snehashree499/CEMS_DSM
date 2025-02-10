@@ -80,33 +80,24 @@ window.Quarto = {
 <p>As we now enter on IC design level, we need to implement the discrete time integrator using CMOS elements. We will use <a href="https://xschem.sourceforge.io">Xschem</a> for schematic entry and <a href="https://ngspice.sourceforge.io">ngspice</a> for simulation. The 130nm CMOS technology <strong>IHP-SG13G2</strong> from <a href="https://www.ihp-microelectronics.com">IHP Microelectronics</a>. Tools and PDK are integrated in the <a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS</a> Docker image. This PDK is open-source, and the complete process specification can be found at <a href="https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.doc/doc/SG13G2_os_process_spec.pdf">SG13G2 process specification</a></p>
 <section id="deriving-required-parameters-for-design" class="level2">
 <h2 class="anchored" data-anchor-id="deriving-required-parameters-for-design">Deriving required parameters for design</h2>
-<p>As mention in <strong>?@sec-SwitchCap</strong> the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, <strong>Folded Cascode</strong> topology (see <a href="#fig-OTA" class="quarto-xref">Figure&nbsp;1</a>) is what best suited in our case, where we have PMOS input pair.</p>
-<div id="fig-OTA" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>As mention in <strong>?@sec-SwitchCap</strong> the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, <strong>Folded Cascode</strong> topology (see <strong>?@fig-OTA</strong>) is what best suited in our case, where we have PMOS input pair.</p>
+<div id="fig-OTA-SlewCurrents" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA.qmd" class="img-fluid figure-img">
+<div aria-describedby="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./figures/_fig_OTA_SlewCurrents.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Candidate OTA
 </figcaption>
 </figure>
 </div>
 <p>Detailed analysis of <strong>Folded Cascode</strong> topology can be accessed <a href="https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf">here</a>. You can find the <strong>quantitative</strong> as well as <strong>qualitative</strong> analysis , <strong>noise analysis</strong>, <strong>offset / mismatch analysis</strong>.</p>
-<div id="fig-OTA-SlewCurrents" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<embed src=".\DSM/Documentation/figures/_fig_Block_Diagram.txt" class="img-fluid">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: OTA Slew Currents
-</figcaption>
-</figure>
-</div>
 <section id="deriving-i" class="level3">
 <h3 class="anchored" data-anchor-id="deriving-i">Deriving <span class="math inline">\(I\)</span></h3>
-<p>As shown in <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;2</a> the magnitude of the output current under these conditions is <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> is the bias current in each half of the differential pair. (<span class="math inline">\(I\)</span> is also assumed to be the standing current in the output cascodes.) Clearly, <span class="math inline">\(I\)</span> must be large enough to transfer the charge from the input capacitor(s) to the integrating capacitor in the allotted time.<span class="citation" data-cites="Understanding_Delta-Sigma_Data_Converters">[@Understanding_Delta-Sigma_Data_Converters]</span></p>
-<p>Let’s allocate half of a clock phase (i.e., one quarter of a clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as <span class="math inline">\({{V_\mathrm{DD}}} = 1.5 V\)</span> , we therefore need <span class="math display">\[
-I &gt; \frac{C_1 VDD}{T/4} = \frac{0.4 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{0.25 \, \mu\mathrm{s}} = 3 \, \mu\mathrm{A}.
+<p>As shown in <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;1</a> the magnitude of the output current under these conditions is <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> is the bias current in each half of the differential pair. (<span class="math inline">\(I\)</span> is also assumed to be the standing current in the output cascodes.) Clearly, <span class="math inline">\(I\)</span> must be large enough to transfer the charge from the input capacitor(s) to the integrating capacitor in the allotted time.<span class="citation" data-cites="Understanding_Delta-Sigma_Data_Converters">[@Understanding_Delta-Sigma_Data_Converters]</span></p>
+<p>Let’s allocate half of a clock phase (i.e., one quarter of a clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as <span class="math inline">\({{V_\mathrm{DD}}} = 1.5 V\)</span> , we therefore need</p>
+<p><span class="math display">\[
+I &gt; \frac{C_1 VDD}{T/4} = \frac{0.36 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{1.13 \, \mu\mathrm{s}} = 0.8 \, \mu\mathrm{A}.
 \]</span></p>
 </section>
 <section id="deriving-g_mathrmm-from-time-constant-calculation" class="level3">
@@ -114,14 +105,15 @@ I &gt; \frac{C_1 VDD}{T/4} = \frac{0.4 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{0
 <div id="fig-RC-Calculations" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_RC_Calculation.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_RC_Calculation.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Time Constant Calculation
+Figure&nbsp;2: Time Constant Calculation
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-RC-Calculations" class="quarto-xref">Figure&nbsp;3</a> shows the small-signal model of an integrator in the charge-transfer phase and an equivalent circuit from which we see that the time-constant is <span class="math display">\[
+<p><a href="#fig-RC-Calculations" class="quarto-xref">Figure&nbsp;2</a> shows the small-signal model of an integrator in the charge-transfer phase and an equivalent circuit from which we see that the time-constant is</p>
+<p><span class="math display">\[
 \tau = RC = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{g_\mathrm{m}}
 \]</span></p>
 <p>Now let’s say we take the linera settling to provide attenuation of 100dB</p>
@@ -129,15 +121,13 @@ Figure&nbsp;3: Time Constant Calculation
 \frac{T}{4} = \tau \ln(10^5) \approx 12\tau
 \]</span></p>
 <p>This gives us <span class="math display">\[
-{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 21.9 \, \mu\frac{A}{V}
+{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 5.7 \, \mu\frac{A}{V}
 \]</span></p>
 </section>
 <section id="deciding-l-and-w-for-mosfets" class="level3">
 <h3 class="anchored" data-anchor-id="deciding-l-and-w-for-mosfets">Deciding <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> for MOSFETS</h3>
 <p>Now that we have the exact values for <span class="math inline">\({g_\mathrm{m}}\)</span> and <span class="math inline">\({I_\mathrm{D}}\)</span>, we can derive the values of <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> by making use of <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve. Refer to <strong>?@sec-gmid-method</strong> for detailed discussion regarding sizing.</p>
-<p>We already know the current flowing throught each MOSFET (See <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;2</a>). As shown in <a href="#fig-gm_IdvsId_W-nmos" class="quarto-xref">Figure&nbsp;4</a> and <a href="#fig-gm_IdvsId_W-pmos" class="quarto-xref">Figure&nbsp;5</a>, by appropriately choosing the <span class="math inline">\(L\)</span>, we can obtain <span class="math inline">\(W\)</span> for</p>
-<p>$$ = 7.9</p>
-<p>$$</p>
+<p>We already know the current flowing throught each MOSFET (See <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;1</a>). As shown in <a href="#fig-gm_IdvsId_W-nmos" class="quarto-xref">Figure&nbsp;3</a> and <a href="#fig-gm_IdvsId_W-pmos" class="quarto-xref">Figure&nbsp;4</a>, by appropriately choosing the <span class="math inline">\(L\)</span>, we can obtain <span class="math inline">\(W\)</span> for $ = 7.12 $</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Important">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -154,20 +144,20 @@ Important
 <div id="fig-gm_IdvsId_W-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_gmid_vs_idw_nmos.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_gmid_vs_idw_nmos.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for nmos
+Figure&nbsp;3: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for nmos
 </figcaption>
 </figure>
 </div>
 <div id="fig-gm_IdvsId_W-pmos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_gmid_vs_idw_pmos.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_gmid_vs_idw_pmos.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for pmos
+Figure&nbsp;4: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for pmos
 </figcaption>
 </figure>
 </div>
@@ -177,45 +167,46 @@ Figure&nbsp;5: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span clas
 <div id="fig-OTA-Biasing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_Biasing.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_biased_OTA.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: OTA Biasing
+Figure&nbsp;5: OTA Biasing
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-OTA-Biasing" class="quarto-xref">Figure&nbsp;6</a> explains the biasing of the OTA using <strong>Wilson’s current mirror</strong> topology.</p>
+<p><a href="#fig-OTA-Biasing" class="quarto-xref">Figure&nbsp;5</a> explains the biasing of the OTA using <strong>Wilson’s current mirror</strong> topology.</p>
 </section>
 <section id="sec-Performance-OTA" class="level3">
 <h3 class="anchored" data-anchor-id="sec-Performance-OTA">Performance of designed OTA</h3>
-<p>For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. <a href="#fig-OTA-tran" class="quarto-xref">Figure&nbsp;7</a> shows the transient plot and gives us the time constant in which it reaches the steady state. <a href="#fig-OTA-ac-mag" class="quarto-xref">Figure&nbsp;9</a> and <a href="#fig-OTA-ac-phase" class="quarto-xref">Figure&nbsp;8</a> shows us the magnitude and phase over a range of frequency.</p>
+<p>For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. <a href="#fig-OTA-tran" class="quarto-xref">Figure&nbsp;6</a> shows the transient plot and gives us the time constant in which it reaches the steady state. NgSpice yeilds tsettle = 8.663771e-09</p>
+<p><a href="#fig-OTA-ac-mag" class="quarto-xref">Figure&nbsp;8</a> and <a href="#fig-OTA-ac-phase" class="quarto-xref">Figure&nbsp;7</a> shows us the magnitude and phase over a range of frequency.Where NgSpice yeilds dc_gain = 9.156547e-01 fbw = 7.544229e+07 Gain_error = -8.41453e-02</p>
 <div id="fig-OTA-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-OTA-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_tran.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_Tran_OTA.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Transient Analysis
+Figure&nbsp;6: Transient Analysis
 </figcaption>
 </figure>
 </div>
 <div id="fig-OTA-ac-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-OTA-ac-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_ac_phase.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_Magnitude_OTA.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-ac-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: AC Analysis
+Figure&nbsp;7: AC Analysis
 </figcaption>
 </figure>
 </div>
 <div id="fig-OTA-ac-mag" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-OTA-ac-mag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_OTA_ac_mag.qmd" class="img-fluid figure-img">
+<img src="figures/_fig_Phase_OTA.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-ac-mag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: AC Analysis
+Figure&nbsp;8: AC Analysis
 </figcaption>
 </figure>
 </div>

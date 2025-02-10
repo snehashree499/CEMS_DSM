@@ -77,17 +77,18 @@ window.Quarto = {
 
 <section id="Block-Level" class="level1">
 <h1>Block Level Representation</h1>
-<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-blocks" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/_fig_System_Diagram.svg" class="img-fluid figure-img">
+<div aria-describedby="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_blocks.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Block Diagram
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Block Level
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-Block-Diagram" class="quarto-xref">Figure&nbsp;1</a> shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback. Before diving deep into the circuit level, let’s look at our target specifications.</p>
+<p>Acccording to <a href="#fig-blocks" class="quarto-xref">Figure&nbsp;1</a>, We have a system where we have ADXL335 accelerometer as our analog sensor and we need to process the data on microcontroller so we need an ADC which takes the analog output from ADXL335 and provides the data in discrete form to the microcontroller. Considering the type of output provided by the accelerometer, we need to design low voltage, low speed, single-bit <span class="math inline">\(\Delta\Sigma\)</span> modulator followed by a decimation filter. Our main focus will be on designing a second order single-bit <span class="math inline">\(\Delta\Sigma\)</span> modulator using discrete time switch capacitor circuit.</p>
+<p>Before diving deep into the circuit level, let’s look at our target specifications.</p>
 <table class="caption-top table">
 <caption><strong>Table 1: Specifications.</strong> {#tb-specifications}</caption>
 <thead>
@@ -137,7 +138,7 @@ Figure&nbsp;2: NTF
 </figcaption>
 </figure>
 </div>
-<p>The matlab <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">matlab code</a> creates an NTF (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>) with CIFB topology and performs dynamic scaling using the functions of toolbox (see <span class="citation" data-cites="tb-CIFB-params">@tb-CIFB-params</span>)).</p>
+<p>The <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">matlab code</a> creates an NTF (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;2</a>) with CIFB topology and performs dynamic scaling using the functions of <span class="math inline">\(\Delta\Sigma\)</span> toolbox (see <span class="citation" data-cites="tb-CIFB-params">@tb-CIFB-params</span>)).</p>
 <table class="caption-top table">
 <caption><strong>Table 2: Specifications.</strong> {#tb-CIFB-params}</caption>
 <thead>
@@ -169,6 +170,29 @@ Figure&nbsp;2: NTF
 </tr>
 </tbody>
 </table>
+<p>While designing NTF, OSR, quantization levels[N] are fixed attributes and order of the modulator, out-band gain[OBG], cut-off frequency, etc are the iterative factors. Let’s discuss some facts about NTF and Quantizer.</p>
+<p><span class="math inline">\(Dynamic Range = SQNR =\frac{signal power}{noise power}\)</span></p>
+<p>and in <span class="math inline">\(d\beta\)</span>, <span class="math inline">\(Dynamic Range =6.02 N + 1.76\)</span> (where N = quantization levels)</p>
+<p>as we decrease <strong>N</strong> by 1, SQNR decreases by factor of 6 <span class="math inline">\(d\beta\)</span> and this can be fixed easil by increasing <strong>OBG</strong>. The working is quantizer is basically we need to compare the output from the loop filter against a bunch of levels and generate PWM quantity which is dependent on these levels. Hence, fewer the levels of quantizer, easier is the design of quantizer. So we try and reduce the number of levels as much as possible and the lowest we can go is 2 levels resulting in 1-bit quantizer. Clearly, we are pushing the assumptions we made in the mathematical analysis of quantizer too much for e.g.&nbsp;the realization of quantizer as white additive noise is only valid when the levels are more.</p>
+<p>It turns out that for a single-bit modulator, the noise is still shaped out but since we have only two levels, technically speaking, the quantizer is always either in upper saturation or lower saturation. Also it is not answerable defining the gain of the quantizer.</p>
+<p>This gives rise to an <strong>Empirical rule: Lee’s Rule</strong> which says that the NTF’s out-band gain (OBG) must be <span class="math inline">\(\le 1.5\)</span>. Whole bunch of simulations were run on 1-bit modulator and proven that Lee’s Rule will somehow make all the mathematical assumptions for quantizer hold true.</p>
+<p>The mathematical assumptions are as follows:</p>
+<ol type="1">
+<li>We treat quantization noise as ‘white’, ‘broad-banded’ and independent of input signal</li>
+<li>The error is bounded and also uniformly distributed between <span class="math inline">\([-\frac{\Delta}{2}, \frac{\Delta}{2}]\)</span> (where<span class="math inline">\(\Delta\)</span> = step size of quantizer)</li>
+</ol>
+<p>As we are desiging a second order <strong>single bit</strong> <span class="math inline">\(\Delta\Sigma\)</span> modulator, quantization level[N] = 2 and the NTF is being automatically designed using <span class="math inline">\(\Delta\Sigma\)</span> toolbox</p>
+<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_System_Diagram.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Block Diagram
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-Block-Diagram" class="quarto-xref">Figure&nbsp;3</a> shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback.</p>
 </section>
 </section>
 
