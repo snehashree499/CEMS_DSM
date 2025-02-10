@@ -4,5 +4,8 @@
 
 ![Xschem output](figures/_fig_DSM_output_xschem.svg){#fig-xschem-output}
 
-![LTSpice output](figures/_fig_ltspice_dsm.png){#fig-ltspice-output}
+
+@fig-xschem-output and @fig-schematic-dsm shows the implementation real circuit, where the designed switch capacitor using OTA and comparator are put together in **Xschem**. @fig-ltspice-output is the reference output from **LTSpice**
+
+![LTSpice output](figures/_fig_ltspice_output.png){#fig-ltspice-output}
 
