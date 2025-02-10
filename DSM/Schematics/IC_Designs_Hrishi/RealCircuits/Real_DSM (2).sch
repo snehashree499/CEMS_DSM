@@ -233,8 +233,6 @@ wrdata IDEAL_SwitchCap.txt vo1 vo2 vcmp p1 p2
 C {devices/gnd.sym} 1410 -440 0 0 {name=l3 lab=GND}
 C {devices/gnd.sym} 1910 -510 0 0 {name=l23 lab=GND}
 C {devices/lab_wire.sym} 1470 -510 0 0 {name=p18 sig_type=std_logic lab=p1}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x5}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x4}
 C {devices/gnd.sym} 360 -720 0 0 {name=l6 lab=GND}
 C {devices/vsource.sym} 360 -770 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
 C {devices/lab_wire.sym} 360 -840 0 0 {name=p2 sig_type=std_logic lab=p1}
@@ -243,3 +241,5 @@ C {devices/vsource.sym} 720 -770 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.2
 C {devices/lab_wire.sym} 720 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x4}
