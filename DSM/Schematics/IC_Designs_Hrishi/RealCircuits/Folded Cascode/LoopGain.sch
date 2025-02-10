@@ -85,7 +85,6 @@ C {devices/title.sym} 240 460 0 0 {name=l5 author="(c) 2024 Hrishikesh, @HSB"}
 C {capa.sym} 1790 -310 0 0 {name=C3
 value=0.47p
 }
-C {FoldedCascodeOTA.sym} 1510 -340 0 0 {name=x3}
 C {isource.sym} 1730 -760 0 0 {name=I3 value=0.8u}
 C {devices/vsource.sym} 1100 -200 3 0 {name=Vtest2 value="dc 0 ac 1"}
 C {lab_pin.sym} 1730 -790 0 0 {name=p7 sig_type=std_logic lab=v_dd}
@@ -99,7 +98,6 @@ C {lab_pin.sym} 1480 -430 0 0 {name=p20 sig_type=std_logic lab=v_dd}
 C {capa.sym} 2730 -310 0 0 {name=C4
 value=0.47p
 }
-C {FoldedCascodeOTA.sym} 2450 -340 0 0 {name=x4}
 C {lab_pin.sym} 2300 -340 0 0 {name=p21 sig_type=std_logic lab=Ib}
 C {lab_wire.sym} 2300 -370 0 0 {name=p22 sig_type=std_logic lab=v_in}
 C {lab_pin.sym} 2420 -220 0 0 {name=p25 sig_type=std_logic lab=v_ss}
@@ -117,3 +115,5 @@ C {lab_pin.sym} 1390 -810 0 0 {name=p1 sig_type=std_logic lab=v_ss}
 C {devices/vsource.sym} 1550 -760 0 0 {name=Vin value="dc 0.75"}
 C {lab_wire.sym} 1550 -810 0 0 {name=p4 sig_type=std_logic lab=v_in}
 C {lab_pin.sym} 1550 -710 0 0 {name=p11 sig_type=std_logic lab=v_ss}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1510 -340 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 2450 -340 0 0 {name=x2}
