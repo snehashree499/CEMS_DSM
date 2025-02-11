@@ -223,7 +223,7 @@ value="
 reset
 
 run
-tran 10u 20m
+tran 10n 60u
 set color0 = white
 set color1 = black
 plot Vin vo1 vo2 vcmp
@@ -243,6 +243,6 @@ C {devices/lab_wire.sym} 1470 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
 C {devices/lab_wire.sym} 1810 -510 2 0 {name=p21 sig_type=std_logic lab=Vcm}
 C {devices/lab_wire.sym} 1410 -440 2 0 {name=p22 sig_type=std_logic lab=Vcm}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
 C {VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
 C {VCCS_FolCas.sym} 1360 -470 2 1 {name=x5}
+C {Comp-Latch.sym} 1660 -490 0 0 {name=x1}
