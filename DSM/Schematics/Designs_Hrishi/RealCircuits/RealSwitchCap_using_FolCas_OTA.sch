@@ -70,7 +70,7 @@ lab=GND}
 N 1100 -280 1100 -250 {
 lab=GND}
 N 1100 -300 1130 -300 {
-lab=p1}
+lab=p2}
 N 1400 -220 1400 -200 {
 lab=#net5}
 N 1330 -280 1360 -280 {
@@ -78,13 +78,13 @@ lab=GND}
 N 1330 -280 1330 -250 {
 lab=GND}
 N 1330 -300 1360 -300 {
-lab=p2}
+lab=p1}
 N 1100 -150 1130 -150 {
 lab=GND}
 N 1100 -150 1100 -120 {
 lab=GND}
 N 1100 -170 1130 -170 {
-lab=p2}
+lab=p1}
 N 1400 -140 1400 -120 {
 lab=Vcm}
 N 1330 -150 1360 -150 {
@@ -92,7 +92,7 @@ lab=GND}
 N 1330 -150 1330 -120 {
 lab=GND}
 N 1330 -170 1360 -170 {
-lab=p1}
+lab=p2}
 N 1560 -340 1600 -340 {lab=Vcm}
 N 1400 -380 1400 -330 {lab=#net6}
 N 1540 -380 1600 -380 {lab=#net6}
@@ -125,7 +125,7 @@ lab=p2}
 C {devices/gnd.sym} 510 -690 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 510 -740 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 630 -690 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 630 -750 0 0 {name=Vin value="dc 0.75 ac 1 "}
+C {devices/vsource.sym} 630 -750 0 0 {name=Vin value="SIN(0 0.7 80 0 0 0)"}
 C {devices/switch_ngspice.sym} 410 -300 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 340 -250 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 340 -300 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -170,7 +170,7 @@ value="
 .control
 save all 
 run
-tran 10n 30u
+tran 10n 240u
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames
@@ -187,16 +187,16 @@ C {devices/title.sym} 400 100 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
 C {devices/gnd.sym} 410 -140 0 0 {name=l1 lab=GND}
 C {devices/switch_ngspice.sym} 1170 -300 0 0 {name=S5 model=mysw}
 C {devices/gnd.sym} 1100 -250 0 0 {name=l3 lab=GND}
-C {devices/lab_wire.sym} 1100 -300 0 0 {name=p9 sig_type=std_logic lab=p1}
+C {devices/lab_wire.sym} 1100 -300 0 0 {name=p9 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 1400 -300 0 0 {name=S6 model=mysw}
 C {devices/gnd.sym} 1330 -250 0 0 {name=l9 lab=GND}
-C {devices/lab_wire.sym} 1330 -300 0 0 {name=p10 sig_type=std_logic lab=p2}
+C {devices/lab_wire.sym} 1330 -300 0 0 {name=p10 sig_type=std_logic lab=p1}
 C {devices/switch_ngspice.sym} 1170 -170 0 0 {name=S7 model=mysw}
 C {devices/gnd.sym} 1100 -120 0 0 {name=l11 lab=GND}
-C {devices/lab_wire.sym} 1100 -170 0 0 {name=p11 sig_type=std_logic lab=p2}
+C {devices/lab_wire.sym} 1100 -170 0 0 {name=p11 sig_type=std_logic lab=p1}
 C {devices/switch_ngspice.sym} 1400 -170 0 0 {name=S8 model=mysw}
 C {devices/gnd.sym} 1330 -120 0 0 {name=l16 lab=GND}
-C {devices/lab_wire.sym} 1330 -170 0 0 {name=p12 sig_type=std_logic lab=p1}
+C {devices/lab_wire.sym} 1330 -170 0 0 {name=p12 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1560 -340 0 0 {name=p13 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1260 -220 3 0 {name=C2
 m=1

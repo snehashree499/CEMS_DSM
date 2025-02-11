@@ -1,11 +1,26 @@
 # Final Design
 
+![Schematic](figures/_fig_ltspice_schematic.png){#fig-schematic-ltspice}
+
+@fig-schematic-ltspice shows the schematic entry in **LTSpice** which acts as a reference to our circuit
+
 ![Schematic](figures/_fig_schematic_dsm.svg){#fig-schematic-dsm}
 
-![Xschem output](figures/_fig_DSM_output_xschem.svg){#fig-xschem-output}
 
-
-@fig-xschem-output and @fig-schematic-dsm shows the implementation real circuit, where the designed switch capacitor using OTA and comparator are put together in **Xschem**. @fig-ltspice-output is the reference output from **LTSpice**
+@fig-schematic-dsm shows the implementation of real circuit , where the designed switch capacitor using OTA and comparator are put together in **Xschem**. @fig-ltspice-output is the reference output from **LTSpice**
 
 ![LTSpice output](figures/_fig_ltspice_output.png){#fig-ltspice-output}
 
+![DSM output](figures/_fig_60u_vo1vo2vcmp.svg){#fig-real-dsm-output}
+
+
+@fig-ltspice-output gives us the reference plot and @fig-real-dsm-output is the output of our real circuit which portrays that the switch capacitor block is working perfectly fine as we can see the plot till $60\mu$ in @fig-ltspice-output and compare it with @fig-real-dsm-output  and the comparator is staying always in upper saturation. Our team is working in order to resolve the issue with the comparator. 
+
+We can further analyse the output behaviour of switch capacitor block by looking at the @fig-20m-SC. 
+
+![](figures/_fig_20m_vo2vo1Vin.svg){#fig-20m-SC}
+
+
+The current status of the output from dsm is shown in @fig-dsm-output
+
+![](figures/_fig_20m_vcmp.svg){#fig-dsm-output}
