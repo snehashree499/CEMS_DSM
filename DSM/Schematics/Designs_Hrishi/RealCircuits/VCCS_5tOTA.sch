@@ -44,4 +44,4 @@ C {isource.sym} 480 -660 0 0 {name=I0 value= 0.8u}
 C {ipin.sym} 290 -480 0 0 {name=p7 lab=Minus}
 C {opin.sym} 710 -510 0 0 {name=p8 lab=Vout}
 C {ipin.sym} 360 -540 0 0 {name=p3 lab=Plus}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym} 510 -510 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/5-T_OTA/5-T_OTA.sym} 510 -510 0 0 {name=x1}

@@ -20,10 +20,9 @@ format:
     lang: en-US
     number-sections: true
     papersize: A4
-    pdf-engine: pdflatex 
-  docx:
-    toc: true
-    number-sections: true
-bibliography: references.bib
+    pdf-engine: xelatex 
+  docx: default
+  
+
 
 

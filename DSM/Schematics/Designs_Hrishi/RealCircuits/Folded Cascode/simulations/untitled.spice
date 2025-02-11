@@ -1,0 +1,151 @@
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/untitled.sch
+**.subckt untitled
+Vcm Vcm GND dc {vdd/2}
+Vin Vin GND dc 0.5 ac 1
+S1 Vin net1 p1 GND mysw
+S2 net4 net2 p2 GND mysw
+S3 net1 net3 p2 GND mysw
+S4 net2 Vcm p1 GND mysw
+C7 net1 net2 0.3p m=1
+C1 net4 vo1 2p m=1
+S5 vo1 net5 p2 GND mysw
+S6 net7 net6 p1 GND mysw
+S7 net5 net3 p1 GND mysw
+S8 net6 Vcm p2 GND mysw
+C2 net5 net6 0.2p m=1
+C3 net7 vo2 0.7p m=1
+x2 vcmp Vdd Vss net3 sg13g2_inv_1
+Vsup VDD GND dc {vdd}
+Vss VSS GND dc 0
+Vp1 p1 GND dc 0 pulse(0, {vdd}, 0, 100n, 100n, 2u, 4.5u)
+Vp2 p2 GND dc 0 pulse(0, {vdd}, 2.25u, 100n, 100n, 2u, 4.5u)
+x3 Vcm vo1 net4 VCCS_FolCas
+x4 Vcm vo2 net7 VCCS_FolCas
+Vres res GND dc {vdd} pwl(0, {vdd}, {per/4}, {vdd}, {per/4+50p}, 0)
+x6 vdda p2 net8 p1 vcmp vo2 GND vssa res net9 template_comp
+Vssa vssa GND dc 0
+Vdda vdda GND dc {vdd}
+**** begin user architecture code
+
+.lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+
+
+.param temp=27 vdd = 1.5 per = 20n
+.model mysw SW vt={vdd/2} ron=0.1
+.option method=gear reltol=1e-4
+
+.control
+save all
+run
+tran 45u 450u
+
+plot vo1 vo2 vcmp
+
+set wr_singlescale
+set wr_vecnames
+wrdata IDEAL_SwitchCap.txt vo1 vo2 vcmp p1 p2
+.endc
+
+
+ .lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym # of pins=3
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sch
+.subckt VCCS_FolCas Plus Vout Minus
+*.ipin Minus
+*.opin Vout
+*.ipin Plus
+Vdd v_dd GND 1.5
+Vss v_ss GND 0
+I0 v_dd net1 0.8u
+x1 v_dd net1 Plus Minus Vout v_ss FoldedCascodeOTA
+.ends
+
+
+* expanding   symbol:  /foss/designs/EE628/5_Design/3_Real_circuits/template_comp.sym # of pins=10
+** sym_path: /foss/designs/EE628/5_Design/3_Real_circuits/template_comp.sym
+** sch_path: /foss/designs/EE628/5_Design/3_Real_circuits/template_comp.sch
+.subckt template_comp vdda pc d ps dd vinm vinp vssa res dout
+*.opin d
+*.ipin pc
+*.iopin vssa
+*.iopin vdda
+*.ipin ps
+*.ipin res
+*.opin dd
+*.ipin vinm
+*.ipin vinp
+*.opin dout
+XM3m out1p out1m d2m vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM4m out1p out1m vdda vdda sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM5m out1p pc vdda vdda sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM2m d2m pc d1m vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM1m d1m vinm_samp vssa vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM3p out1m out1p d2p vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM4p out1m out1p vdda vdda sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM5p out1m pc vdda vdda sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM2p d2p pc d1p vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM1p d1p vinp vssa vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM32m dint net2 net1 VSS sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM2 dint net2 VDD VDD sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM3 dint out1m VDD VDD sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM21m net1 out1m VSS VSS sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM32p net2 dint net3 VSS sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XM42p net2 dint VDD VDD sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM8 net2 out1p VDD VDD sg13_lv_pmos w=1.0u l=0.45u ng=1 m=1
+XM21p net3 out1p VSS VSS sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+x1 ps dint dd net5 net4 VDD VSS sg13g2_dfrbp_2
+x2 dint VDD VSS d sg13g2_buf_2
+x3 res VDD VSS net4 sg13g2_inv_1
+XMp1 vinm_samp psb vinm vdda sg13_lv_pmos w=1.0u l=0.45u ng=3 m=1
+XMn5 vinm_samp ps vinm vssa sg13_lv_nmos w=1.0u l=0.45u ng=1 m=1
+XC1 vinm_samp vssa cap_cmim w=7.0e-6 l=7.0e-6 m=1
+x4 ps VDD VSS psb sg13g2_inv_1
+x5 dd VDD VSS dout sg13g2_inv_2
+* noconn #net5
+.ends
+
+
+* expanding   symbol:  FoldedCascodeOTA.sym # of pins=6
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
+.subckt FoldedCascodeOTA VDD I PLUS MINUS Vout VSS
+*.ipin PLUS
+*.ipin MINUS
+*.opin Vout
+*.ipin VDD
+*.ipin VSS
+*.ipin I
+XM1 net2 net4 VDD VDD sg13_lv_pmos w=0.272u l=0.5u ng=1 m=1
+XM14 VSS net7 net6 VSS sg13_lv_nmos w=0.3u l=2u ng=1 m=1
+XM13 net6 I Vout VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM11 net1 I net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM12 VSS net7 net1 VSS sg13_lv_nmos w=0.3u l=2u ng=1 m=1
+XM9 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM4 net5 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM6 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM8 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM10 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM7 VSS net7 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM18 net8 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM17 VSS net7 net8 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM16 net7 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM15 VSS net7 net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.GLOBAL VDD
+.GLOBAL VSS
+.end

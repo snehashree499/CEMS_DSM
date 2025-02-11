@@ -1,6 +1,11 @@
 LTspice 24.0.11 for Windows
+<<<<<<< HEAD
 Circuit: * C:\Users\Sneha Shree K\eda\designs\CEMS_DSM\DSM\LTSpice\DSM_using_VCCS.asc
 Start Time: Tue Feb 11 02:29:40 2025
+=======
+Circuit: * C:\Users\HP\eda\designs\CEMS_DSM\DSM\LTSpice\DSM_using_VCCS.asc
+Start Time: Tue Feb 11 03:44:58 2025
+>>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
 Error: unknown token in: "v(in)>v(vdd)/2[?]v(vss):v(vdd)"
 Error: unknown token in: "v(hold)>0[?]v(vdd):0"
 solver = Normal
@@ -9,7 +14,12 @@ tnom = 27
 temp = 27
 method = modified trap
 WARNING: Less than two connections to node vd.  This node is used by a§dff.
+<<<<<<< HEAD
 WARNING: Less than two connections to node trip.  This node is used by etrip1.
 Direct Newton iteration for .op point succeeded.
 Total elapsed time: 3.624 seconds.
+=======
+Per .tran options, skipping operating point for transient analysis.
+Total elapsed time: 11.674 seconds.
+>>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
 

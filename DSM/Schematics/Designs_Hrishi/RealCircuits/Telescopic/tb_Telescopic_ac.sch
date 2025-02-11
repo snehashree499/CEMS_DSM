@@ -34,27 +34,25 @@ N 1720 -640 1720 -530 {
 lab=v_out}
 N 1480 -440 1800 -440 {lab=v_ss}
 N 1270 -530 1720 -530 {lab=v_out}
-N 1270 -670 1270 -530 {lab=v_out}
-N 1270 -670 1350 -670 {lab=v_out}
-N 1030 -670 1150 -670 {lab=v_in}
-N 1150 -670 1150 -610 {lab=v_in}
-N 1150 -610 1350 -610 {lab=v_in}
+N 1030 -670 1350 -670 {lab=v_in}
 N 1480 -590 1480 -440 {lab=v_ss}
 N 1030 -440 1480 -440 {lab=v_ss}
 N 1470 -690 1480 -690 {lab=v_dd}
 N 1470 -590 1480 -590 {lab=v_ss}
+N 1270 -610 1270 -530 {lab=v_out}
+N 1270 -610 1350 -610 {lab=v_out}
 C {devices/vsource.sym} 930 -390 0 0 {name=Vss value=0}
 C {devices/gnd.sym} 930 -340 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} 930 -440 0 0 {name=p1 sig_type=std_logic lab=v_ss}
-C {devices/vsource.sym} 780 -410 0 0 {name=Vdd value=1.8}
+C {devices/vsource.sym} 780 -410 0 0 {name=Vdd value=1.5}
 C {devices/gnd.sym} 780 -360 0 0 {name=l3 lab=GND}
 C {lab_pin.sym} 780 -450 0 0 {name=p2 sig_type=std_logic lab=v_dd}
 C {devices/vsource.sym} 1030 -550 0 0 {name=Vin value="dc 0.7 ac 1"}
 C {lab_wire.sym} 1090 -670 0 0 {name=p4 sig_type=std_logic lab=v_in}
 C {spice_probe.sym} 1150 -670 0 0 {name=p5 attrs=""}
-C {isource.sym} 1300 -770 0 0 {name=I0 value=3u}
+C {isource.sym} 1300 -770 0 0 {name=I0 value=0.8u}
 C {capa.sym} 1800 -570 0 0 {name=C1
-value=17.98f}
+value=0.47p}
 C {lab_wire.sym} 1800 -640 0 0 {name=p3 sig_type=std_logic lab=v_out}
 C {spice_probe.sym} 1680 -640 0 0 {name=p6 attrs=""}
 C {devices/code_shown.sym} 70 -90 0 0 {name=MODEL1 only_toplevel=true
@@ -76,7 +74,7 @@ op
 write Telescopic_ac.raw
 set appendwrite
 
-ac dec 101 1k 1G
+ac dec 101 1k 0.1G
 write Telescopic_ac.raw
 plot 20*log10(v_out)
 
@@ -99,4 +97,4 @@ print onoise_total
 
 .endc
 "}
-C {/foss/designs/Hrishi's Analog Journey/Designs/CEMS/Telescopic.sym} 1500 -640 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Telescopic/Telescopic.sym} 1500 -640 0 0 {name=x1}
