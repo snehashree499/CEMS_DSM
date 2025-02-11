@@ -1,8 +1,8 @@
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/tb_FolCas_ac.sch
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/tb_FolCas_ac.sch
 **.subckt tb_FolCas_ac
 Vss v_ss GND 0
 Vdd v_dd GND 1.5
-Vin v_in v_ss dc 0.6 ac 1
+Vin v_in v_ss dc 0.5 ac 1
 .save v(v_in)
 I0 v_dd net1 0.8u
 C1 v_out v_ss 0.47p m=1
@@ -20,11 +20,11 @@ x1 v_dd net1 v_in v_out v_out v_ss FoldedCascodeOTA
 option sparse
 save all
 op
-write tb_FolCas_ac.raw
+write tb_FoldedCascode_OTA_ac.raw
 set appendwrite
 
-ac dec 101 1k 1G
-write tb_FolCas_ac.raw
+ac dec 101 1k 0.1G
+write tb_FoldedCascode_OTA_ac.raw
 plot 20*log10(v_out)
 
 meas ac dcgain MAX vmag(v_out) FROM=10 TO=10k
@@ -48,10 +48,10 @@ print onoise_total
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym #
-*+ of pins=6
-** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym # of
+*+ pins=6
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
 .subckt FoldedCascodeOTA VDD I PLUS MINUS Vout VSS
 *.ipin PLUS
 *.ipin MINUS
@@ -60,23 +60,23 @@ print onoise_total
 *.ipin VSS
 *.ipin I
 XM1 net2 net4 VDD VDD sg13_lv_pmos w=0.272u l=0.5u ng=1 m=1
-XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM14 VSS net9 net6 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM14 VSS net7 net6 VSS sg13_lv_nmos w=0.3u l=2u ng=1 m=1
 XM13 net6 I Vout VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM11 net1 I net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM12 VSS net9 net1 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
-XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM11 net1 I net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM12 VSS net7 net1 VSS sg13_lv_nmos w=0.3u l=2u ng=1 m=1
+XM9 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
 XM4 net5 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
 XM6 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
 XM8 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM9 net8 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM10 net7 net3 net8 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
-XM16 net9 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM15 VSS net9 net9 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM7 VSS net9 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM18 net10 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
-XM17 VSS net9 net10 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM10 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM7 VSS net7 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM18 net8 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM17 VSS net7 net8 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM16 net7 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM15 VSS net7 net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
 .ends
 
 .GLOBAL GND

@@ -62,7 +62,6 @@ C {capa.sym} 1460 -370 0 0 {name=C1
 value=0.47p}
 C {lab_wire.sym} 1460 -440 0 0 {name=p3 sig_type=std_logic lab=v_out}
 C {spice_probe.sym} 1340 -440 0 0 {name=p6 attrs=""}
-C {FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}
 C {devices/code_shown.sym} -200 -800 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .temp 27
@@ -94,3 +93,4 @@ print onoise_total
 
 .endc
 "}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}

@@ -170,11 +170,9 @@ value="
 .control
 save all 
 run
-<<<<<<< HEAD
+
 tran 10u 0.5m
-=======
-tran 10n 240u
->>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
+
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames
@@ -191,7 +189,6 @@ C {devices/title.sym} 400 100 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
 C {devices/gnd.sym} 410 -140 0 0 {name=l1 lab=GND}
 C {devices/switch_ngspice.sym} 1170 -300 0 0 {name=S5 model=mysw}
 C {devices/gnd.sym} 1100 -250 0 0 {name=l3 lab=GND}
-<<<<<<< HEAD
 C {devices/lab_wire.sym} 1330 -300 0 0 {name=p9 sig_type=std_logic lab=p1}
 C {devices/switch_ngspice.sym} 1400 -300 0 0 {name=S6 model=mysw}
 C {devices/gnd.sym} 1330 -250 0 0 {name=l9 lab=GND}
@@ -202,7 +199,6 @@ C {devices/lab_wire.sym} 1330 -170 0 0 {name=p11 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 1400 -170 0 0 {name=S8 model=mysw}
 C {devices/gnd.sym} 1330 -120 0 0 {name=l16 lab=GND}
 C {devices/lab_wire.sym} 1100 -170 0 0 {name=p12 sig_type=std_logic lab=p1}
-=======
 C {devices/lab_wire.sym} 1100 -300 0 0 {name=p9 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 1400 -300 0 0 {name=S6 model=mysw}
 C {devices/gnd.sym} 1330 -250 0 0 {name=l9 lab=GND}
@@ -213,7 +209,6 @@ C {devices/lab_wire.sym} 1100 -170 0 0 {name=p11 sig_type=std_logic lab=p1}
 C {devices/switch_ngspice.sym} 1400 -170 0 0 {name=S8 model=mysw}
 C {devices/gnd.sym} 1330 -120 0 0 {name=l16 lab=GND}
 C {devices/lab_wire.sym} 1330 -170 0 0 {name=p12 sig_type=std_logic lab=p2}
->>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
 C {devices/lab_wire.sym} 1560 -340 0 0 {name=p13 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1260 -220 3 0 {name=C2
 m=1
@@ -235,5 +230,5 @@ C {devices/lab_wire.sym} 790 -820 0 0 {name=p2 sig_type=std_logic lab=p1}
 C {devices/gnd.sym} 1150 -700 0 0 {name=l7 lab=GND}
 C {devices/vsource.sym} 1150 -750 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
 C {devices/lab_wire.sym} 1150 -820 0 0 {name=p1 sig_type=std_logic lab=p2}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1000 -360 2 1 {name=x1}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1750 -360 2 1 {name=x2}
+C {VCCS_FolCas.sym} 1000 -360 2 1 {name=x1}
+C {VCCS_FolCas.sym} 1750 -360 2 1 {name=x2}

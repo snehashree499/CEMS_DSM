@@ -1,0 +1,22 @@
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/Comp.sch
+**.subckt Comp p1 outm outp MINUS PLUS
+*.ipin PLUS
+*.ipin MINUS
+*.ipin p1
+*.opin outp
+*.opin outm
+XMN3 net4 outp outm VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMP5 net4 p1 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP3 outm p1 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP1 outm outp net2 net2 sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP2 outp outm net2 net2 sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP4 outp p1 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP6 net3 p1 net2 net2 sg13_lv_pmos w=0.5u l=0.15u ng=1 m=1
+XMN4 net3 outm outp VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMN1 net1 PLUS net4 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XMN2 net1 MINUS net3 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XM7 GND p1 net1 GND sg13_lv_nmos w=4u l=0.18u ng=1 m=1
+VDD net2 GND {vdd}
+**.ends
+.GLOBAL GND
+.end

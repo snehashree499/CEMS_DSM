@@ -152,12 +152,12 @@ C {devices/lab_wire.sym} 400 -630 0 0 {name=p15 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 220 -280 0 0 {name=p16 sig_type=std_logic lab=Vin}
 C {devices/lab_wire.sym} 280 -630 0 0 {name=p17 sig_type=std_logic lab=Vcm}
 C {devices/lab_wire.sym} 790 -350 0 0 {name=p23 sig_type=std_logic lab=vo1}
-C {devices/code_shown.sym} 1710 -110 0 0 {name=MODEL only_toplevel=true
+C {devices/code_shown.sym} 1710 -120 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
-.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {devices/code_shown.sym} 1710 -470 0 0 {name=NGSPICE only_toplevel=true 
 value="

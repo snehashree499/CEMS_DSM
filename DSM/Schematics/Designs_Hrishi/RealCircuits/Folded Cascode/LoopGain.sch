@@ -115,5 +115,5 @@ C {lab_pin.sym} 1390 -810 0 0 {name=p1 sig_type=std_logic lab=v_ss}
 C {devices/vsource.sym} 1550 -760 0 0 {name=Vin value="dc 0.5"}
 C {lab_wire.sym} 1550 -810 0 0 {name=p4 sig_type=std_logic lab=v_in}
 C {lab_pin.sym} 1550 -710 0 0 {name=p11 sig_type=std_logic lab=v_ss}
-C {FoldedCascodeOTA.sym} 1510 -340 0 0 {name=x1}
-C {FoldedCascodeOTA.sym} 2450 -340 0 0 {name=x2}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1510 -340 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 2450 -340 0 0 {name=x3}
