@@ -11,11 +11,11 @@ let's see clock's role precisely:
 
 **1. Sampling Control:**
 
-The clock determines when the ADC should take a sample of the analog signal. In our system, the sampling frequency is 220 KHZ, meaning a new sample is taken every 4.545 seconds. 
+The clock determines when the ADC should take a sample of the analog signal. In our system, the sampling frequency is 220 kHZ, meaning a new sample is taken every 4.545 seconds. 
 
 
 $$
-T_s = \frac{1}{f_s} = \frac{1}{220} = 4.545 s \, 
+T_s = \frac{1}{f_s} = \frac{1}{220 \times 10^3} = 4.545 \mu s \, 
 $$
 
 If the clock is too slow, insufficient data is captured, leading to signal degradation. 
@@ -104,12 +104,12 @@ As you can see in the picture The basic non-overlapping clock generator consists
 Each sub-block contains inverters and one transmission gate to produce desired delay in the falling or rising edge.
 
 
-![Block Diagram](figures/Untitled Diagram-Page-3.drawio (1).svg){#fig-Block-Diagram}
+![Block Diagram](figures\Untitled Diagram-Page-3.drawio (1).svg){#fig-Block-Diagram}
 
 
-# Xschem Design
+## Xschematic
 
-There is the design of the clock generator with our project specifications.
+There is the design of the non-overlapping clock phases with our project specifications.
 
 ![CLK_GEN_output](figures/_fig_clk_output.svg){#fig-blocks}
 
