@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="510" height="547" version="1.1">
+<style type="text/css">
+.l0{
+  fill: #000000;
+  stroke: #000000;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l1{
+  fill: #00ccee;
+  stroke: #00ccee;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l2{
+  fill: #4f4f4f; fill-opacity: 0.2;
+  stroke: #4f4f4f;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l3{
+  fill: #cccccc; fill-opacity: 0.5;
+  stroke: #cccccc;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l4{
+  fill: #88dd00;
+  stroke: #88dd00;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l5{
+  fill: #bb2200;
+  stroke: #bb2200;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l6{
+  fill: #00ccee; fill-opacity: 0.5;
+  stroke: #00ccee;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l7{
+  fill: #ff0000; fill-opacity: 0.5;
+  stroke: #ff0000;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l8{
+  fill: #ffff00; fill-opacity: 0.5;
+  stroke: #ffff00;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l9{
+  fill: #ffffff; fill-opacity: 0.5;
+  stroke: #ffffff;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l10{
+  fill: #ff00ff;
+  stroke: #ff00ff;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l11{
+  fill: #00ff00; fill-opacity: 0.5;
+  stroke: #00ff00;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l12{
+  fill: #0000ff; fill-opacity: 0.5;
+  stroke: #0000ff;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l13{
+  fill: #aaaa00; fill-opacity: 0.5;
+  stroke: #aaaa00;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l14{
+  fill: #aaccaa; fill-opacity: 0.2;
+  stroke: #aaccaa;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l15{
+  fill: #ff7777; fill-opacity: 0.5;
+  stroke: #ff7777;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l16{
+  fill: #bfff81; fill-opacity: 0.5;
+  stroke: #bfff81;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l17{
+  fill: #00ffcc; fill-opacity: 0.2;
+  stroke: #00ffcc;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l18{
+  fill: #ce0097; fill-opacity: 0.5;
+  stroke: #ce0097;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l19{
+  fill: #d2d46b; fill-opacity: 0.2;
+  stroke: #d2d46b;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l20{
+  fill: #ef6158; fill-opacity: 0.2;
+  stroke: #ef6158;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+.l21{
+  fill: #fdb200; fill-opacity: 0.2;
+  stroke: #fdb200;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.674301;
+}
+text {font-family: Sans-Serif;}
+</style>
+<rect class="l0" x="0" y="0" width="510" height="547"/>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" transform="translate(5, 14.1648)" >COMMANDS</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 57.058)" >.param temp=27</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 74.9512)" >.param Wx=5u Lx=0.13u Vsbx=0</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 92.8444)" >.dc Vgs 0 1.2 25m Vds 0 1.2 25m</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 110.738)" >.include tb_sg13_lv_nmos_save.spice</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 146.524)" >.control</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 164.417)" >set wr_singlescale</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 182.31)" >*set wr_vecnames</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 200.204)" >option numdgt = 3</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 235.99)" >foreach L_val 0.13u 0.14u 0.15u 0.16u 0.17u 0.18u 0.19u</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 253.883)" >+ 0.2u 0.3u 0.4u 0.5u 1u 2u 3u</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 271.776)" >  alterparam Lx = $L_val</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 289.67)" >  foreach Vsb_val 0 0.2 0.4 0.6</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 307.563)" >    alterparam Vsbx = $Vsb_val</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 325.456)" >    reset</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 343.349)" >    run</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 361.242)" >    wrdata sg13_lv_nmos.txt all</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 379.136)" >    destroy $curplot</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 397.029)" >    set appendwrite</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 414.922)" >  end</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 432.815)" >end</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 450.708)" >alterparam Lx=0.13u Vsbx=0</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 468.602)" >reset</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 486.495)" >op</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 504.388)" >show</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="15.6" style="font-family:Monospace;" transform="translate(15, 522.281)" >.endc</text>
+<path class="l4" d="M0 20L70 20"/>
+<path class="l4" d="M0 20L0 40"/>
+</svg>

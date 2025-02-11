@@ -1,0 +1,28 @@
+project:
+  type: manuscript
+
+manuscript:
+  article: index.qmd
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    toc: true
+    fig-align: center
+    lang: en-US
+    number-sections: true
+    toc-expand: 2
+  pdf:
+    toc: true
+    fig-align: center
+    lang: en-US
+    number-sections: true
+    papersize: A4
+    pdf-engine: xelatex 
+  docx: default
+  
+
+
+

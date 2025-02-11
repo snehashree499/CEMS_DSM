@@ -1,0 +1,40 @@
+---
+title: Discrete Time Delta Sigma Modulator
+author:
+  - name: Hrishikesh Pangavhane
+    Matriculation number: 5363452
+    #corresponding: true
+    email: hrishipangavhane@gmail.com
+    affiliations:
+      - Hochschule Bremen
+  - name: Sneha Shree Katepalli
+    Matriculation number: 5364673
+    #corresponding: true
+    email: snehashree499@gmail.com
+    affiliations:
+      - Hochschule Bremen
+  - name: Hanieh Alaeiatar
+    Matriculation number: 5363618
+    #corresponding: true
+    email: hanieh.alaei7596@gmail.com
+    affiliations:
+      - Hochschule Bremen
+date: last-modified
+bibliography: references.bib
+citation:
+  url: https://github.com/snehashree499/CEMS_DSM
+
+---
+
+{{< include /content/_macros.qmd >}}
+{{< include /content/_sec_system_level.qmd >}}
+{{< include /content/_sec_block_level.qmd >}}
+{{< include /content/_sec_switchcap.qmd >}}
+{{< include /content/_sec_capacitor_sizing.qmd >}}
+{{< include /content/_sec_OTAdesign.qmd >}}
+{{< include /content/_sec_sizing.qmd >}}
+{{< include /content/_sec_comp.qmd >}}
+{{< include /content/_sec_clkgen.qmd >}}
+{{< include /content/_sec_final_output.qmd >}}
+
+

@@ -1,0 +1,164 @@
+** sch_path: /foss/designs/EE628/Hanieh/realDSMwithCLK.sch
+**.subckt realDSMwithCLK
+x1 p1 net1 p2 ClkG
+Vp1 net1 GND dc 0 pulse(0, {vdd}, 0, 100n, 100n, 2.25n, 4.5n)
+Vcm Vcm GND dc {vdd/2}
+Vin Vin GND dc 0.75 ac 1
+S1 Vin net2 p1 GND mysw
+S2 net5 net3 p2 GND mysw
+S3 net2 net4 p2 GND mysw
+S4 net3 Vcm p1 GND mysw
+C7 net2 net3 0.3p m=1
+C1 net5 vo1 2p m=1
+S5 vo1 net6 p1 GND mysw
+S6 net8 net7 p2 GND mysw
+S7 net6 net4 p2 GND mysw
+S8 net7 Vcm p1 GND mysw
+C2 net6 net7 0.2p m=1
+C3 net8 vo2 0.7p m=1
+x2 vcmp Vdd Vss net4 sg13g2_inv_1
+Vsup VDD GND dc {vdd}
+Vss VSS GND dc 0
+x3 p1 GND vcmp GND vo2 A_comp-2
+x5 Vcm vo1 net5 VCCS_FolCas
+x6 Vcm vo2 net8 VCCS_FolCas
+**** begin user architecture code
+
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+
+
+.param temp=27 vdd = 1.5
+.model mysw SW vt={vdd/2} ron=0.1
+.option method=gear reltol=1e-4
+
+.control
+save all
+run
+tran 2u 2u
+plot vo1 vo2 vcmp
+
+set wr_singlescale
+set wr_vecnames
+wrdata IDEAL_SwitchCap.txt vo1 vo2 vcmp p1 p2
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  ClkG.sym # of pins=3
+** sym_path: /foss/designs/EE628/Hanieh/ClkG.sym
+** sch_path: /foss/designs/EE628/Hanieh/ClkG.sch
+.subckt ClkG p1 clkin p2
+*.ipin clkin
+*.opin p1
+*.opin p2
+xn1 clkinbb b2 VDD VSS net13 sg13g2_nand2_2
+xi7 net8 VDD VSS net11 sg13g2_inv_4
+xi1 clkin VDD VSS clkinb sg13g2_inv_2
+xi2 clkinb VDD VSS clkinbb sg13g2_inv_2
+xn2 clkinb b1 VDD VSS net14 sg13g2_nand2_2
+xi13 net1 VDD VSS b1 sg13g2_inv_4
+xi8 net10 VDD VSS net12 sg13g2_inv_4
+xi14 net2 VDD VSS b2 sg13g2_inv_4
+xn3 a1 b1 VDD VSS net3 sg13g2_nand2_2
+xn4 a2 b2 VDD VSS net5 sg13g2_nand2_2
+xi11 a1 VDD VSS net1 sg13g2_inv_4
+xi9 net11 VDD VSS a1 sg13g2_inv_4
+x12 a2 VDD VSS net2 sg13g2_inv_4
+xi10 net12 VDD VSS a2 sg13g2_inv_4
+xi15 net3 VDD VSS net4 sg13g2_inv_4
+xi17 net4 VDD VSS p1 sg13g2_inv_8
+xi16 net5 VDD VSS net6 sg13g2_inv_4
+xi18 net6 VDD VSS p2 sg13g2_inv_8
+xi3 net13 VDD VSS net7 sg13g2_inv_4
+xi5 net7 VDD VSS net8 sg13g2_inv_4
+xi4 net14 VDD VSS net9 sg13g2_inv_4
+xi6 net9 VDD VSS net10 sg13g2_inv_4
+.ends
+
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym # of pins=5
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Sneha/A_comp-2.sch
+.subckt A_comp-2 p1 outm outp MINUS PLUS
+*.opin outp
+*.ipin PLUS
+*.ipin MINUS
+*.ipin p1
+*.opin outm
+XMN3 net4 outp outm VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMP5 net3 net2 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP1 outm outp net2 net2 sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP2 outp outm net2 net2 sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP6 net1 net2 net2 net2 sg13_lv_pmos w=0.5u l=0.15u ng=1 m=1
+XMN4 net5 outm outp VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMN1 GND net3 net4 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XMN2 GND net1 net5 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XMN5 net8 outp outm VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMP7 net8 p1 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP8 outm p1 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP9 outm outp net2 net2 sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP10 outp outm net2 net2 sg13_lv_pmos w=2u l=0.18u ng=1 m=1
+XMP11 outp p1 net2 net2 sg13_lv_pmos w=0.5u l=0.18u ng=1 m=1
+XMP12 net7 p1 net2 net2 sg13_lv_pmos w=0.5u l=0.15u ng=1 m=1
+XMN6 net7 outm outp VSS sg13_lv_nmos w=1u l=0.18u ng=1 m=1
+XMN7 net6 PLUS net8 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XMN8 net6 MINUS net7 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
+XM7 GND p1 net6 GND sg13_lv_nmos w=4u l=0.18u ng=1 m=1
+VDD1 net2 GND {vdd}
+.ends
+
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym # of pins=3
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sch
+.subckt VCCS_FolCas Plus Vout Minus
+*.ipin Minus
+*.opin Vout
+*.ipin Plus
+Vdd v_dd GND 1.5
+Vss v_ss GND 0
+I0 v_dd net1 0.8u
+x1 v_dd net1 Plus Minus Vout v_ss FoldedCascodeOTA
+.ends
+
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym #
+*+ of pins=6
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/IC_Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sch
+.subckt FoldedCascodeOTA VDD I PLUS MINUS Vout VSS
+*.ipin PLUS
+*.ipin MINUS
+*.opin Vout
+*.ipin VDD
+*.ipin VSS
+*.ipin I
+XM1 net2 net4 VDD VDD sg13_lv_pmos w=0.272u l=0.5u ng=1 m=1
+XM2 net1 PLUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM3 net6 MINUS net2 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM14 VSS net9 net6 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM13 net6 I Vout VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM11 net1 I net7 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM12 VSS net9 net1 VSS sg13_lv_nmos w=0.30u l=2u ng=1 m=1
+XM5 Vout net3 net5 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM4 net5 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM6 net4 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM8 net3 net3 net4 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM9 net8 net4 VDD VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM10 net7 net3 net8 VDD sg13_lv_pmos w=0.136u l=0.5u ng=1 m=1
+XM16 net9 I I VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM15 VSS net9 net9 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM7 VSS net9 net3 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM18 net10 I VDD VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+XM17 VSS net9 net10 VSS sg13_lv_nmos w=0.15u l=2u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.GLOBAL VDD
+.GLOBAL VSS
+.end
