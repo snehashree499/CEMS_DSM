@@ -223,7 +223,7 @@ value="
 reset
 
 run
-tran 10n 60u
+tran 10u 20m
 set color0 = white
 set color1 = black
 plot Vin vo1 vo2 vcmp

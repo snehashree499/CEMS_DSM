@@ -82,4 +82,4 @@ C {isource.sym} 1170 -610 0 0 {name=I0 value= 0.8u}
 C {spice_probe.sym} 1090 -530 0 0 {name=p5 attrs=""}
 C {spice_probe.sym} 1590 -500 0 0 {name=p6 attrs=""}
 C {devices/title.sym} 340 90 0 0 {name=l5 author="(c) 2024 Hrishikesh, @HSB"}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1390 -500 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1390 -500 0 0 {name=x1}

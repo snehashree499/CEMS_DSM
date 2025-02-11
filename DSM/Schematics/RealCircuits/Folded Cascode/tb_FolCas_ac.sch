@@ -93,4 +93,4 @@ print onoise_total
 
 .endc
 "}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1160 -440 0 0 {name=x1}
