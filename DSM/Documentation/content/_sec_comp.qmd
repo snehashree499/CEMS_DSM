@@ -123,7 +123,7 @@ Based on the above theory, we need to design a comparator and a latch that store
 
 @ig-comp2-sch- and @fig-comp-tran1 shows the implementation and transient analysis of **Strong Arm Latch Comparator** respectively.
 
-![Schematic representation of a Strong-Arm Latch Comparator](figures/_fig_A_comp-2.svg){#fig-comp2-sch}
+![Schematic representation of a Strong-Arm Latch Comparator](figures/_fig_Comp-Latch.svg){#fig-comp2-sch}
 
 ![Transient Analysis of a Strong-Arm Latch Comparator](figures/_fig_Comp_Tran1.svg){#fig-comp-tran1}
 
