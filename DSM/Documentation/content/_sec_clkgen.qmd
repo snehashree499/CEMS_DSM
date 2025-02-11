@@ -107,7 +107,7 @@ Each sub-block contains inverters and one transmission gate to produce desired d
 ![Block Diagram](figures\Untitled Diagram-Page-3.drawio (1).svg){#fig-Block-Diagram}
 
 
-## Xschematic
+## Schematic entry of Clock Generator 
 
 There is the design of the non-overlapping clock phases with our project specifications.
 
