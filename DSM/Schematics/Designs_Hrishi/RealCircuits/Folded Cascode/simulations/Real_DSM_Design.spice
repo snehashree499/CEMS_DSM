@@ -1,7 +1,7 @@
 ** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/Real_DSM_Design.sch
 **.subckt Real_DSM_Design
 Vcm Vcm GND dc {vdd/2}
-Vin Vin GND SIN(0.7 1.4 80 0 0 0)
+Vin Vin GND SIN(0 0.7 80 0 0 0)
 S1 Vin net1 p1 GND mysw
 S2 net4 net2 p2 GND mysw
 S3 net1 net3 p2 GND mysw
@@ -19,9 +19,9 @@ Vsup VDD GND dc {vdd}
 Vss VSS GND dc 0
 Vp1 p1 GND dc 0 pulse(0, {vdd}, 0, 100n, 100n, 2u, 4.5u)
 Vp2 p2 GND dc 0 pulse(0, {vdd}, 2.25u, 100n, 100n, 2u, 4.5u)
+x1 p1 Vcm vcmp Vcm vo2 A_comp-2
 x3 Vcm vo1 net4 VCCS_FolCas
-x4 Vcm vo2 net7 VCCS_FolCas
-x1 p1 GND vcmp GND vo2 A_comp-2
+x5 Vcm vo2 net7 VCCS_FolCas
 **** begin user architecture code
 
 .lib /foss/pdks/sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
@@ -40,8 +40,9 @@ reset
 
 run
 tran 1u 20m
-
-plot vcmp
+set color0 = white
+set color1 = black
+plot vo2
 
 set wr_singlescale
 set wr_vecnames
@@ -51,20 +52,6 @@ wrdata IDEAL_SwitchCap.txt vcmp p1 p2
 
 **** end user architecture code
 **.ends
-
-* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym # of pins=3
-** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym
-** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sch
-.subckt VCCS_FolCas Plus Vout Minus
-*.ipin Minus
-*.opin Vout
-*.ipin Plus
-Vdd v_dd GND 1.5
-Vss v_ss GND 0
-I0 v_dd net1 0.8u
-x1 v_dd net1 Plus Minus Vout v_ss FoldedCascodeOTA
-.ends
-
 
 * expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym # of pins=5
 ** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym
@@ -95,6 +82,20 @@ XMN7 net6 PLUS net8 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
 XMN8 net6 MINUS net7 VSS sg13_lv_nmos w=2u l=0.18u ng=1 m=1
 XM7 GND p1 net6 GND sg13_lv_nmos w=4u l=0.18u ng=1 m=1
 VDD1 net2 GND {vdd}
+.ends
+
+
+* expanding   symbol:  /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym # of pins=3
+** sym_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym
+** sch_path: /foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sch
+.subckt VCCS_FolCas Plus Vout Minus
+*.ipin Minus
+*.opin Vout
+*.ipin Plus
+Vdd v_dd GND 1.5
+Vss v_ss GND 0
+I0 v_dd net1 0.8u
+x1 v_dd net1 Plus Minus Vout v_ss FoldedCascodeOTA
 .ends
 
 

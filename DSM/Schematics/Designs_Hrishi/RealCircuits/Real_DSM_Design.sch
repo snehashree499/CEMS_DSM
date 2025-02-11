@@ -114,17 +114,14 @@ N 720 -740 720 -720 {
 lab=GND}
 N 720 -840 720 -800 {p1
 lab=VSS}
-N 2150 -490 2150 -110 {lab=vcmp}
 N 1290 -110 2150 -110 {lab=vcmp}
-N 1810 -510 1910 -510 {lab=GND}
+N 1810 -490 2150 -490 {lab=vcmp}
 N 1470 -510 1510 -510 {
 lab=p1}
-N 1810 -490 2150 -490 {lab=vcmp}
-N 2150 -520 2150 -490 {lab=vcmp}
 N 1210 -500 1210 -480 {lab=#net7}
 N 550 -500 550 -480 {lab=#net4}
-N 1410 -490 1410 -440 {lab=GND}
-N 1410 -490 1510 -490 {lab=GND}
+N 1410 -490 1410 -440 {lab=Vcm}
+N 1410 -490 1510 -490 {lab=Vcm}
 N 700 -470 770 -470 {lab=vo1}
 N 700 -570 700 -470 {lab=vo1}
 N 640 -470 700 -470 {lab=vo1}
@@ -141,17 +138,12 @@ lab=GND}
 N 1470 -840 1470 -800 {p1
 lab=p2}
 N 1310 -470 1510 -470 {lab=vo2}
-<<<<<<< HEAD
-C {devices/gnd.sym} 80 -720 0 0 {name=l14 lab=GND}
-C {devices/vsource.sym} 80 -770 0 0 {name=Vcm value="dc \{vdd/2\}"}
-C {devices/gnd.sym} 200 -720 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="SIN(0 0.7 80 0 0 0)"}
-=======
+N 2150 -490 2150 -110 {lab=vcmp}
+N 2150 -520 2150 -490 {lab=vcmp}
 C {devices/gnd.sym} 830 -720 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 830 -770 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 950 -720 0 0 {name=l4 lab=GND}
 C {devices/vsource.sym} 950 -770 0 0 {name=Vin value= "SIN(0 0.7 80 0 0 0)"}
->>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
 C {devices/switch_ngspice.sym} 130 -420 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 60 -370 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 60 -420 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -211,7 +203,7 @@ format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
-.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {devices/gnd.sym} 630 -720 0 0 {name=l2 lab=GND}
 C {devices/vsource.sym} 630 -770 0 0 {name=Vsup value="dc \{vdd\}"}
@@ -223,12 +215,7 @@ C {devices/title.sym} 180 110 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
 C {devices/code_shown.sym} 2380 -630 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .param temp=27 vdd = 1.5 
-<<<<<<< HEAD
-.param Wnmos=2u Wpmos=4u
-.param Lnmos=.13u Lpmos=.13u Lnmos2=1u
-=======
 
->>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
 .model mysw SW vt=\{vdd/2\} ron=0.1
 .option method=gear reltol=1e-4
 
@@ -236,23 +223,16 @@ value="
 reset
 
 run
-<<<<<<< HEAD
-tran 1u 5m
-plot vcmp
-=======
-tran 10n 60u
+tran 1u 20m
 set color0 = white
 set color1 = black
-plot vo1 vo2
->>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
+plot vo2
 
 set wr_singlescale
 set wr_vecnames
 wrdata IDEAL_SwitchCap.txt vcmp p1 p2
 .endc
 "}
-C {devices/gnd.sym} 1410 -440 0 0 {name=l3 lab=GND}
-C {devices/gnd.sym} 1910 -510 0 0 {name=l23 lab=GND}
 C {devices/lab_wire.sym} 1470 -510 0 0 {name=p18 sig_type=std_logic lab=p1}
 C {devices/gnd.sym} 1110 -720 0 0 {name=l6 lab=GND}
 C {devices/vsource.sym} 1110 -770 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
@@ -261,12 +241,8 @@ C {devices/gnd.sym} 1470 -720 0 0 {name=l7 lab=GND}
 C {devices/vsource.sym} 1470 -770 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
 C {devices/lab_wire.sym} 1470 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
-<<<<<<< HEAD
+C {devices/lab_wire.sym} 1810 -510 2 0 {name=p21 sig_type=std_logic lab=Vcm}
+C {devices/lab_wire.sym} 1410 -440 2 0 {name=p22 sig_type=std_logic lab=Vcm}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x5}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/new_comp/final_working_comp.sym} 1660 -490 0 0 {name=x1}
-=======
-C {VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
-C {VCCS_FolCas.sym} 1360 -470 2 1 {name=x4}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
->>>>>>> 72da4d2115121a360e5a03cbfc8bb494ba4dbacc
