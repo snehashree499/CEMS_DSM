@@ -90,7 +90,7 @@ Figure&nbsp;1: Block Level
 <p>Acccording to <a href="#fig-blocks" class="quarto-xref">Figure&nbsp;1</a>, We have a system where we have ADXL335 accelerometer as our analog sensor and we need to process the data on microcontroller so we need an ADC which takes the analog output from ADXL335 and provides the data in discrete form to the microcontroller. Considering the type of output provided by the accelerometer, we need to design low voltage, low speed, single-bit <span class="math inline">\(\Delta\Sigma\)</span> modulator followed by a decimation filter. Our main focus will be on designing a second order single-bit <span class="math inline">\(\Delta\Sigma\)</span> modulator using discrete time switch capacitor circuit.</p>
 <p>Before diving deep into the circuit level, let’s look at our target specifications.</p>
 <table class="caption-top table">
-<caption><strong>Table 1: Specifications.</strong> {#tb-specifications}</caption>
+<caption><strong>Specifications.</strong></caption>
 <thead>
 <tr class="header">
 <th>Parameter</th>
@@ -104,7 +104,7 @@ Figure&nbsp;1: Block Level
 <td>Signal Bandwidth</td>
 <td><span class="math inline">\(f_B\)</span></td>
 <td>512</td>
-<td>kHz</td>
+<td>Hz</td>
 </tr>
 <tr class="even">
 <td>Sampling frequency</td>

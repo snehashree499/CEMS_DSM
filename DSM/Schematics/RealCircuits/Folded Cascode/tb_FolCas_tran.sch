@@ -48,24 +48,6 @@ C {devices/code_shown.sym} 180 -150 0 0 {name=MODEL2 only_toplevel=true
 format="tcleval( @value )"
 value=".lib cornerRES.lib res_typ
 "}
-C {devices/code_shown.sym} 200 -510 0 0 {name=NGSPICE only_toplevel=true 
-value="
-.temp 27
-.ic v(v_vout)=0
-.control
-
-tran 0.005u 15u uic
-plot v_out
-
-let tstart=0
-let vout_limit = 0.5*0.99
-meas tran tcross WHEN v(v_out)=vout_limit
-
-let tsettle=tcross-tstart
-print tsettle
-
-.endc
-"}
 C {devices/vsource.sym} 790 -200 0 0 {name=Vdd value=1.5
 }
 C {devices/gnd.sym} 790 -150 0 0 {name=l3 lab=GND}
@@ -83,3 +65,21 @@ C {spice_probe.sym} 1090 -530 0 0 {name=p5 attrs=""}
 C {spice_probe.sym} 1590 -500 0 0 {name=p6 attrs=""}
 C {devices/title.sym} 340 90 0 0 {name=l5 author="(c) 2024 Hrishikesh, @HSB"}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/Folded Cascode/FoldedCascodeOTA.sym} 1390 -500 0 0 {name=x1}
+C {devices/code_shown.sym} 300 -570 0 0 {name=NGSPICE only_toplevel=true 
+value="
+.temp 27
+.ic v(v_vout)=0
+.control
+
+tran 0.005u 15u uic
+plot v_out
+
+let tstart=0
+let vout_limit=0.5*0.9
+meas tran tcross WHEN v(v_out)=vout_limit
+
+let tsettle=tcross-tstart
+print tsettle
+
+.endc
+"}

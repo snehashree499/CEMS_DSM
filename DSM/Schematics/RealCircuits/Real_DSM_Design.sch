@@ -203,7 +203,7 @@ format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
-.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {devices/gnd.sym} 630 -720 0 0 {name=l2 lab=GND}
 C {devices/vsource.sym} 630 -770 0 0 {name=Vsup value="dc \{vdd\}"}
@@ -223,7 +223,7 @@ value="
 reset
 
 run
-tran 10u 20m
+tran 1n 120u
 set color0 = white
 set color1 = black
 plot Vin vo1 vo2 vcmp
@@ -243,6 +243,6 @@ C {devices/lab_wire.sym} 1470 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
 C {devices/lab_wire.sym} 1810 -510 2 0 {name=p21 sig_type=std_logic lab=Vcm}
 C {devices/lab_wire.sym} 1410 -440 2 0 {name=p22 sig_type=std_logic lab=Vcm}
-C {VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
-C {VCCS_FolCas.sym} 1360 -470 2 1 {name=x5}
-C {Comp-Latch.sym} 1660 -490 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x4}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x3}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/Comp-Latch.sym} 1660 -490 0 0 {name=x1}
