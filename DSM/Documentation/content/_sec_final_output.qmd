@@ -14,7 +14,7 @@
 ![DSM output](figures/_fig_60u_vo1vo2vcmp.svg){#fig-real-dsm-output}
 
 
-@fig-ltspice-output gives us the reference plot and @fig-real-dsm-output is the output of our real circuit which portrays that the switch capacitor block is working perfectly fine as we can see the plot till $60\mu$ in @fig-ltspice-output and compare it with @fig-real-dsm-output  and the comparator is staying always in upper saturation. Our team is working in order to resolve the issue with the comparator. 
+@fig-ltspice-output gives us the reference plot and @fig-real-dsm-output is the output of our real circuit which portrays that the switch capacitor block is working perfectly fine as we can see the plot till $60\mu$ in @fig-ltspice-output and compare it with @fig-real-dsm-output  but the comparator output is always staying in upper saturation. Our team is working in order to resolve the issue with the comparator. 
 
 We can further analyse the output behaviour of switch capacitor block by looking at the @fig-20m-SC. 
 
