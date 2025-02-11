@@ -92,7 +92,7 @@ A non-overlapping clock ensures accurate data transfer and minimizes noise.
 Overlapping clock phases can cause charge injections and clock feedthrough, leading to signal distortion and increased noise.
 A non-overlapping clock helps to reduce these effects significantly.
 
-![Block Diagram](figures/Untitled Diagram-Page-1.drawio (1).svg){#fig-Block-Diagram}
+![Block Diagram](figures/_fig_waveform_Clkphase.svg){#fig-Block-Diagram}
 
 ## How to Generate a Non-Overlapping Clock?
 
