@@ -144,7 +144,7 @@ N 1310 -470 1510 -470 {lab=vo2}
 C {devices/gnd.sym} 80 -720 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 80 -770 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 200 -720 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="dc 0.5 ac 1 "}
+C {devices/vsource.sym} 200 -770 0 0 {name=Vin value="SIN(0 0.7 80 0 0 0)"}
 C {devices/switch_ngspice.sym} 130 -420 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 60 -370 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 60 -420 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -204,7 +204,7 @@ format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
-.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {devices/gnd.sym} -120 -720 0 0 {name=l2 lab=GND}
 C {devices/vsource.sym} -120 -770 0 0 {name=Vsup value="dc \{vdd\}"}
@@ -216,13 +216,15 @@ C {devices/title.sym} 180 110 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
 C {devices/code_shown.sym} 2380 -630 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .param temp=27 vdd = 1.5 
+.param Wnmos=2u Wpmos=4u
+.param Lnmos=.13u Lpmos=.13u Lnmos2=1u
 .model mysw SW vt=\{vdd/2\} ron=0.1
 .option method=gear reltol=1e-4
 
 .control
 save all 
 run
-tran 450u 450u
+tran 1u 5m
 plot vcmp
 
 set wr_singlescale
@@ -242,4 +244,4 @@ C {devices/lab_wire.sym} 720 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x3}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x5}
-C {/foss/designs/CEMS_DSM/DSM/Schematics/Comparator_design_Sneha/A_comp-2.sym} 1660 -490 0 0 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/new_comp/final_working_comp.sym} 1660 -490 0 0 {name=x1}

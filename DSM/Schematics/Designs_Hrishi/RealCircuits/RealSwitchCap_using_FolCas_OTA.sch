@@ -70,7 +70,7 @@ lab=GND}
 N 1100 -280 1100 -250 {
 lab=GND}
 N 1100 -300 1130 -300 {
-lab=p1}
+lab=p2}
 N 1400 -220 1400 -200 {
 lab=#net5}
 N 1330 -280 1360 -280 {
@@ -78,13 +78,13 @@ lab=GND}
 N 1330 -280 1330 -250 {
 lab=GND}
 N 1330 -300 1360 -300 {
-lab=p2}
+lab=p1}
 N 1100 -150 1130 -150 {
 lab=GND}
 N 1100 -150 1100 -120 {
 lab=GND}
 N 1100 -170 1130 -170 {
-lab=p2}
+lab=p1}
 N 1400 -140 1400 -120 {
 lab=Vcm}
 N 1330 -150 1360 -150 {
@@ -92,7 +92,7 @@ lab=GND}
 N 1330 -150 1330 -120 {
 lab=GND}
 N 1330 -170 1360 -170 {
-lab=p1}
+lab=p2}
 N 1560 -340 1600 -340 {lab=Vcm}
 N 1400 -380 1400 -330 {lab=#net6}
 N 1540 -380 1600 -380 {lab=#net6}
@@ -125,7 +125,7 @@ lab=p2}
 C {devices/gnd.sym} 510 -690 0 0 {name=l14 lab=GND}
 C {devices/vsource.sym} 510 -740 0 0 {name=Vcm value="dc \{vdd/2\}"}
 C {devices/gnd.sym} 630 -690 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 630 -750 0 0 {name=Vin value="dc 0.75 ac 1 "}
+C {devices/vsource.sym} 630 -750 0 0 {name=Vin value="SIN(0 0.7 80 0 0 0)"}
 C {devices/switch_ngspice.sym} 410 -300 0 0 {name=S1 model=mysw}
 C {devices/gnd.sym} 340 -250 0 0 {name=l12 lab=GND}
 C {devices/lab_wire.sym} 340 -300 0 0 {name=p7 sig_type=std_logic lab=p1}
@@ -159,7 +159,7 @@ format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
-.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {devices/code_shown.sym} 1840 -640 0 0 {name=NGSPICE only_toplevel=true 
 value="
@@ -170,7 +170,7 @@ value="
 .control
 save all 
 run
-tran 10n 30u
+tran 10u 0.5m
 plot vo1 vo2
 set wr_singlescale
 set wr_vecnames
@@ -187,16 +187,16 @@ C {devices/title.sym} 400 100 0 0 {name=l21 author="(c) Hrishikesh, @HSB"}
 C {devices/gnd.sym} 410 -140 0 0 {name=l1 lab=GND}
 C {devices/switch_ngspice.sym} 1170 -300 0 0 {name=S5 model=mysw}
 C {devices/gnd.sym} 1100 -250 0 0 {name=l3 lab=GND}
-C {devices/lab_wire.sym} 1100 -300 0 0 {name=p9 sig_type=std_logic lab=p1}
+C {devices/lab_wire.sym} 1330 -300 0 0 {name=p9 sig_type=std_logic lab=p1}
 C {devices/switch_ngspice.sym} 1400 -300 0 0 {name=S6 model=mysw}
 C {devices/gnd.sym} 1330 -250 0 0 {name=l9 lab=GND}
-C {devices/lab_wire.sym} 1330 -300 0 0 {name=p10 sig_type=std_logic lab=p2}
+C {devices/lab_wire.sym} 1100 -300 0 0 {name=p10 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 1170 -170 0 0 {name=S7 model=mysw}
 C {devices/gnd.sym} 1100 -120 0 0 {name=l11 lab=GND}
-C {devices/lab_wire.sym} 1100 -170 0 0 {name=p11 sig_type=std_logic lab=p2}
+C {devices/lab_wire.sym} 1330 -170 0 0 {name=p11 sig_type=std_logic lab=p2}
 C {devices/switch_ngspice.sym} 1400 -170 0 0 {name=S8 model=mysw}
 C {devices/gnd.sym} 1330 -120 0 0 {name=l16 lab=GND}
-C {devices/lab_wire.sym} 1330 -170 0 0 {name=p12 sig_type=std_logic lab=p1}
+C {devices/lab_wire.sym} 1100 -170 0 0 {name=p12 sig_type=std_logic lab=p1}
 C {devices/lab_wire.sym} 1560 -340 0 0 {name=p13 sig_type=std_logic lab=Vcm}
 C {devices/capa.sym} 1260 -220 3 0 {name=C2
 m=1
@@ -212,11 +212,11 @@ device="ceramic capacitor"}
 C {devices/lab_wire.sym} 1170 -330 0 0 {name=p18 sig_type=std_logic lab=vo1}
 C {devices/lab_wire.sym} 1740 -360 0 1 {name=p19 sig_type=std_logic lab=vo2}
 C {devices/gnd.sym} 1170 -140 0 0 {name=l17 lab=GND}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1000 -360 2 1 {name=x1}
 C {devices/gnd.sym} 790 -700 0 0 {name=l6 lab=GND}
 C {devices/vsource.sym} 790 -750 0 0 {name=Vp1 value="dc 0 pulse(0, \{vdd\}, 0, 100n, 100n, 2u, 4.5u) "}
 C {devices/lab_wire.sym} 790 -820 0 0 {name=p2 sig_type=std_logic lab=p1}
 C {devices/gnd.sym} 1150 -700 0 0 {name=l7 lab=GND}
 C {devices/vsource.sym} 1150 -750 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
 C {devices/lab_wire.sym} 1150 -820 0 0 {name=p1 sig_type=std_logic lab=p2}
-C {/foss/designs/SecondOrder_SingleBit_DSM/DSM/IC_Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1750 -360 2 1 {name=x2}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1000 -360 2 1 {name=x1}
+C {/foss/designs/CEMS_DSM/DSM/Schematics/Designs_Hrishi/RealCircuits/VCCS_FolCas.sym} 1750 -360 2 1 {name=x2}
