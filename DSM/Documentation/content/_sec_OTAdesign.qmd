@@ -76,7 +76,7 @@ The minimum length consideration while designing in low voltage CMOS technology 
 
 ### Performance of designed OTA {#sec-Performance-OTA}
 
-For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. @fig-OTA-tran shows the transient plot and gives us the time constant in which it reaches the steady state. NgSpice yeilds tsettle = 8.663771e-09
+For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. @fig-OTA-tran shows the transient plot and gives us the time constant in which it reaches the steady state. NgSpice yeilds tsettle = 8.663771e-07
 
 
 @fig-OTA-ac-mag and @fig-OTA-ac-phase shows us the magnitude and phase over a range of frequency.Where NgSpice yeilds dc_gain = 9.156547e-01
