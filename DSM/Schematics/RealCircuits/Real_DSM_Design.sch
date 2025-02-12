@@ -120,8 +120,8 @@ N 1470 -510 1510 -510 {
 lab=p1}
 N 1210 -500 1210 -480 {lab=#net7}
 N 550 -500 550 -480 {lab=#net4}
-N 1410 -490 1410 -440 {lab=Vcm}
-N 1410 -490 1510 -490 {lab=Vcm}
+N 1410 -490 1410 -440 {lab=GND}
+N 1410 -490 1510 -490 {lab=GND}
 N 700 -470 770 -470 {lab=vo1}
 N 700 -570 700 -470 {lab=vo1}
 N 640 -470 700 -470 {lab=vo1}
@@ -203,7 +203,7 @@ format="tcleval( @value )"
 value="
 .lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
-.inc /foss/pdks/sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+.inc /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
 C {devices/gnd.sym} 630 -720 0 0 {name=l2 lab=GND}
 C {devices/vsource.sym} 630 -770 0 0 {name=Vsup value="dc \{vdd\}"}
@@ -223,7 +223,7 @@ value="
 reset
 
 run
-tran 1n 120u
+tran 10n 60u
 set color0 = white
 set color1 = black
 plot Vin vo1 vo2 vcmp
@@ -241,8 +241,8 @@ C {devices/gnd.sym} 1470 -720 0 0 {name=l7 lab=GND}
 C {devices/vsource.sym} 1470 -770 0 0 {name=Vp2 value="dc 0 pulse(0, \{vdd\}, 2.25u, 100n, 100n, 2u, 4.5u)"}
 C {devices/lab_wire.sym} 1470 -840 0 0 {name=p1 sig_type=std_logic lab=p2}
 C {devices/lab_wire.sym} 1350 -470 0 0 {name=p20 sig_type=std_logic lab=vo2}
-C {devices/lab_wire.sym} 1810 -510 2 0 {name=p21 sig_type=std_logic lab=Vcm}
-C {devices/lab_wire.sym} 1410 -440 2 0 {name=p22 sig_type=std_logic lab=Vcm}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/VCCS_FolCas.sym} 700 -470 2 1 {name=x4}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/VCCS_FolCas.sym} 1360 -470 2 1 {name=x3}
 C {/foss/designs/CEMS_DSM/DSM/Schematics/RealCircuits/Comp-Latch.sym} 1660 -490 0 0 {name=x1}
+C {devices/gnd.sym} 1410 -440 0 0 {name=l1 lab=GND}
+C {devices/gnd.sym} 1810 -510 0 0 {name=l3 lab=GND}
